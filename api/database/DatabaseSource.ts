@@ -1,5 +1,13 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
+import Address from "../modules/Address/Address.entity";
+import Category from "../modules/Category/Category.entity";
+import City from "../modules/City/City.entity";
+import Favorite from "../modules/Favorite/Favorite.entity";
+import Message from "../modules/Message/Message.entity";
+import Photo from "../modules/Photo/Photo.entity";
+import Property from "../modules/Property/Property.entity";
+import RealEstate from "../modules/RealEstate/RealEstate.entity";
 import User from "../modules/User/User.entity";
 
 export const AppDataSource = new DataSource({
@@ -11,7 +19,7 @@ export const AppDataSource = new DataSource({
     database: process.env.DB_NAME,
     synchronize: true,
     logging: false,
-    entities: [User],
+    entities: [Address, Category, City, Favorite, Message, Photo, Property, RealEstate, User],
     migrations: [],
     subscribers: [],
 });

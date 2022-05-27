@@ -7,61 +7,75 @@ import { UserRole } from "../modules/User/User.constants";
 import UserController from "../modules/User/User.controller";
 import * as path from "path";
 import { UPLOAD_FOLDER } from "../constants";
+import CityController from "../modules/City/City.controller";
+import fetch from "node-fetch";
 
 // catch error since Express doesn't catch errors in async functions
 // this will catch the controller method + will send the error through next() method
 // this way we don't have to do try/catch in every controller method
 const useMethod =
-    (func: (req: any, res: Response, next: NextFunction) => Promise<any>) =>
-    async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            await func(req, res, next);
-        } catch (err) {
-            next(err);
-        }
-    };
+  (func: (req: any, res: Response, next: NextFunction) => Promise<any>) =>
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      await func(req, res, next);
+    } catch (err) {
+      next(err);
+    }
+  };
 
 const registerOnboardingRoutes = (router: Router) => {
-    const authController = new AuthController();
-    router.post("/login", authLocal, useMethod(authController.login));
+  const authController = new AuthController();
+  router.post("/login", authLocal, useMethod(authController.login));
+
+//   // test route REMOVE after
+//   const userController = new UserController();
+//   if (process.env.ENV === "development") {
+//     router.post("/dev/users", useMethod(userController.create));
+//   }
 };
 
 const registerAdminRoutes = (router: Router) => {
-    const adminRouter = Router();
+  const adminRouter = Router();
 
-    const userController = new UserController();
-    adminRouter.get("/users", useMethod(userController.all));
-    adminRouter.get("/users/:id", useMethod(userController.find));
-    adminRouter.post("/users", useMethod(userController.create));
-    adminRouter.patch("/users/:id", useMethod(userController.update));
-    adminRouter.delete("/users/:id", useMethod(userController.delete));
+  const userController = new UserController();
+  adminRouter.get("/users", useMethod(userController.all));
+  adminRouter.get("/users/:id", useMethod(userController.find));
+  adminRouter.post("/users", useMethod(userController.create));
+  adminRouter.patch("/users/:id", useMethod(userController.update));
+  adminRouter.delete("/users/:id", useMethod(userController.delete));
 
-    router.use(withRole(UserRole.Admin), adminRouter);
+  const cityController = new CityController();
+  adminRouter.get("/cities", useMethod(cityController.all));
+  adminRouter.get("/cities/:id", useMethod(cityController.find));
+  adminRouter.post("/cities", useMethod(cityController.create));
+  adminRouter.get("/seed", useMethod(cityController.seed));
+
+  router.use(withRole(UserRole.Admin), adminRouter);
 };
 
 const registerAuthenticatedRoutes = (router: Router) => {
-    const authRouter = Router();
+  const authRouter = Router();
 
-    registerAdminRoutes(authRouter);
+  registerAdminRoutes(authRouter);
 
-    // authenticated routes use authJWT
-    router.use(authJwt, authRouter);
+  // authenticated routes use authJWT
+  router.use(authJwt, authRouter);
 };
 
 const registerRoutes = (app: Router) => {
-    // public folder
-    app.use("/public", express.static(path.resolve(__dirname, "../public")));
+  // public folder
+  app.use("/public", express.static(path.resolve(__dirname, "../public")));
 
-    // onboarding routes (login, ...)
-    registerOnboardingRoutes(app);
+  // onboarding routes (login, ...)
+  registerOnboardingRoutes(app);
 
-    // authenticated routes (authentication required)
-    registerAuthenticatedRoutes(app);
+  // authenticated routes (authentication required)
+  registerAuthenticatedRoutes(app);
 
-    // fallback route, return our own 404 instead of default
-    app.use((req: Request, res: Response, next: NextFunction) => {
-        next(new NotFoundError());
-    });
+  // fallback route, return our own 404 instead of default
+  app.use((req: Request, res: Response, next: NextFunction) => {
+    next(new NotFoundError());
+  });
 };
 
 export { registerRoutes };
