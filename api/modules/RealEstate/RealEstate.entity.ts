@@ -1,6 +1,7 @@
 import { IsDefined, IsEmail } from "class-validator";
-import { BaseEntity, Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import Address from "../Address/Address.entity";
+import { BaseEntity } from "../BaseEntity";
 import Message from "../Message/Message.entity";
 import Property from "../Property/Property.entity";
 import User from "../User/User.entity";
@@ -11,10 +12,11 @@ export default class RealEstate extends BaseEntity {
     id: number;
 
     @IsDefined({ always: true })
-    @Column()
+    @Column({ unique: true })
     name: string;
 
-    @OneToOne(() => Address, (address) => address.realEstate)
+    @OneToOne(() => Address)
+    @JoinColumn()
     address: Address;
 
     @IsDefined({ always: true })

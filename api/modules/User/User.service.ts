@@ -12,12 +12,17 @@ export default class UserService {
   }
 
   all = async () => {
-      const users = await this.repository.find();
+      const users = await this.repository.find({
+        relations: ["realEstate"],
+      });
       return users;
   };
 
   findOne = async (id: number) => {
-    const user = await this.repository.findOneBy({ id });
+    const user = await this.repository.findOne({
+      where: { id },
+      relations: ["realEstate"],
+    });
     return user;
   };
 

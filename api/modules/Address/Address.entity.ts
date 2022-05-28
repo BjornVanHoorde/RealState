@@ -1,8 +1,9 @@
 import { IsDefined } from "class-validator";
-import { BaseEntity, Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import City from "../City/City.entity";
 import Property from "../Property/Property.entity";
 import RealEstate from "../RealEstate/RealEstate.entity";
+import { BaseEntity } from "../BaseEntity";
 
 @Entity()
 export default class Address extends BaseEntity {
@@ -24,7 +25,8 @@ export default class Address extends BaseEntity {
     @ManyToOne(() => City, (city) => city.addresses)
     city: City;
 
-    @OneToOne(() => Property, (property) => property.address)
+    @OneToOne(() => Property)
+    @JoinColumn()
     property: Property;
 
     @OneToOne(() => RealEstate, (property) => property.address)

@@ -1,8 +1,10 @@
 import { IsDefined } from "class-validator";
-import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity } from "../BaseEntity";
 import Property from "../Property/Property.entity";
 import RealEstate from "../RealEstate/RealEstate.entity";
 import User from "../User/User.entity";
+import { MessageStatus } from "./Message.constants";
 
 @Entity()
 export default class Message extends BaseEntity {
@@ -22,7 +24,10 @@ export default class Message extends BaseEntity {
   @ManyToOne(() => RealEstate, (realEstate) => realEstate.messages)
   receiver: RealEstate;
 
-  @IsDefined({ always: true })
-  @Column()
-  read: boolean;
+  @Column({
+    type: "enum",
+    enum: MessageStatus,
+    default: MessageStatus.unread,
+  })
+  status: MessageStatus;
 }

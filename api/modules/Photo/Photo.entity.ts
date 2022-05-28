@@ -1,11 +1,11 @@
 import { IsDefined } from "class-validator";
 import {
-  BaseEntity,
   Column,
   Entity,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import { BaseEntity } from "../BaseEntity";
 import Property from "../Property/Property.entity";
 
 @Entity()

@@ -1,14 +1,15 @@
 import { IsDefined } from "class-validator";
 import {
-  BaseEntity,
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import Address from "../Address/Address.entity";
+import { BaseEntity } from "../BaseEntity";
 import Category from "../Category/Category.entity";
 import Favorite from "../Favorite/Favorite.entity";
 import Message from "../Message/Message.entity";
@@ -29,7 +30,7 @@ export default class Property extends BaseEntity {
     type: "enum",
     enum: PropertyStatus,
   })
-  role: PropertyStatus;
+  status: PropertyStatus;
 
   @IsDefined({ always: true })
   @Column()
@@ -38,6 +39,10 @@ export default class Property extends BaseEntity {
   @IsDefined({ always: true })
   @Column()
   price: number;
+
+  @IsDefined({ always: true })
+  @Column()
+  description: string;
 
   @OneToMany(() => Favorite, (favorite) => favorite.property)
   favorites: Favorite[];
@@ -54,6 +59,7 @@ export default class Property extends BaseEntity {
   @ManyToOne(() => Category, (category) => category.properties)
   category: Category;
 
-  @OneToOne(() => Address, (address) => address.property)
+  @OneToOne(() => Address)
+  @JoinColumn()
   address: Address;
 }

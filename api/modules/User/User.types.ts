@@ -1,3 +1,5 @@
+import RealEstate from "../RealEstate/RealEstate.entity";
+
 export interface UserBody {
     firstName: string;
     lastName: string;
@@ -5,4 +7,5 @@ export interface UserBody {
     tel: string;
     avatar?: string;
     password?: string;
+    realEstate?: RealEstate;
 }

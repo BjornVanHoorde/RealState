@@ -9,6 +9,13 @@ import * as path from "path";
 import { UPLOAD_FOLDER } from "../constants";
 import CityController from "../modules/City/City.controller";
 import fetch from "node-fetch";
+import AddressController from "../modules/Address/Address.controller";
+import RealEstateController from "../modules/RealEstate/RealEstate.controller";
+import PhotoController from "../modules/Photo/Photo.controller";
+import CategoryController from "../modules/Category/Category.controller";
+import PropertyController from "../modules/Property/Property.controller";
+import FavoriteController from "../modules/Favorite/Favorite.controller";
+import MessageController from "../modules/Message/Message.controller";
 
 // catch error since Express doesn't catch errors in async functions
 // this will catch the controller method + will send the error through next() method
@@ -48,13 +55,62 @@ const registerAdminRoutes = (router: Router) => {
   adminRouter.get("/cities", useMethod(cityController.all));
   adminRouter.get("/cities/:id", useMethod(cityController.find));
   adminRouter.post("/cities", useMethod(cityController.create));
-  adminRouter.get("/seed", useMethod(cityController.seed));
+  // adminRouter.get("/seed", useMethod(cityController.seed));
+
+  const realEstateController = new RealEstateController();
+  adminRouter.get("/realEstates", useMethod(realEstateController.all));
+  adminRouter.get("/realEstates/:id", useMethod(realEstateController.find));
+  adminRouter.post("/realEstates", useMethod(realEstateController.create));
+  adminRouter.patch("/realEstates/:id", useMethod(realEstateController.update));
+  adminRouter.delete("/realEstates/:id", useMethod(realEstateController.delete));
+
+  const categoryController = new CategoryController();
+  adminRouter.get("/categories", useMethod(categoryController.all));
+  adminRouter.get("/categories/:id", useMethod(categoryController.find));
+  adminRouter.post("/categories", useMethod(categoryController.create));
+  adminRouter.patch("/categories/:id", useMethod(categoryController.update));
+  adminRouter.delete("/categories/:id", useMethod(categoryController.delete));
 
   router.use(withRole(UserRole.Admin), adminRouter);
 };
 
 const registerAuthenticatedRoutes = (router: Router) => {
   const authRouter = Router();
+
+  const addressController = new AddressController();
+  authRouter.get("/addresses", useMethod(addressController.all));
+  authRouter.get("/addresses/:id", useMethod(addressController.find));
+  authRouter.post("/addresses", useMethod(addressController.create));
+  authRouter.patch("/addresses/:id", useMethod(addressController.update));
+  authRouter.delete("/addresses/:id", useMethod(addressController.delete));
+
+  const photoController = new PhotoController();
+  authRouter.get("/photos", useMethod(photoController.all));
+  authRouter.get("/photos/:id", useMethod(photoController.find));
+  authRouter.post("/photos", useMethod(photoController.create));
+  authRouter.patch("/photos/:id", useMethod(photoController.update));
+  authRouter.delete("/photos/:id", useMethod(photoController.delete));
+
+  const propertyController = new PropertyController();
+  authRouter.get("/properties", useMethod(propertyController.all));
+  authRouter.get("/properties/:id", useMethod(propertyController.find));
+  authRouter.post("/properties", useMethod(propertyController.create));
+  authRouter.patch("/properties/:id", useMethod(propertyController.update));
+  authRouter.delete("/properties/:id", useMethod(propertyController.delete));
+
+  const favoriteController = new FavoriteController();
+  authRouter.get("/favorites", useMethod(favoriteController.all));
+  authRouter.get("/favorites/:id", useMethod(favoriteController.find));
+  authRouter.post("/favorites", useMethod(favoriteController.create));
+  authRouter.patch("/favorites/:id", useMethod(favoriteController.update));
+  authRouter.delete("/favorites/:id", useMethod(favoriteController.delete));
+
+  const messageController = new MessageController();
+  authRouter.get("/messages", useMethod(messageController.all));
+  authRouter.get("/messages/:id", useMethod(messageController.find));
+  authRouter.post("/messages", useMethod(messageController.create));
+  authRouter.patch("/messages/:id", useMethod(messageController.update));
+  authRouter.delete("/messages/:id", useMethod(messageController.delete));
 
   registerAdminRoutes(authRouter);
 
