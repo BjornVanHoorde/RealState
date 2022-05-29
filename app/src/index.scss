@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: 'Lato', sans-serif;
+}
+
+$font-family-sans-serif: "Lato", sans-serif;
+$primary: #002647;
+$secondary: #0e67b4;
+$background: #F2FBFF;
+
+
+#root {
+  min-height: 100vh;
+  background-color: $background;
+}
+
+// Import Bootstrap and its default variables
+@import "~bootstrap/scss/bootstrap.scss";

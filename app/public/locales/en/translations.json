@@ -1,0 +1,15 @@
+{
+  "onboarding": {
+    "login" : {
+      "title": "Login",
+      "button": "Login",
+      "new?": "No account yet?",
+      "link": "Create an account"
+    }
+  },
+
+  "fields": {
+    "email": "Email",
+    "password": "Password"
+  }
+}
