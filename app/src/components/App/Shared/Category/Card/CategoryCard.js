@@ -1,10 +1,11 @@
-import { BiEditAlt, BiTrash } from "react-icons/bi";
+import { BiEditAlt } from "react-icons/bi";
 import Button from "../../../../Design/Button/Button";
 import FlexContainer from "../../../../Design/Container/FlexContainer";
 import Col from "../../../../Design/Table/Col";
 import Row from "../../../../Design/Table/Row";
+import DeleteButton from "../../Generic/Buttons/DeleteButton";
 
-const CategoryCard = ({ category, onEditClick }) => {
+const CategoryCard = ({ category, onEdit, onDelete }) => {
   return (
     <Col size="3" className="mx-3">
       <Row className="bg-white shadow">
@@ -13,16 +14,12 @@ const CategoryCard = ({ category, onEditClick }) => {
         </Col>
         <Col size="4">
           <FlexContainer content="end">
-            <Button onClick={() => onEditClick(category)} color="link">
+            <Button onClick={() => onEdit(category)} color="link">
               <h4 className="text-info">
                 <BiEditAlt />
               </h4>
             </Button>
-            <Button color="link">
-              <h4 className="text-danger">
-                <BiTrash />
-              </h4>
-            </Button>
+            <DeleteButton scope="categories" id={category.id} onSuccess={onDelete} color="link"/>
           </FlexContainer>
         </Col>
       </Row>
