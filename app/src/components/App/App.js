@@ -4,15 +4,17 @@ import AppLayout from "./AppLayout";
 import AuthContainer from "./Auth/AuthContainer";
 import AuthProvider from "./Auth/AuthProvider";
 import TestLayout from "./Auth/OnBoardingLayout";
-import TestLogin from "./Auth/login/LoginScreen";
+import LoginScreen from "./Auth/login/LoginScreen";
 import TestScreen from "./Screens/TestScreen";
+import RegisterScreen from "./Auth/register/RegisterScreen";
 
 const App = () => {
   return (
     <AuthProvider>
       <Routes>
         <Route path={AuthRoutes.Index} element={<TestLayout />}>
-          <Route path={AuthRoutes.Login} element={<TestLogin />} />
+          <Route path={AuthRoutes.Login} element={<LoginScreen />} />
+          <Route path={AuthRoutes.Register} element={<RegisterScreen />} />
           <Route path="*" element={<Navigate to={AuthRoutes.Login} />} />
         </Route>
         <Route

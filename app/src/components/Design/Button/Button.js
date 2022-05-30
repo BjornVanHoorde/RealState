@@ -5,7 +5,7 @@ const Button = ({
   children,
   onClick,
   color = "primary",
-  type,
+  type = "button",
   disabled = false,
   href,
 }) => {

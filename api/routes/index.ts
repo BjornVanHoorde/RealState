@@ -34,11 +34,14 @@ const registerOnboardingRoutes = (router: Router) => {
   const authController = new AuthController();
   router.post("/login", authLocal, useMethod(authController.login));
 
-//   // test route REMOVE after
-//   const userController = new UserController();
-//   if (process.env.ENV === "development") {
-//     router.post("/dev/users", useMethod(userController.create));
-//   }
+  const userController = new UserController();
+  router.post("/register", useMethod(userController.create));
+
+  //   // test route REMOVE after
+  //   const userController = new UserController();
+  //   if (process.env.ENV === "development") {
+  //     router.post("/dev/users", useMethod(userController.create));
+  //   }
 };
 
 const registerAdminRoutes = (router: Router) => {
@@ -62,7 +65,10 @@ const registerAdminRoutes = (router: Router) => {
   adminRouter.get("/realEstates/:id", useMethod(realEstateController.find));
   adminRouter.post("/realEstates", useMethod(realEstateController.create));
   adminRouter.patch("/realEstates/:id", useMethod(realEstateController.update));
-  adminRouter.delete("/realEstates/:id", useMethod(realEstateController.delete));
+  adminRouter.delete(
+    "/realEstates/:id",
+    useMethod(realEstateController.delete)
+  );
 
   const categoryController = new CategoryController();
   adminRouter.get("/categories", useMethod(categoryController.all));

@@ -5,10 +5,19 @@
       "button": "Login",
       "new?": "No account yet?",
       "link": "Create an account"
+    },
+    "register" : {
+      "title": "Register",
+      "button": "Register",
+      "new?": "Already an account?",
+      "link": "Login"
     }
   },
 
   "fields": {
+    "firstName": "First name",
+    "lastName": "Last name",
+    "tel": "Tel",
     "email": "Email",
     "password": "Password"
   }

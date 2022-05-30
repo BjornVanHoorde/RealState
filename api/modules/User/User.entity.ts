@@ -49,7 +49,7 @@ export default class User extends BaseEntity {
   role: UserRole;
 
   @IsDefined({ always: false })
-  @Column({ select: true })
+  @Column({ select: true, default: "avatar.jpg" })
   avatar: string;
 
   @OneToMany(() => Favorite, (favorite) => favorite.user)

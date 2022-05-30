@@ -18,27 +18,33 @@ import Alert from "../../../Design/Alert/Alert";
 import PasswordInput from "../../../Design/Form/PasswordInput";
 
 const schema = yup.object().shape({
+  firstName: yup.string().required(),
+  lastName: yup.string().required(),
+  tel: yup.string().required(),
   email: yup.string().email().required(),
   password: yup.string().required(),
 });
 
 const defaultData = {
+  firstName: "",
+  lastName: "",
+  tel: "",
   email: "",
   password: "",
 };
 
-const LoginScreen = () => {
+const RegisterScreen = () => {
   const { login } = useAuthContext();
   const { t } = useTranslation();
   const { isLoading, error, mutate } = useMutation();
-  useTitle(t("onboarding.login.title"));
+  useTitle(t("onboarding.register.title"));
 
   const { values, errors, handleChange, handleSubmit } = useForm(schema, {
     ...defaultData,
   });
 
   const handleData = (values) => {
-    mutate(`${process.env.REACT_APP_API_URL}/login`, {
+    mutate(`${process.env.REACT_APP_API_URL}/register`, {
       method: "POST",
       data: values,
       onSuccess: (data) => {
@@ -51,15 +57,48 @@ const LoginScreen = () => {
     <Container>
       <AuthContainer>
         <Col>
-          <Title>{t("onboarding.login.title")}</Title>
+          <Title>{t("onboarding.register.title")}</Title>
           <p>
-            {t("onboarding.login.new?")}
-            <Button href={AuthRoutes.Register} color="link">
-              {t("onboarding.login.link")}
+            {t("onboarding.register.new?")}
+            <Button href={AuthRoutes.Login} color="link">
+              {t("onboarding.register.link")}
             </Button>
           </p>
           <form onSubmit={handleSubmit(handleData)} noValidate={true}>
-          {error && <Alert color="danger">{error}</Alert>}
+            {error && <Alert color="danger">{error}</Alert>}
+            <Field>
+              <Label htmlFor="firstName">{t("fields.firstName")}</Label>
+              <Input
+                type="text"
+                name="firstName"
+                onChange={handleChange}
+                value={values.firstName}
+                error={errors.firstName}
+                disabled={isLoading}
+              />
+            </Field>
+            <Field>
+              <Label htmlFor="lastName">{t("fields.lastName")}</Label>
+              <Input
+                type="text"
+                name="lastName"
+                onChange={handleChange}
+                value={values.lastName}
+                error={errors.lastName}
+                disabled={isLoading}
+              />
+            </Field>
+            <Field>
+              <Label htmlFor="tel">{t("fields.tel")}</Label>
+              <Input
+                type="text"
+                name="tel"
+                onChange={handleChange}
+                value={values.tel}
+                error={errors.tel}
+                disabled={isLoading}
+              />
+            </Field>
             <Field>
               <Label htmlFor="email">{t("fields.email")}</Label>
               <Input
@@ -71,23 +110,23 @@ const LoginScreen = () => {
                 disabled={isLoading}
               />
             </Field>
-              <Label htmlFor="password">{t("fields.password")}</Label>
-              <PasswordInput
-                name="password"
-                onChange={handleChange}
-                value={values.password}
-                error={errors.password}
-                disabled={isLoading}
-              />
+            <Label htmlFor="password">{t("fields.password")}</Label>
+            <PasswordInput
+              name="password"
+              onChange={handleChange}
+              value={values.password}
+              error={errors.password}
+              disabled={isLoading}
+            />
             <Button type="submit" disabled={isLoading}>
-              {t("onboarding.login.button")}
+              {t("onboarding.register.button")}
             </Button>
           </form>
         </Col>
         <Col>
           <img
             style={{ width: "100%" }}
-            src={getImagePath("public/images/login.jpg")}
+            src={getImagePath("public/images/register.jpg")}
             alt="login.jpg"
           ></img>
         </Col>
@@ -96,4 +135,4 @@ const LoginScreen = () => {
   );
 };
 
-export default LoginScreen;
+export default RegisterScreen;
