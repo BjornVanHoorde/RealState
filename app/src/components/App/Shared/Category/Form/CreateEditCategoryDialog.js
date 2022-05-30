@@ -13,7 +13,7 @@ const CreateEditCategoryDialog = ({
   const { t } = useTranslation();
 
   const { isLoading, error, mutate } = useMutation();
-  const isUpdate = category === undefined ? false : true;
+  const isUpdate = category === null ? false : true;
 
   const handleSubmit = (data) => {
     mutate(

@@ -4,16 +4,16 @@ import FlexContainer from "../../../../Design/Container/FlexContainer";
 import Col from "../../../../Design/Table/Col";
 import Row from "../../../../Design/Table/Row";
 
-const CategoryCard = ({ category }) => {
+const CategoryCard = ({ category, onEditClick }) => {
   return (
     <Col size="3" className="mx-3">
       <Row className="bg-white shadow">
         <Col size="8">
-          <p className="m-0 p-2">{category}</p>
+          <p className="m-0 p-2">{category.name}</p>
         </Col>
         <Col size="4">
           <FlexContainer content="end">
-            <Button color="link">
+            <Button onClick={() => onEditClick(category)} color="link">
               <h4 className="text-info">
                 <BiEditAlt />
               </h4>

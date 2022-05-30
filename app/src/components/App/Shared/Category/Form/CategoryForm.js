@@ -17,8 +17,11 @@ const defaultData = {
 const CategoryForm = ({ initialData = {}, disabled, onSubmit, label }) => {
   const { t } = useTranslation();
 
+  console.log(initialData);
+
   const { values, errors, handleChange, handleSubmit } = useForm(schema, {
     ...defaultData,
+    ...initialData,
   });
 
   const handleData = (values) => {

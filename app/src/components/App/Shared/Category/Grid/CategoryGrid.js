@@ -12,14 +12,25 @@ const CategoryGrid = ({ categories, onRefresh }) => {
   const { t } = useTranslation();
 
   const [dialog, setDialog] = useState(false);
+  const [currentCategory, setCurrentCategory] = useState(null);
   useTitle(t("categories.title"));
+
+  const handleDismiss = () => {
+    setDialog(false);
+    setCurrentCategory(null);
+  };
 
   const handleAddClick = () => {
     setDialog(true);
   };
 
+  const handleEditClick = (category) => {
+    setCurrentCategory(category);
+  };
+
   const handleUpdate = () => {
     setDialog(false);
+    setCurrentCategory(null);
     onRefresh();
   };
 
@@ -31,13 +42,14 @@ const CategoryGrid = ({ categories, onRefresh }) => {
       </TopBar>
       <Row gutter="3" className="justify-content-center mt-3">
         {categories.map((category) => (
-          <CategoryCard category={category.name} key={category.name} />
+          <CategoryCard category={category} onEditClick={handleEditClick} key={category.name} />
         ))}
       </Row>
-      {dialog && (
+      {(dialog || currentCategory) && (
         <CreateEditCategoryDialog
-          onDismiss={() => setDialog(false)}
+          onDismiss={handleDismiss}
           onSuccess={() => handleUpdate()}
+          category={currentCategory}
         />
       )}
     </>
