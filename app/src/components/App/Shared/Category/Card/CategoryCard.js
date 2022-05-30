@@ -1,8 +1,8 @@
 import { BiEditAlt, BiTrash } from "react-icons/bi";
-import Button from "../../../Design/Button/Button";
-import FlexContainer from "../../../Design/Container/FlexContainer";
-import Col from "../../../Design/Table/Col";
-import Row from "../../../Design/Table/Row";
+import Button from "../../../../Design/Button/Button";
+import FlexContainer from "../../../../Design/Container/FlexContainer";
+import Col from "../../../../Design/Table/Col";
+import Row from "../../../../Design/Table/Row";
 
 const CategoryCard = ({ category }) => {
   return (

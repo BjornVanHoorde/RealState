@@ -31,13 +31,24 @@
   "fields": {
     "firstName": "First name",
     "lastName": "Last name",
+    "name": "Name",
     "tel": "Tel",
     "email": "Email",
     "password": "Password"
   },
 
+  "buttons": {
+    "create": "Create",
+    "save": "Save"
+  },
+
   "categories": {
     "title": "Categories",
-    "add": "Add Category"
+    "add": {
+      "title": "Add Category"
+    },
+    "edit": {
+      "title": "Edit Category"
+    }
   }
 }

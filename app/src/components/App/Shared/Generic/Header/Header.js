@@ -74,7 +74,7 @@ const Header = () => {
   }
 
   return (
-    <header className="bg-secondary px-5 py-2 mb-2 d-flex justify-content-between align-items-center text-white">
+    <header className="bg-secondary px-5 py-2 mb-4 d-flex justify-content-between align-items-center text-white">
       <div className="brand">
         <img
           style={{ width: "10rem" }}
@@ -85,7 +85,7 @@ const Header = () => {
       <NavBar navItems={items}/>
       <Row size="2">
         <Col size="8">
-          <Button onClick={logout}>{t("header.logout")}</Button>
+          <Button color="danger" onClick={logout}>{t("header.logout")}</Button>
         </Col>
         <Col>
           <h2 className="ml-5">
