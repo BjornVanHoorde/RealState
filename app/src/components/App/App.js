@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { AuthRoutes } from "../../core/routing";
+import { AuthRoutes, CategoryRoutes } from "../../core/routing";
 import AppLayout from "./AppLayout";
 import AuthContainer from "./Auth/AuthContainer";
 import AuthProvider from "./Auth/AuthProvider";
@@ -7,6 +7,8 @@ import TestLayout from "./Auth/OnBoardingLayout";
 import LoginScreen from "./Auth/login/LoginScreen";
 import TestScreen from "./Screens/TestScreen";
 import RegisterScreen from "./Auth/register/RegisterScreen";
+import CategoryLayout from "./Screens/Category/CategoryLayout";
+import CategoryOverviewScreen from "./Screens/Category/Overview/CategoryOveriewScreen";
 
 const App = () => {
   return (
@@ -25,6 +27,9 @@ const App = () => {
           }
         >
           <Route path="/test" element={<TestScreen />} />
+          <Route path={CategoryRoutes.Index} element={<CategoryLayout />}>
+            <Route index element={<CategoryOverviewScreen />} />
+          </Route>
           <Route path="*" element={<Navigate to="/test" />} />
         </Route>
       </Routes>

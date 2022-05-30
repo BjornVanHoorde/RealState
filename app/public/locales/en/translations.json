@@ -14,11 +14,30 @@
     }
   },
 
+  "header": {
+    "logout": "Log out"
+  },
+
+  "navigation": {
+    "properties": "Properties",
+    "categories": "Categories",
+    "users": "Users",
+    "realEstates": "Real Estates",
+    "realEstate": "Real Estate",
+    "messages": "Messages",
+    "favorites": "Favorites"
+  },
+
   "fields": {
     "firstName": "First name",
     "lastName": "Last name",
     "tel": "Tel",
     "email": "Email",
     "password": "Password"
+  },
+
+  "categories": {
+    "title": "Categories",
+    "add": "Add Category"
   }
 }

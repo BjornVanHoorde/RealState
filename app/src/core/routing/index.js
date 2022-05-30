@@ -4,6 +4,31 @@ const AuthRoutes = {
   Register: "/auth/register",
 };
 
+const PropertyRoutes = {
+  Index: "/properties",
+};
+
+const CategoryRoutes = {
+  Index: "/categories",
+};
+
+const UserRoutes = {
+  Index: "/users",
+};
+
+const RealEstateRoutes = {
+  Index: "/realEstates",
+  Detail: "/realEstates/:id",
+};
+
+const MessageRoutes = {
+  Index: "/messages",
+};
+
+const FavoriteRoutes = {
+  Index: "/favorites",
+};
+
 export const route = (path, options = {}) => {
   Object.keys(options).forEach((key) => {
     path = path.replace(`:${key}`, options[key]);
@@ -11,4 +36,12 @@ export const route = (path, options = {}) => {
   return path;
 };
 
-export { AuthRoutes };
+export {
+  AuthRoutes,
+  PropertyRoutes,
+  CategoryRoutes,
+  UserRoutes,
+  RealEstateRoutes,
+  MessageRoutes,
+  FavoriteRoutes,
+};

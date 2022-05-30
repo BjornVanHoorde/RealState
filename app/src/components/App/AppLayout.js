@@ -1,6 +1,8 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { AuthRoutes } from "../../core/routing";
+import Container from "../Design/Container/Container";
 import { useAuthContext } from "./Auth/AuthProvider";
+import Header from "./Shared/Generic/Header/Header";
 
 const AppLayout = () => {
   const { auth } = useAuthContext();
@@ -9,7 +11,10 @@ const AppLayout = () => {
   if (auth) {
     return (
       <>
-        <Outlet />
+        <Header />
+        <Container>
+          <Outlet />
+        </Container>
       </>
     );
   }
