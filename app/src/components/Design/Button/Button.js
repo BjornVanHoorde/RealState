@@ -10,7 +10,7 @@ const Button = ({
   href,
 }) => {
   const props = {
-    className: `btn btn-${color} ${href ? "" : "text-uppercase"}`,
+    className: `btn btn-${color} ${color === "link" ? "" : "text-uppercase"}`,
     onClick: onClick,
     disabled: disabled,
   };

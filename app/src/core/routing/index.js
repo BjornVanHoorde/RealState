@@ -10,6 +10,7 @@ const PropertyRoutes = {
 
 const CategoryRoutes = {
   Index: "/categories",
+  Add: "/categories/add",
 };
 
 const UserRoutes = {

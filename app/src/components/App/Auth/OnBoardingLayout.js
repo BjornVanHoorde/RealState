@@ -2,7 +2,7 @@ import { Navigate, Outlet, useLocation } from "react-router-dom";
 import Container from "../../Design/Container/Container";
 import { useAuthContext } from "./AuthProvider"
 
-const TestLayout = () => {
+const OnboardingLayout = () => {
   const { auth } = useAuthContext();
   const location = useLocation();
 
@@ -19,4 +19,4 @@ const TestLayout = () => {
   return <Navigate to={from} state={{ replace: true }} />;
 };
 
-export default TestLayout;
+export default OnboardingLayout;
