@@ -12,7 +12,7 @@ export default class CategoryService {
   }
 
   all = async () => {
-    const categories = await this.repository.find();
+    const categories = await this.repository.find({ order: { name: "ASC" } });
     return categories;
   };
 
