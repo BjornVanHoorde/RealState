@@ -27,7 +27,7 @@ const CategoryGrid = ({ categories, onRefresh }) => {
     <>
       <TopBar>
         <Title>{t("categories.title")}</Title>
-        <Button onClick={handleAddClick}>{t("categories.add.title")}</Button>
+        <Button onClick={handleAddClick}>{t("categories.create.title")}</Button>
       </TopBar>
       <Row gutter="3" className="justify-content-center mt-3">
         {categories.map((category) => (

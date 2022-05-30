@@ -30,7 +30,7 @@ const CreateEditCategoryDialog = ({
 
   return (
     <Modal
-      title={t(`categories.${isUpdate ? "edit" : "add"}.title`)}
+      title={t(`categories.${isUpdate ? "edit" : "create"}.title`)}
       onDismiss={onDismiss}
     >
       {error && <Alert color="danger">{error}</Alert>}

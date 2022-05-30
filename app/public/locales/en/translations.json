@@ -44,8 +44,8 @@
 
   "categories": {
     "title": "Categories",
-    "add": {
-      "title": "Add Category"
+    "create": {
+      "title": "Create Category"
     },
     "edit": {
       "title": "Edit Category"
