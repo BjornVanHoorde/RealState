@@ -16,6 +16,7 @@ const CategoryRoutes = {
 const UserRoutes = {
   Index: "/users",
   Add: "/users/add",
+  Detail: "/users/:id",
 };
 
 const RealEstateRoutes = {

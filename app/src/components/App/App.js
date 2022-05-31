@@ -14,6 +14,8 @@ import { userRoles } from "../../core/modules/users/constants";
 import UserLayout from "./Screens/User/UserLayout";
 import UserOverview from "./Screens/User/Overview/UserOverview";
 import UserCreate from "./Screens/User/Create/UserCreate";
+import UserDetailsLayout from "./Screens/User/Details/UserDetailsLayout";
+import UserDetails from "./Screens/User/Details/UserDetails";
 
 const App = () => {
   return (
@@ -50,6 +52,9 @@ const App = () => {
             <Route path={UserRoutes.Index} element={<UserLayout />}>
               <Route index element={<UserOverview />} />
               <Route path={UserRoutes.Add} element={<UserCreate />} />
+              <Route path={UserRoutes.Detail} element={<UserDetailsLayout />}>
+                <Route index element={<UserDetails />} />
+              </Route>
             </Route>
           </Route>
           {/* REST ROUTES */}
