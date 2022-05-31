@@ -5,7 +5,7 @@ import Button from "../../../../Design/Button/Button";
 import TopBar from "../../../../Design/Container/TopBar";
 import Row from "../../../../Design/Table/Row";
 import Title from "../../../../Design/Typography/Title";
-import CategoryCard from "../Card/CategoryCard";
+import CategoryCard from "../../../../Design/Modules/Category/CategoryCard";
 import CreateEditCategoryDialog from "../Form/CreateEditCategoryDialog";
 
 const CategoryGrid = ({ categories, onRefresh }) => {

@@ -1,5 +1,5 @@
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
-import { AuthRoutes, CategoryRoutes } from "../../core/routing";
+import { AuthRoutes, CategoryRoutes, UserRoutes } from "../../core/routing";
 import AppLayout from "./AppLayout";
 import AuthContainer from "./Auth/AuthContainer";
 import AuthProvider from "./Auth/AuthProvider";
@@ -11,6 +11,8 @@ import CategoryOverviewScreen from "./Screens/Category/Overview/CategoryOveriewS
 import OnboardingLayout from "./Auth/OnBoardingLayout";
 import RoleContainer from "./Auth/RoleContainer";
 import { userRoles } from "../../core/modules/users/constants";
+import UserLayout from "./Screens/User/UserLayout";
+import UserOverview from "./Screens/User/Overview/UserOverview";
 
 const App = () => {
   return (
@@ -42,6 +44,10 @@ const App = () => {
             {/* CATEGORY ROUTES */}
             <Route path={CategoryRoutes.Index} element={<CategoryLayout />}>
               <Route index element={<CategoryOverviewScreen />} />
+            </Route>
+            {/* USERS ROUTES */}
+            <Route path={UserRoutes.Index} element={<UserLayout />}>
+              <Route index element={<UserOverview />} />
             </Route>
           </Route>
           {/* REST ROUTES */}

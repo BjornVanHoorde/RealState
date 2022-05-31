@@ -34,12 +34,15 @@
     "name": "Name",
     "tel": "Tel",
     "email": "Email",
-    "password": "Password"
+    "password": "Password",
+    "realEstate": "Real estate"
   },
 
   "buttons": {
     "create": "Create",
-    "save": "Save"
+    "save": "Save",
+    "search": "Search",
+    "reset": "Reset"
   },
 
   "categories": {
@@ -49,6 +52,16 @@
     },
     "edit": {
       "title": "Edit Category"
+    }
+  },
+
+  "users": {
+    "title": "Users",
+    "create": {
+      "title": "Create User"
+    },
+    "edit": {
+      "title": "Edit User"
     }
   }
 }

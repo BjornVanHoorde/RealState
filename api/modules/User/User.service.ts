@@ -11,9 +11,10 @@ export default class UserService {
     this.repository = repository;
   }
 
-  all = async () => {
+  all = async (options: object) => {
       const users = await this.repository.find({
         relations: ["realEstate"],
+        where: options,
       });
       return users;
   };
@@ -30,6 +31,11 @@ export default class UserService {
     const user = await this.repository.findOneBy(options);
     return user;
   };
+
+  // filter = async (options: object) => {
+  //   const users = await this.repository.find({where: options});
+  //   return users;
+  // };
 
   findByEmailWithPassword = async (email: string) => {
     const user = await this.repository

@@ -33,7 +33,6 @@ const CategoryForm = ({ initialData = {}, disabled, onSubmit, label }) => {
       <Field>
         <Label htmlFor="name">{t("fields.name")}</Label>
         <Input
-          type="name"
           name="name"
           onChange={handleChange}
           value={values.name}

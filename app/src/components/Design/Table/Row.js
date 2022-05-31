@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 const Row = ({ size, gutter, className, children }) => {
   return (
     <div
-      className={`row align-items-center ${size ? `row-cols${size}` : ""} ${
+      className={`row ${size ? `row-cols${size}` : ""} ${
         gutter ? `g-${gutter}` : ""
       } ${className ? `${className}` : ""}`}
     >

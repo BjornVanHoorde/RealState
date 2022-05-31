@@ -12,11 +12,11 @@ export default class UserController {
   }
 
   all = async (
-    req: AuthRequest,
+    req: AuthRequest<{}, {}, {}>,
     res: Response,
     next: NextFunction
   ) => {
-    const users = await this.userService.all();
+    const users = await this.userService.all({...req.body});
     return res.json(users);
   };
 
@@ -26,18 +26,6 @@ export default class UserController {
     next: NextFunction
   ) => {
     const user = await this.userService.findOne(req.params.id);
-    if (!user) {
-      next(new NotFoundError());
-    }
-    return res.json(user);
-  };
-
-  findBy = async (
-    req: AuthRequest<{}, {}, {}>,
-    res: Response,
-    next: NextFunction
-  ) => {
-    const user = await this.userService.findOneBy({ ...req.body });
     if (!user) {
       next(new NotFoundError());
     }
