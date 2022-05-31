@@ -24,7 +24,7 @@ const Input = ({
         {...rest}
       />
       {children}
-      {error && <div className="invalid-feedback"> {error} </div>}
+      {error && <div className="invalid-feedback d-block"> {error} </div>}
     </>
   );
 };

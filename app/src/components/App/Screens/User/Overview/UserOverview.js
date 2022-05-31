@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import useFetch from "../../../../../core/hooks/useFetch";
 import useTitle from "../../../../../core/hooks/useTitle";
+import { UserRoutes } from "../../../../../core/routing";
 import Alert from "../../../../Design/Alert/Alert";
 import Button from "../../../../Design/Button/Button";
 import Container from "../../../../Design/Container/Container";
@@ -26,7 +27,7 @@ const UserOverview = () => {
     <Container>
       <TopBar>
         <Title>{t("users.title")}</Title>
-        <Button>{t("users.create.title")}</Button>
+        <Button href={UserRoutes.Add}>{t("users.create.title")}</Button>
       </TopBar>
       <UserGrid
         users={users}

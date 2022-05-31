@@ -13,6 +13,7 @@ import RoleContainer from "./Auth/RoleContainer";
 import { userRoles } from "../../core/modules/users/constants";
 import UserLayout from "./Screens/User/UserLayout";
 import UserOverview from "./Screens/User/Overview/UserOverview";
+import UserCreate from "./Screens/User/Create/UserCreate";
 
 const App = () => {
   return (
@@ -48,6 +49,7 @@ const App = () => {
             {/* USERS ROUTES */}
             <Route path={UserRoutes.Index} element={<UserLayout />}>
               <Route index element={<UserOverview />} />
+              <Route path={UserRoutes.Add} element={<UserCreate />} />
             </Route>
           </Route>
           {/* REST ROUTES */}

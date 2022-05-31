@@ -7,5 +7,6 @@ export interface UserBody {
     tel: string;
     avatar?: string;
     password?: string;
+    realEstateId?: number;
     realEstate?: RealEstate;
 }

@@ -1,14 +1,18 @@
+import bodyParser = require("body-parser");
 import { NextFunction, Request, Response } from "express";
 import NotFoundError from "../../errors/NotFoundError";
 import { AuthRequest } from "../../middleware/auth/auth.types";
+import RealEstateService from "../RealEstate/RealEstate.service";
 import UserService from "./User.service";
 import { UserBody } from "./User.types";
 
 export default class UserController {
   private userService: UserService;
+  private realEstateService: RealEstateService;
 
   constructor() {
     this.userService = new UserService();
+    this.realEstateService = new RealEstateService();
   }
 
   all = async (
@@ -37,7 +41,13 @@ export default class UserController {
     res: Response,
     next: NextFunction
   ) => {
-    const user = await this.userService.create(req.body);
+    const { body } = req;
+
+    if (body.realEstateId) {
+      body.realEstate = await this.realEstateService.findOne(body.realEstateId);
+    }
+
+    const user = await this.userService.create(body);
     return res.json(user);
   };
 
