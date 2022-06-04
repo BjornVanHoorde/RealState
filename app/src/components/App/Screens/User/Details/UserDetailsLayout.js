@@ -33,7 +33,12 @@ const UserDetailsLayout = () => {
 
   return (
     <Outlet
-      context={{ user, onEditClick: handleEditClick, onUpdate: handleUpdate, onDelete: handleDelete }}
+      context={{
+        user,
+        onEditClick: handleEditClick,
+        onUpdate: handleUpdate,
+        onDelete: handleDelete,
+      }}
     />
   );
 };

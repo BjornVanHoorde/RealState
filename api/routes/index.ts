@@ -63,6 +63,7 @@ const registerAdminRoutes = (router: Router) => {
   const agencyController = new AgencyController();
   adminRouter.get("/agencies", useMethod(agencyController.all));
   adminRouter.get("/agencies/:id", useMethod(agencyController.find));
+  adminRouter.get("/agencies/:id/users", useMethod(agencyController.getUsers));
   adminRouter.post("/agencies", useMethod(agencyController.create));
   adminRouter.patch("/agencies/:id", useMethod(agencyController.update));
   adminRouter.delete(

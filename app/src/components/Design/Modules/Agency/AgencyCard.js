@@ -1,11 +1,15 @@
 import { getImagePath } from "../../../../core/helpers/api";
 import DeleteButton from "../../../App/Shared/Generic/Buttons/DeleteButton";
 import Container from "../../Container/Container";
-import Col from "../../Table/Col";
+import ClickableCol from "../../Table/ClickableCol";
 
-const AgencyCard = ({ agency, onDelete }) => {
+const AgencyCard = ({ agency, onDelete, onClick }) => {
   return (
-    <Col size="5" className="bg-white mx-3 p-0 shadow position-relative">
+    <ClickableCol
+      onClick={onClick}
+      size="4"
+      className="bg-white mx-3 p-0 shadow position-relative"
+    >
       <div className="position-absolute top-0 end-0">
         <DeleteButton
           scope="agencies"
@@ -28,11 +32,11 @@ const AgencyCard = ({ agency, onDelete }) => {
           {agency.address.city.zip} {agency.address.city.name}
         </p>
         <p>
-          {agency.address.street} {agency.address.number}{" "}
           {agency.address.box ? `box:${agency.address.box}` : ""}
+          {agency.address.street} {agency.address.number}
         </p>
       </Container>
-    </Col>
+    </ClickableCol>
   );
 };
 

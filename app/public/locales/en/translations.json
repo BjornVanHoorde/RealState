@@ -82,6 +82,9 @@
     },
     "delete": {
       "title": "Delete Agency"
+    },
+    "users": {
+      "title": "Users"
     }
   }
 }

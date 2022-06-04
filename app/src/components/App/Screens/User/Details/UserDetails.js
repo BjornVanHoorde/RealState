@@ -35,7 +35,6 @@ const UserDetails = () => {
             onSuccess={onDelete}
             color="link"
           >
-            {t("users.delete.title")}
           </DeleteButton>
         </Col>
       </Row>
