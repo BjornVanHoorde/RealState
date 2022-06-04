@@ -17,6 +17,7 @@ const UserRoutes = {
   Index: "/users",
   Add: "/users/add",
   Detail: "/users/:id",
+  Edit: "/users/:id/edit",
 };
 
 const RealEstateRoutes = {

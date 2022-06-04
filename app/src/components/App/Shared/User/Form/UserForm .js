@@ -10,14 +10,16 @@ import Title from "../../../../Design/Typography/Title";
 import RealEstateSelect from "../../RealEstate/Select/RealEstateSelect";
 import * as yup from "yup";
 
-const schema = yup.object().shape({
-  firstName: yup.string().required(),
-  lastName: yup.string().required(),
-  tel: yup.string().required(),
-  email: yup.string().email().required(),
-  password: yup.string().required(),
-  realEstateId: yup.number().nullable(),
-});
+const getSchema = (isUpdate) => {
+  return yup.object().shape({
+    firstName: yup.string().required(),
+    lastName: yup.string().required(),
+    tel: yup.string().required(),
+    email: yup.string().email().required(),
+    password: isUpdate ? yup.string() : yup.string().required(),
+    realEstateId: yup.string().nullable(),
+  });
+};
 
 const defaultData = {
   firstName: "",
@@ -32,6 +34,25 @@ const defaultOptions = {
   showRealEstate: true,
 };
 
+const transformData = (initialData) => {
+  if (initialData.realEstate) {
+    initialData = {
+      ...initialData,
+      realEstateId: initialData.realEstate.id,
+    };
+  }
+
+  return initialData;
+};
+
+const transformValues = (values) => {
+  if (values.password.length === 0) {
+    const { password, ...rest } = values;
+    values = rest;
+  }
+  return values;
+};
+
 const UserForm = ({
   initialData = {},
   disabled,
@@ -40,14 +61,17 @@ const UserForm = ({
   options = {},
 }) => {
   const { t } = useTranslation();
-  const { values, errors, handleChange, handleSubmit } = useForm(schema, {
-    ...defaultData,
-    ...initialData,
-  });
+  const isUpdate = !!initialData.id;
+  const { values, errors, handleChange, handleSubmit } = useForm(
+    getSchema(isUpdate),
+    {
+      ...defaultData,
+      ...transformData(initialData),
+    }
+  );
 
   const handleData = (values) => {
-    console.log(values);
-    onSubmit(values);
+    onSubmit(transformValues(values));
   };
 
   options = { ...defaultOptions, ...options };
@@ -97,13 +121,17 @@ const UserForm = ({
             disabled={disabled}
           />
         </Field>
-        <Label htmlFor="password">{t("fields.password")}</Label>
-        <PasswordInput
-          name="password"
-          value={values.password}
-          onChange={handleChange}
-          error={errors.password}
-        />
+        {label === "edit" ? null : (
+          <>
+            <Label htmlFor="password">{t("fields.password")}</Label>
+            <PasswordInput
+              name="password"
+              value={values.password}
+              onChange={handleChange}
+              error={errors.password}
+            />
+          </>
+        )}
         {options.showRealEstate && (
           <Field>
             <Label htmlFor="realEstateId">{t("fields.realEstate")}</Label>

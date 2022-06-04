@@ -3,7 +3,7 @@ import { getValidationErrors } from "../helpers/validation";
 
 const useForm = (initialSchema, initialData) => {
     const [isTouched, setIsTouched] = useState(false);
-    const [values, setValues] = useState({ ...initialData });
+    const [values, setValues] = useState({...initialData});
     const [errors, setErrors] = useState({});
     // we don't listen to schema changes
     const schemaRef = useRef(initialSchema);

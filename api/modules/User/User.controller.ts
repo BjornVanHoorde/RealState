@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import NotFoundError from "../../errors/NotFoundError";
 import { AuthRequest } from "../../middleware/auth/auth.types";
 import RealEstateService from "../RealEstate/RealEstate.service";
+import { UserRole } from "./User.constants";
 import UserService from "./User.service";
 import { UserBody } from "./User.types";
 
@@ -56,6 +57,16 @@ export default class UserController {
     res: Response,
     next: NextFunction
   ) => {
+    const { body } = req;
+
+    if (body.realEstateId) {
+      body.realEstate = await this.realEstateService.findOne(body.realEstateId);
+      body.role = UserRole.Agent;
+    } else {
+      body.realEstate = null;
+      body.role = UserRole.User;
+    }
+
     try {
       const user = await this.userService.update(
         parseInt(req.params.id),

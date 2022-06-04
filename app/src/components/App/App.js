@@ -16,6 +16,7 @@ import UserOverview from "./Screens/User/Overview/UserOverview";
 import UserCreate from "./Screens/User/Create/UserCreate";
 import UserDetailsLayout from "./Screens/User/Details/UserDetailsLayout";
 import UserDetails from "./Screens/User/Details/UserDetails";
+import UserEdit from "./Screens/User/Edit/UserEdit";
 
 const App = () => {
   return (
@@ -54,6 +55,7 @@ const App = () => {
               <Route path={UserRoutes.Add} element={<UserCreate />} />
               <Route path={UserRoutes.Detail} element={<UserDetailsLayout />}>
                 <Route index element={<UserDetails />} />
+                <Route path={UserRoutes.Edit} element={<UserEdit />} />
               </Route>
             </Route>
           </Route>

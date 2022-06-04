@@ -2,6 +2,7 @@ import User from "./User.entity";
 import { Repository } from "typeorm";
 import { UserBody } from "./User.types";
 import { AppDataSource } from "../../database/DatabaseSource";
+import { UserRole } from "./User.constants";
 
 export default class UserService {
   private repository: Repository<User>;
