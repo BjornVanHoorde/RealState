@@ -46,8 +46,9 @@ export default class UserController {
 
     if (body.agencyId) {
       body.agency = await this.agencyService.findOne(body.agencyId);
+      body.role = UserRole.Agent;
     }
-
+    
     const user = await this.userService.create(body);
     return res.json(user);
   };

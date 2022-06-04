@@ -66,5 +66,18 @@
     "delete": {
       "title": "Delete User"
     }
+  },
+
+  "agencies": {
+    "title": "Agencies",
+    "create": {
+      "title": "Create Agency"
+    },
+    "edit": {
+      "title": "Edit Agency"
+    },
+    "delete": {
+      "title": "Delete Agency"
+    }
   }
 }

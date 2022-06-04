@@ -21,13 +21,16 @@ const UserGrid = ({ users, onRefresh, disabled }) => {
 
   const handleReset = () => {
     setSearchParams({});
-    console.log(searchParams);
-  }
+  };
 
   return (
     <Row className="mt-3">
       <Col size="4">
-        <UserSearch disabled={disabled} params={searchParams} onReset={handleReset} />
+        <UserSearch
+          disabled={disabled}
+          params={searchParams}
+          onReset={handleReset}
+        />
       </Col>
       <Col size="8">
         <Row gutter="3">

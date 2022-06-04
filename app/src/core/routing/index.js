@@ -10,19 +10,21 @@ const PropertyRoutes = {
 
 const CategoryRoutes = {
   Index: "/categories",
-  Add: "/categories/add",
+  Create: "/categories/create",
 };
 
 const UserRoutes = {
   Index: "/users",
-  Add: "/users/add",
+  Create: "/users/create",
   Detail: "/users/:id",
   Edit: "/users/:id/edit",
 };
 
 const AgencyRoutes = {
   Index: "/agencies",
+  Create: "/agencies/create",
   Detail: "/agencies/:id",
+  Edit: "/agencies/:id/edit",
 };
 
 const MessageRoutes = {

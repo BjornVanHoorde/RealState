@@ -1,5 +1,5 @@
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
-import { AuthRoutes, CategoryRoutes, UserRoutes } from "../../core/routing";
+import { AgencyRoutes, AuthRoutes, CategoryRoutes, UserRoutes } from "../../core/routing";
 import AppLayout from "./AppLayout";
 import AuthContainer from "./Auth/AuthContainer";
 import AuthProvider from "./Auth/AuthProvider";
@@ -17,6 +17,12 @@ import UserCreate from "./Screens/User/Create/UserCreate";
 import UserDetailsLayout from "./Screens/User/Details/UserDetailsLayout";
 import UserDetails from "./Screens/User/Details/UserDetails";
 import UserEdit from "./Screens/User/Edit/UserEdit";
+import AgencyLayout from "./Screens/Agency/AgencyLayout";
+import AgencyOverview from "./Screens/Agency/Overview/AgencyOverview";
+import AgencyCreate from "./Screens/Agency/Create/AgencyCreate";
+import AgencyDetailsLayout from "./Screens/Agency/Details/AgencyDetailsLayout";
+import AgencyDetails from "./Screens/Agency/Details/AgencyDetails";
+import AgencyEdit from "./Screens/Agency/Edit/AgencyEdit";
 
 const App = () => {
   return (
@@ -56,6 +62,15 @@ const App = () => {
               <Route path={UserRoutes.Detail} element={<UserDetailsLayout />}>
                 <Route index element={<UserDetails />} />
                 <Route path={UserRoutes.Edit} element={<UserEdit />} />
+              </Route>
+            </Route>
+            {/* AGENCY ROUTES */}
+            <Route path={AgencyRoutes.Index} element={<AgencyLayout />}>
+              <Route index element={<AgencyOverview />} />
+              <Route path={AgencyRoutes.Add} element={<AgencyCreate />} />
+              <Route path={AgencyRoutes.Detail} element={<AgencyDetailsLayout />}>
+                <Route index element={<AgencyDetails />} />
+                <Route path={AgencyRoutes.Edit} element={<AgencyEdit />} />
               </Route>
             </Route>
           </Route>
