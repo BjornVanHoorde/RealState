@@ -35,6 +35,10 @@
     "tel": "Tel",
     "email": "Email",
     "password": "Password",
+    "city": "City",
+    "street": "Street",
+    "number": "Number",
+    "box": "Box",
     "agency": "Agency"
   },
 

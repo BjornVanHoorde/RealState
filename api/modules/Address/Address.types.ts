@@ -5,4 +5,5 @@ export interface AddressBody {
     number: number;
     box?: string;
     city: City;
+    cityId: number;
 }

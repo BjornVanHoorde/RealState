@@ -12,7 +12,7 @@ export default class CityService {
   }
 
   all = async () => {
-    const cities = await this.repository.find();
+    const cities = await this.repository.find({ order: { name: "ASC" } });
     return cities;
   };
 

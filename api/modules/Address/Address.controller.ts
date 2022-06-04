@@ -1,14 +1,17 @@
 import { NextFunction, Response } from "express";
 import NotFoundError from "../../errors/NotFoundError";
 import { AuthRequest } from "../../middleware/auth/auth.types";
+import CityService from "../City/City.service";
 import AddressService from "./Address.service";
 import { AddressBody } from "./Address.types";
 
 export default class AddressController {
   private addressService: AddressService;
+  private cityService: CityService;
 
   constructor() {
     this.addressService = new AddressService();
+    this.cityService = new CityService();
   }
 
   all = async (
@@ -49,6 +52,12 @@ export default class AddressController {
     res: Response,
     next: NextFunction
   ) => {
+    const { body } = req;
+
+    if (body.cityId) {
+      body.city = await this.cityService.findOne(body.cityId);
+    }
+
     const address = await this.addressService.create(req.body);
     return res.json(address);
   };

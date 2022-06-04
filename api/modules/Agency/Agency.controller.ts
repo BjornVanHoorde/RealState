@@ -1,14 +1,17 @@
 import { NextFunction, Response } from "express";
 import NotFoundError from "../../errors/NotFoundError";
 import { AuthRequest } from "../../middleware/auth/auth.types";
+import AddressService from "../Address/Address.service";
 import AgencyService from "./Agency.service";
 import { AgencyBody } from "./Agency.types";
 
 export default class AgencyController {
   private agencyService: AgencyService;
-Agency
+  private addressService: AddressService;
+
   constructor() {
     this.agencyService = new AgencyService();
+    this.addressService = new AddressService();
   }
 
   all = async (
@@ -49,6 +52,17 @@ Agency
     res: Response,
     next: NextFunction
   ) => {
+    const { body } = req;
+
+    if (body.addressId) {
+      body.address = await this.addressService.findOne(body.addressId);
+    }
+
+    // DELETE THIS LATER
+    if (!body.logo) {
+      body.logo = "logo.jpg";
+    }
+
     const agency = await this.agencyService.create(req.body);
     return res.json(agency);
   };

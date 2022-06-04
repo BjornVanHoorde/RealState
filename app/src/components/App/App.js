@@ -58,7 +58,7 @@ const App = () => {
             {/* USERS ROUTES */}
             <Route path={UserRoutes.Index} element={<UserLayout />}>
               <Route index element={<UserOverview />} />
-              <Route path={UserRoutes.Add} element={<UserCreate />} />
+              <Route path={UserRoutes.Create} element={<UserCreate />} />
               <Route path={UserRoutes.Detail} element={<UserDetailsLayout />}>
                 <Route index element={<UserDetails />} />
                 <Route path={UserRoutes.Edit} element={<UserEdit />} />
@@ -67,7 +67,7 @@ const App = () => {
             {/* AGENCY ROUTES */}
             <Route path={AgencyRoutes.Index} element={<AgencyLayout />}>
               <Route index element={<AgencyOverview />} />
-              <Route path={AgencyRoutes.Add} element={<AgencyCreate />} />
+              <Route path={AgencyRoutes.Create} element={<AgencyCreate />} />
               <Route path={AgencyRoutes.Detail} element={<AgencyDetailsLayout />}>
                 <Route index element={<AgencyDetails />} />
                 <Route path={AgencyRoutes.Edit} element={<AgencyEdit />} />

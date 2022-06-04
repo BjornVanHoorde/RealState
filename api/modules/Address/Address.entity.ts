@@ -24,11 +24,4 @@ export default class Address extends BaseEntity {
 
     @ManyToOne(() => City, (city) => city.addresses)
     city: City;
-
-    @OneToOne(() => Property)
-    @JoinColumn()
-    property: Property;
-
-    @OneToOne(() => Agency, (property) => property.address)
-    agency: Agency;
 }
