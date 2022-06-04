@@ -7,7 +7,10 @@ import AgencySearch from "../Form/AgencySearch";
 const AgencyGrid = ({ agencies, onRefresh, disabled }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  if ( !!String(searchParams)) {
+  if (!!String(searchParams)) {
+    agencies = agencies.filter((agency) =>
+      agency.name.includes(searchParams.get("name"))
+    );
   }
 
   const handleReset = () => {
@@ -26,7 +29,11 @@ const AgencyGrid = ({ agencies, onRefresh, disabled }) => {
       <Col size="8">
         <Row gutter="3">
           {agencies.map((agency) => (
-            <AgencyCard agency={agency} onDelete={onRefresh} key={agency.email} />
+            <AgencyCard
+              agency={agency}
+              onDelete={onRefresh}
+              key={agency.email}
+            />
           ))}
         </Row>
       </Col>
