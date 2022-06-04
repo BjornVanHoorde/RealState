@@ -1,6 +1,6 @@
 import Address from "../Address/Address.entity";
 
-export interface RealEstateBody {
+export interface AgencyBody {
   name: string;
   tel: string;
   email: string;

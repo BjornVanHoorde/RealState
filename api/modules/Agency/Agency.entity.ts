@@ -7,7 +7,7 @@ import Property from "../Property/Property.entity";
 import User from "../User/User.entity";
 
 @Entity()
-export default class RealEstate extends BaseEntity {
+export default class Agency extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -32,12 +32,12 @@ export default class RealEstate extends BaseEntity {
     @Column()
     logo: string;
 
-    @OneToMany(() => User, (user) => user.realEstate)
+    @OneToMany(() => User, (user) => user.agency)
     users: User[];
 
     @OneToMany(() => Message, (message) => message.receiver)
     messages: Message[];
 
-    @OneToMany(() => Property, (property) => property.realEstate)
+    @OneToMany(() => Property, (property) => property.agency)
     properties: Property[];
 }

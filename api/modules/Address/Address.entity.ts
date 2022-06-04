@@ -2,7 +2,7 @@ import { IsDefined } from "class-validator";
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import City from "../City/City.entity";
 import Property from "../Property/Property.entity";
-import RealEstate from "../RealEstate/RealEstate.entity";
+import Agency from "../Agency/Agency.entity";
 import { BaseEntity } from "../BaseEntity";
 
 @Entity()
@@ -29,6 +29,6 @@ export default class Address extends BaseEntity {
     @JoinColumn()
     property: Property;
 
-    @OneToOne(() => RealEstate, (property) => property.address)
-    realEstate: RealEstate;
+    @OneToOne(() => Agency, (property) => property.address)
+    agency: Agency;
 }

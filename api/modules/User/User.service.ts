@@ -14,7 +14,7 @@ export default class UserService {
 
   all = async (options: object) => {
       const users = await this.repository.find({
-        relations: ["realEstate"],
+        relations: ["agency"],
         where: options,
       });
       return users;
@@ -23,7 +23,7 @@ export default class UserService {
   findOne = async (id: number) => {
     const user = await this.repository.findOne({
       where: { id },
-      relations: ["realEstate"],
+      relations: ["agency"],
     });
     return user;
   };

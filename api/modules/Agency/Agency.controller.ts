@@ -1,14 +1,14 @@
 import { NextFunction, Response } from "express";
 import NotFoundError from "../../errors/NotFoundError";
 import { AuthRequest } from "../../middleware/auth/auth.types";
-import RealEstateService from "./RealEstate.service";
-import { RealEstateBody } from "./RealEstate.types";
+import AgencyService from "./Agency.service";
+import { AgencyBody } from "./Agency.types";
 
-export default class RealEstateController {
-  private realEstateService: RealEstateService;
-
+export default class AgencyController {
+  private agencyService: AgencyService;
+Agency
   constructor() {
-    this.realEstateService = new RealEstateService();
+    this.agencyService = new AgencyService();
   }
 
   all = async (
@@ -16,8 +16,8 @@ export default class RealEstateController {
     res: Response,
     next: NextFunction
   ) => {
-    const realEstates = await this.realEstateService.all();
-    return res.json(realEstates);
+    const agenciess = await this.agencyService.all();
+    return res.json(agenciess);
   };
 
   find = async (
@@ -25,11 +25,11 @@ export default class RealEstateController {
     res: Response,
     next: NextFunction
   ) => {
-    const realEstate = await this.realEstateService.findOne(req.params.id);
-    if (!realEstate) {
+    const agency = await this.agencyService.findOne(req.params.id);
+    if (!agency) {
       next(new NotFoundError());
     }
-    return res.json(realEstate);
+    return res.json(agency);
   };
 
   findBy = async (
@@ -37,36 +37,36 @@ export default class RealEstateController {
     res: Response,
     next: NextFunction
   ) => {
-    const realEstate = await this.realEstateService.findOneBy({ ...req.body });
-    if (!realEstate) {
+    const agency = await this.agencyService.findOneBy({ ...req.body });
+    if (!agency) {
       next(new NotFoundError());
     }
-    return res.json(realEstate);
+    return res.json(agency);
   };
 
   create = async (
-    req: AuthRequest<{}, {}, RealEstateBody>,
+    req: AuthRequest<{}, {}, AgencyBody>,
     res: Response,
     next: NextFunction
   ) => {
-    const realEstate = await this.realEstateService.create(req.body);
-    return res.json(realEstate);
+    const agency = await this.agencyService.create(req.body);
+    return res.json(agency);
   };
 
   update = async (
-    req: AuthRequest<{ id: string }, {}, RealEstateBody>,
+    req: AuthRequest<{ id: string }, {}, AgencyBody>,
     res: Response,
     next: NextFunction
   ) => {
     try {
-      const realEstate = await this.realEstateService.update(
+      const agency = await this.agencyService.update(
         parseInt(req.params.id),
         req.body
       );
-      if (!realEstate) {
+      if (!agency) {
         next(new NotFoundError());
       }
-      return res.json(realEstate);
+      return res.json(agency);
     } catch (err) {
       next(err);
     }
@@ -78,8 +78,8 @@ export default class RealEstateController {
     next: NextFunction
   ) => {
     try {
-      const realEstate = await this.realEstateService.delete(parseInt(req.params.id));
-      if (!realEstate) {
+      const agency = await this.agencyService.delete(parseInt(req.params.id));
+      if (!agency) {
         next(new NotFoundError());
       }
       return res.json({});

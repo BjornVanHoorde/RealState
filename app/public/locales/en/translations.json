@@ -22,8 +22,8 @@
     "properties": "Properties",
     "categories": "Categories",
     "users": "Users",
-    "realEstates": "Real Estates",
-    "realEstate": "Real Estate",
+    "agencies": "Agencies",
+    "agency": "Agency",
     "messages": "Messages",
     "favorites": "Favorites"
   },
@@ -35,7 +35,7 @@
     "tel": "Tel",
     "email": "Email",
     "password": "Password",
-    "realEstate": "Real estate"
+    "agency": "Agency"
   },
 
   "buttons": {

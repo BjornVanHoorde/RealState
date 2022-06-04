@@ -14,7 +14,7 @@ import Category from "../Category/Category.entity";
 import Favorite from "../Favorite/Favorite.entity";
 import Message from "../Message/Message.entity";
 import Photo from "../Photo/Photo.entity";
-import RealEstate from "../RealEstate/RealEstate.entity";
+import Agency from "../Agency/Agency.entity";
 import { PropertyStatus } from "./Property.constants";
 
 @Entity()
@@ -53,8 +53,8 @@ export default class Property extends BaseEntity {
   @OneToMany(() => Photo, (photo) => photo.property)
   photos: Photo[];
 
-  @ManyToOne(() => RealEstate, (realEstate) => realEstate.properties)
-  realEstate: RealEstate;
+  @ManyToOne(() => Agency, (agency) => agency.properties)
+  agency: Agency;
 
   @ManyToOne(() => Category, (category) => category.properties)
   category: Category;

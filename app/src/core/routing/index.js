@@ -20,9 +20,9 @@ const UserRoutes = {
   Edit: "/users/:id/edit",
 };
 
-const RealEstateRoutes = {
-  Index: "/realEstates",
-  Detail: "/realEstates/:id",
+const AgencyRoutes = {
+  Index: "/agencies",
+  Detail: "/agencies/:id",
 };
 
 const MessageRoutes = {
@@ -45,7 +45,7 @@ export {
   PropertyRoutes,
   CategoryRoutes,
   UserRoutes,
-  RealEstateRoutes,
+  AgencyRoutes,
   MessageRoutes,
   FavoriteRoutes,
 };

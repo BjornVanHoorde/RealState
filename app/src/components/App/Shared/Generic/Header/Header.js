@@ -3,7 +3,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 import { getImagePath } from "../../../../../core/helpers/api";
 import { isAdmin, isAgent, isUser } from "../../../../../core/modules/users/utils";
-import { CategoryRoutes, FavoriteRoutes, MessageRoutes, PropertyRoutes, RealEstateRoutes, UserRoutes } from "../../../../../core/routing";
+import { CategoryRoutes, FavoriteRoutes, MessageRoutes, PropertyRoutes, AgencyRoutes, UserRoutes } from "../../../../../core/routing";
 import Button from "../../../../Design/Button/Button";
 import NavBar from "../../../../Design/NavBar/NavBar";
 import Col from "../../../../Design/Table/Col";
@@ -29,9 +29,9 @@ const Header = () => {
     items = [
       ...items,
       {
-        href: RealEstateRoutes.Index,
-        isActive: location.pathname.includes(RealEstateRoutes.Index),
-        label: t("navigation.realEstates"),
+        href: AgencyRoutes.Index,
+        isActive: location.pathname.includes(AgencyRoutes.Index),
+        label: t("navigation.agencies"),
       },
       {
         href: UserRoutes.Index,
@@ -50,9 +50,9 @@ const Header = () => {
     items = [
       ...items,
       {
-        href: RealEstateRoutes.Index,
-        isActive: location.pathname.includes(RealEstateRoutes.Index),
-        label: t("navigation.realEstate"),
+        href: AgencyRoutes.Index,
+        isActive: location.pathname.includes(AgencyRoutes.Index),
+        label: t("navigation.agency"),
       },
       {
         href: MessageRoutes.Index,

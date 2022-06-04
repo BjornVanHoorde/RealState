@@ -11,7 +11,7 @@ import { hash, compare } from "bcrypt";
 import { UserRole } from "./User.constants";
 import { BaseEntity } from "../BaseEntity";
 import { IsDefined, IsEmail } from "class-validator";
-import RealEstate from "../RealEstate/RealEstate.entity";
+import Agency from "../Agency/Agency.entity";
 import Message from "../Message/Message.entity";
 import Favorite from "../Favorite/Favorite.entity";
 
@@ -58,8 +58,8 @@ export default class User extends BaseEntity {
   @OneToMany(() => Message, (message) => message.sender)
   messages: Message[];
 
-  @ManyToOne(() => RealEstate, (realEstate) => realEstate.users)
-  realEstate: RealEstate;
+  @ManyToOne(() => Agency, (agency) => agency.users)
+  agency: Agency;
 
   @BeforeInsert()
   @BeforeUpdate()

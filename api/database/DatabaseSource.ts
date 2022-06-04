@@ -7,7 +7,7 @@ import Favorite from "../modules/Favorite/Favorite.entity";
 import Message from "../modules/Message/Message.entity";
 import Photo from "../modules/Photo/Photo.entity";
 import Property from "../modules/Property/Property.entity";
-import RealEstate from "../modules/RealEstate/RealEstate.entity";
+import Agency from "../modules/Agency/Agency.entity";
 import User from "../modules/User/User.entity";
 
 export const AppDataSource = new DataSource({
@@ -19,7 +19,7 @@ export const AppDataSource = new DataSource({
     database: process.env.DB_NAME,
     synchronize: true,
     logging: false,
-    entities: [Address, Category, City, Favorite, Message, Photo, Property, RealEstate, User],
+    entities: [Address, Category, City, Favorite, Message, Photo, Property, Agency, User],
     migrations: [],
     subscribers: [],
 });

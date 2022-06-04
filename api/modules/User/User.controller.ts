@@ -2,18 +2,18 @@ import bodyParser = require("body-parser");
 import { NextFunction, Request, Response } from "express";
 import NotFoundError from "../../errors/NotFoundError";
 import { AuthRequest } from "../../middleware/auth/auth.types";
-import RealEstateService from "../RealEstate/RealEstate.service";
+import AgencyService from "../Agency/Agency.service";
 import { UserRole } from "./User.constants";
 import UserService from "./User.service";
 import { UserBody } from "./User.types";
 
 export default class UserController {
   private userService: UserService;
-  private realEstateService: RealEstateService;
+  private agencyService: AgencyService;
 
   constructor() {
     this.userService = new UserService();
-    this.realEstateService = new RealEstateService();
+    this.agencyService = new AgencyService();
   }
 
   all = async (
@@ -44,8 +44,8 @@ export default class UserController {
   ) => {
     const { body } = req;
 
-    if (body.realEstateId) {
-      body.realEstate = await this.realEstateService.findOne(body.realEstateId);
+    if (body.agencyId) {
+      body.agency = await this.agencyService.findOne(body.agencyId);
     }
 
     const user = await this.userService.create(body);
@@ -59,11 +59,11 @@ export default class UserController {
   ) => {
     const { body } = req;
 
-    if (body.realEstateId) {
-      body.realEstate = await this.realEstateService.findOne(body.realEstateId);
+    if (body.agencyId) {
+      body.agency = await this.agencyService.findOne(body.agencyId);
       body.role = UserRole.Agent;
     } else {
-      body.realEstate = null;
+      body.agency = null;
       body.role = UserRole.User;
     }
 

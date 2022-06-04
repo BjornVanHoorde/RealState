@@ -25,7 +25,7 @@ const UserDetails = () => {
           <h2 className="mb-3">{`${user.firstName} ${user.lastName}`}</h2>
           <h4 className="mb-3">{user.email}</h4>
           <h4 className="mb-3">{user.tel}</h4>
-          {user.realEstate && <h4 className="mb-3">{user.realEstate.name}</h4>}
+          {user.agency && <h4 className="mb-3">{user.agency.name}</h4>}
         </Col>
         <Col size="4" className="text-end">
           <Button onClick={onEditClick}>{t("users.edit.title")}</Button>

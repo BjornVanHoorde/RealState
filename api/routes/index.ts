@@ -10,7 +10,7 @@ import { UPLOAD_FOLDER } from "../constants";
 import CityController from "../modules/City/City.controller";
 import fetch from "node-fetch";
 import AddressController from "../modules/Address/Address.controller";
-import RealEstateController from "../modules/RealEstate/RealEstate.controller";
+import AgencyController from "../modules/Agency/Agency.controller";
 import PhotoController from "../modules/Photo/Photo.controller";
 import CategoryController from "../modules/Category/Category.controller";
 import PropertyController from "../modules/Property/Property.controller";
@@ -60,14 +60,14 @@ const registerAdminRoutes = (router: Router) => {
   adminRouter.post("/cities", useMethod(cityController.create));
   // adminRouter.get("/seed", useMethod(cityController.seed));
 
-  const realEstateController = new RealEstateController();
-  adminRouter.get("/realEstates", useMethod(realEstateController.all));
-  adminRouter.get("/realEstates/:id", useMethod(realEstateController.find));
-  adminRouter.post("/realEstates", useMethod(realEstateController.create));
-  adminRouter.patch("/realEstates/:id", useMethod(realEstateController.update));
+  const agencyController = new AgencyController();
+  adminRouter.get("/agencies", useMethod(agencyController.all));
+  adminRouter.get("/agencies/:id", useMethod(agencyController.find));
+  adminRouter.post("/agencies", useMethod(agencyController.create));
+  adminRouter.patch("/agencies/:id", useMethod(agencyController.update));
   adminRouter.delete(
-    "/realEstates/:id",
-    useMethod(realEstateController.delete)
+    "/agencies/:id",
+    useMethod(agencyController.delete)
   );
 
   const categoryController = new CategoryController();

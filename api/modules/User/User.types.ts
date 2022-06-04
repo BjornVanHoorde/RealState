@@ -1,4 +1,4 @@
-import RealEstate from "../RealEstate/RealEstate.entity";
+import Agency from "../Agency/Agency.entity";
 import { UserRole } from "./User.constants";
 
 export interface UserBody {
@@ -9,6 +9,6 @@ export interface UserBody {
     role: UserRole;
     avatar?: string;
     password?: string;
-    realEstateId?: number;
-    realEstate?: RealEstate;
+    agencyId?: number;
+    agency?: Agency;
 }

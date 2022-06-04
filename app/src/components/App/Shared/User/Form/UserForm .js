@@ -7,7 +7,7 @@ import Input from "../../../../Design/Form/Input";
 import Label from "../../../../Design/Form/Label";
 import PasswordInput from "../../../../Design/Form/PasswordInput";
 import Title from "../../../../Design/Typography/Title";
-import RealEstateSelect from "../../RealEstate/Select/RealEstateSelect";
+import AgencySelect from "../../Agency/Select/AgencySelect";
 import * as yup from "yup";
 
 const getSchema = (isUpdate) => {
@@ -17,7 +17,7 @@ const getSchema = (isUpdate) => {
     tel: yup.string().required(),
     email: yup.string().email().required(),
     password: isUpdate ? yup.string() : yup.string().required(),
-    realEstateId: yup.string().nullable(),
+    agencyId: yup.string().nullable(),
   });
 };
 
@@ -27,18 +27,18 @@ const defaultData = {
   tel: "",
   email: "",
   password: "",
-  realEstateId: null,
+  agencyId: null,
 };
 
 const defaultOptions = {
-  showRealEstate: true,
+  showAgency: true,
 };
 
 const transformData = (initialData) => {
-  if (initialData.realEstate) {
+  if (initialData.agency) {
     initialData = {
       ...initialData,
-      realEstateId: initialData.realEstate.id,
+      agencyId: initialData.agency.id,
     };
   }
 
@@ -132,14 +132,14 @@ const UserForm = ({
             />
           </>
         )}
-        {options.showRealEstate && (
+        {options.showAgency && (
           <Field>
-            <Label htmlFor="realEstateId">{t("fields.realEstate")}</Label>
-            <RealEstateSelect
-              name="realEstateId"
-              value={values.realEstateId}
+            <Label htmlFor="agencyId">{t("fields.agency")}</Label>
+            <AgencySelect
+              name="agencyId"
+              value={values.agencyId}
               onChange={handleChange}
-              error={errors.realEstateId}
+              error={errors.agencyId}
             />
           </Field>
         )}
