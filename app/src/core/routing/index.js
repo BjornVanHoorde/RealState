@@ -6,6 +6,9 @@ const AuthRoutes = {
 
 const PropertyRoutes = {
   Index: "/properties",
+  Create: "/properties/create",
+  Detail: "/properties/:id",
+  Edit: "/properties/:id/edit",
 };
 
 const CategoryRoutes = {

@@ -32,8 +32,8 @@ const AgencyCard = ({ agency, onDelete, onClick }) => {
           {agency.address.city.zip} {agency.address.city.name}
         </p>
         <p>
-          {agency.address.box ? `box:${agency.address.box}` : ""}
           {agency.address.street} {agency.address.number}
+          {agency.address.box ? ` box:${agency.address.box}` : ""}
         </p>
       </Container>
     </ClickableCol>

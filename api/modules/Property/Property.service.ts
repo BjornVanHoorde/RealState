@@ -13,7 +13,7 @@ export default class PropertyService {
 
   all = async () => {
     const properties = await this.repository.find({
-      relations: ["address", "address.city", "photos", "realEstate", "category"],
+      relations: ["address", "address.city", "photos", "agency", "category"],
     });
     return properties;
   };
@@ -21,7 +21,7 @@ export default class PropertyService {
   findOne = async (id: number) => {
     const property = await this.repository.findOne({
     where: { id },
-    relations: ["address", "address.city", "photos", "realEstate", "category"],
+    relations: ["address", "address.city", "photos", "agency", "category"],
   });
     return property;
   };

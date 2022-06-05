@@ -56,7 +56,8 @@
     },
     "edit": {
       "title": "Edit Category"
-    }
+    },
+    "Huis": "house"
   },
 
   "users": {
@@ -86,6 +87,25 @@
     "users": {
       "title": "Users",
       "create": "Create User"
+    }
+  },
+
+  "properties": {
+    "title": "Properties",
+    "create": {
+      "title": "Create Property"
+    },
+    "edit": {
+      "title": "Edit Property"
+    },
+    "delete": {
+      "title": "Delete Property"
+    },
+    "status": {
+      "FOR SALE": "for sale",
+      "SOLD": "sold",
+      "FOR RENT": "for rent",
+      "RENTED": "rented"
     }
   }
 }

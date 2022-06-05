@@ -1,5 +1,5 @@
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
-import { AgencyRoutes, AuthRoutes, CategoryRoutes, UserRoutes } from "../../core/routing";
+import { AgencyRoutes, AuthRoutes, CategoryRoutes, PropertyRoutes, UserRoutes } from "../../core/routing";
 import AppLayout from "./AppLayout";
 import AuthContainer from "./Auth/AuthContainer";
 import AuthProvider from "./Auth/AuthProvider";
@@ -24,6 +24,8 @@ import AgencyDetailsLayout from "./Screens/Agency/Details/AgencyDetailsLayout";
 import AgencyDetails from "./Screens/Agency/Details/AgencyDetails";
 import AgencyEdit from "./Screens/Agency/Edit/AgencyEdit";
 import AgencyUserCreate from "./Screens/Agency/Create/AgencyUserCreate";
+import PropertyLayout from "./Screens/Property/PropertyLayout";
+import PropertyOverview from "./Screens/Property/Overview/PropertyOverview";
 
 const App = () => {
   return (
@@ -73,6 +75,16 @@ const App = () => {
                 <Route index element={<AgencyDetails />} />
                 <Route path={AgencyRoutes.Edit} element={<AgencyEdit />} />
                 <Route path={AgencyRoutes.CreateUser} element={<AgencyUserCreate />} />
+              </Route>
+            </Route>
+            {/* PROPERTY ROUTES */}
+            <Route path={PropertyRoutes.Index} element={<PropertyLayout />}>
+              <Route index element={<PropertyOverview />} />
+              <Route path={PropertyRoutes.Create} element={<AgencyCreate />} />
+              <Route path={PropertyRoutes.Detail} element={<AgencyDetailsLayout />}>
+                <Route index element={<AgencyDetails />} />
+                <Route path={PropertyRoutes.Edit} element={<AgencyEdit />} />
+                <Route path={PropertyRoutes.CreateUser} element={<AgencyUserCreate />} />
               </Route>
             </Route>
           </Route>

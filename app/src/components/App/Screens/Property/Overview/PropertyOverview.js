@@ -1,25 +1,24 @@
 import { useTranslation } from "react-i18next";
 import useFetch from "../../../../../core/hooks/useFetch";
 import useTitle from "../../../../../core/hooks/useTitle";
-import { AgencyRoutes } from "../../../../../core/routing";
 import Alert from "../../../../Design/Alert/Alert";
 import Button from "../../../../Design/Button/Button";
 import Container from "../../../../Design/Container/Container";
 import TopBar from "../../../../Design/Container/TopBar";
 import Title from "../../../../Design/Typography/Title";
-import AgencyGrid from "../../../Shared/Agency/Grid/AgencyGrid";
 import LoadingIndicator from "../../../Shared/Generic/LoadingIndicator/LoadingIndicator";
+import PropertyGrid from "../../../Shared/Property/Grid/PropertyGrid";
 
-const AgencyOverview = () => {
+const PropertyOverview = () => {
   const { t } = useTranslation();
   const {
-    error,
     isLoading,
+    error,
+    data: properties,
     invalidate,
-    data: agencies,
-  } = useFetch("/agencies");
+  } = useFetch("/properties");
 
-  useTitle(t("agencies.title"));
+  useTitle(t("properties.title"));
 
   if (isLoading) {
     return <LoadingIndicator />;
@@ -29,19 +28,21 @@ const AgencyOverview = () => {
     return <Alert color="danger">{error}</Alert>;
   }
 
+  console.log(properties);
+
   return (
     <Container>
       <TopBar>
-        <Title>{t("agencies.title")}</Title>
-        <Button href={AgencyRoutes.Create}>{t("agencies.create.title")}</Button>
+        <Title>{t("properties.title")}</Title>
+        <Button>{t("properties.create.title")}</Button>
       </TopBar>
-      <AgencyGrid
-        agencies={agencies}
+      <PropertyGrid
+        properties={properties}
         onRefresh={invalidate}
         disabled={isLoading}
       />
     </Container>
-  );
+  )
 };
 
-export default AgencyOverview;
+export default PropertyOverview;
