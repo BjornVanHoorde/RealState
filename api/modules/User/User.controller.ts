@@ -43,6 +43,13 @@ export default class UserController {
     next: NextFunction
   ) => {
     const { body } = req;
+
+    if(req.user.isAgent()) {
+      const user = await this.userService.findOne(req.user.id);
+      body.agency = await this.agencyService.findOne(user.agency.id);
+      body.agencyId = user.agency.id;
+    }
+
     body.role = UserRole.User;
 
     if (body.agencyId) {

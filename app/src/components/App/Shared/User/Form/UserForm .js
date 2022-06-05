@@ -9,6 +9,7 @@ import PasswordInput from "../../../../Design/Form/PasswordInput";
 import Title from "../../../../Design/Typography/Title";
 import AgencySelect from "../../Agency/Select/AgencySelect";
 import * as yup from "yup";
+import { useUser } from "../../../Auth/AuthProvider";
 
 const getSchema = (isUpdate) => {
   return yup.object().shape({
@@ -30,11 +31,7 @@ const defaultData = {
   agencyId: null,
 };
 
-const defaultOptions = {
-  showAgency: true,
-};
-
-const transformData = (initialData) => {
+const transformData = (initialData, options, user) => {
   if (initialData.agency) {
     initialData = {
       ...initialData,
@@ -42,6 +39,12 @@ const transformData = (initialData) => {
     };
   }
 
+  if (!options.showAgency) {
+    initialData = {
+      ...initialData,
+      agencyId: user.agency.id,
+    };
+  }
   return initialData;
 };
 
@@ -62,19 +65,18 @@ const UserForm = ({
 }) => {
   const { t } = useTranslation();
   const isUpdate = !!initialData.id;
+  const user = useUser();
   const { values, errors, handleChange, handleSubmit } = useForm(
     getSchema(isUpdate),
     {
       ...defaultData,
-      ...transformData(initialData),
+      ...transformData(initialData, options, user),
     }
   );
 
   const handleData = (values) => {
     onSubmit(transformValues(values));
   };
-
-  options = { ...defaultOptions, ...options };
 
   return (
     <FormContainer>

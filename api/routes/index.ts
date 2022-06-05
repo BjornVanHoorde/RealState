@@ -124,6 +124,13 @@ const registerAuthenticatedRoutes = (router: Router) => {
   authRouter.get("/categories", useMethod(categoryController.all));
   authRouter.get("/categories/:id", useMethod(categoryController.find));
 
+  const agencyController = new AgencyController();
+  authRouter.get("/agencies/:id", useMethod(agencyController.find));
+  authRouter.get("/agencies/:id/users", useMethod(agencyController.getUsers));
+
+  const userController = new UserController();
+  authRouter.post("/users", useMethod(userController.create));
+
   registerAdminRoutes(authRouter);
 
   // authenticated routes use authJWT

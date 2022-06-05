@@ -15,6 +15,7 @@ import {
   AgencyRoutes,
   UserRoutes,
   ProfileRoutes,
+  route,
 } from "../../../../../core/routing";
 import Button from "../../../../Design/Button/Button";
 import NavBar from "../../../../Design/NavBar/NavBar";
@@ -61,7 +62,7 @@ const Header = () => {
     items = [
       ...items,
       {
-        href: AgencyRoutes.Index,
+        href: route(AgencyRoutes.Detail, { id: user.agency.id }),
         isActive: location.pathname.includes(AgencyRoutes.Index),
         label: t("navigation.agency"),
       },
