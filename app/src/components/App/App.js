@@ -23,6 +23,7 @@ import AgencyCreate from "./Screens/Agency/Create/AgencyCreate";
 import AgencyDetailsLayout from "./Screens/Agency/Details/AgencyDetailsLayout";
 import AgencyDetails from "./Screens/Agency/Details/AgencyDetails";
 import AgencyEdit from "./Screens/Agency/Edit/AgencyEdit";
+import AgencyUserCreate from "./Screens/Agency/Create/AgencyUserCreate";
 
 const App = () => {
   return (
@@ -71,6 +72,7 @@ const App = () => {
               <Route path={AgencyRoutes.Detail} element={<AgencyDetailsLayout />}>
                 <Route index element={<AgencyDetails />} />
                 <Route path={AgencyRoutes.Edit} element={<AgencyEdit />} />
+                <Route path={AgencyRoutes.CreateUser} element={<AgencyUserCreate />} />
               </Route>
             </Route>
           </Route>

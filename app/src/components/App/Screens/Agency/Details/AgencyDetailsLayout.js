@@ -20,6 +20,10 @@ const AgencyDetailsLayout = () => {
     navigate(route(AgencyRoutes.Edit, { id: agency.id }))
   };
 
+  const handleCreateUserClick = () => {
+    navigate(route(AgencyRoutes.CreateUser, { id: agency.id }))
+  };
+
   const handleUpdate = () => {
     invalidate();
   };
@@ -42,6 +46,7 @@ const AgencyDetailsLayout = () => {
         context={{
           agency,
           onEditClick: handleEditClick,
+          onCreateUserClick: handleCreateUserClick,
           onUpdate: handleUpdate,
           onDelete: handleDelete,
         }}

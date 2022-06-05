@@ -13,7 +13,7 @@ import LoadingIndicator from "../../../Shared/Generic/LoadingIndicator/LoadingIn
 
 const AgencyDetails = () => {
   const { t } = useTranslation();
-  const { agency, onEditClick, onDelete } = useOutletContext();
+  const { agency, onEditClick, onCreateUserClick, onDelete } = useOutletContext();
   const {
     isLoading,
     error,
@@ -42,6 +42,7 @@ const AgencyDetails = () => {
           </Col>
           <Col size="4" className="text-end">
             <Button onClick={onEditClick}>{t("agencies.edit.title")}</Button>
+            <Button onClick={onCreateUserClick}>{t("agencies.users.create")}</Button>
             <DeleteButton
               scope="agencies"
               id={agency.id}

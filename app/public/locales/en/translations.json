@@ -84,7 +84,8 @@
       "title": "Delete Agency"
     },
     "users": {
-      "title": "Users"
+      "title": "Users",
+      "create": "Create User"
     }
   }
 }

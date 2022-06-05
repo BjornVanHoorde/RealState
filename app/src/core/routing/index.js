@@ -23,6 +23,7 @@ const UserRoutes = {
 const AgencyRoutes = {
   Index: "/agencies",
   Create: "/agencies/create",
+  CreateUser: "/agencies/:id/createUser",
   Detail: "/agencies/:id",
   Edit: "/agencies/:id/edit",
 };
