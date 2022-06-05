@@ -23,18 +23,20 @@ const defaultData = {
   name: "",
   email: "",
   tel: "",
-  cityId: null,
+  cityId: "",
   street: "",
-  number: null,
+  number: "",
   box: "",
 };
 
 const transformData = (initialData) => {
-  if (initialData.address.city) {
-    initialData = {
-      ...initialData,
-      cityId: initialData.address.city.id,
-    };
+  if (initialData.address) {
+    if (initialData.address.city) {
+      initialData = {
+        ...initialData,
+        cityId: initialData.address.city.id,
+      };
+    }
   }
   if (initialData.address) {
     initialData = {
