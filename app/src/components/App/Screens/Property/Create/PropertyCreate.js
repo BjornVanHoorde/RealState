@@ -2,15 +2,18 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import useMutation from "../../../../../core/hooks/useMutation";
 import useTitle from "../../../../../core/hooks/useTitle";
+import { isAdmin } from "../../../../../core/modules/users/utils";
 import { PropertyRoutes, route } from "../../../../../core/routing";
 import Alert from "../../../../Design/Alert/Alert";
 import Container from "../../../../Design/Container/Container";
+import { useUser } from "../../../Auth/AuthProvider";
 import PropertyForm from "../../../Shared/Property/Form/PropertyForm";
 
 const PropertyCreate = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { isLoading, error, mutate } = useMutation();
+  const user = useUser();
 
   useTitle(t("properties.create.title"));
 
@@ -52,6 +55,9 @@ const PropertyCreate = () => {
         label="create"
         onSubmit={handleSubmit}
         disabled={isLoading}
+        options={{
+          showAgency: isAdmin(user)
+        }}
       />
     </Container>
   );

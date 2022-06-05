@@ -57,6 +57,32 @@ const App = () => {
           <Route path={ProfileRoutes.Index} element={<ProfileLayout />}>
             <Route index element={<ProfileDetails />} />
           </Route>
+          {/* AGENT ROUTES */}
+          <Route
+            element={
+              <RoleContainer roles={[userRoles.Agent, userRoles.Admin]}>
+                <Outlet />
+              </RoleContainer>
+            }
+          >
+            {/* AGENCY ROUTES */}
+            <Route path={AgencyRoutes.Index} element={<AgencyLayout />}>
+              <Route path={AgencyRoutes.Detail} element={<AgencyDetailsLayout />}>
+                <Route index element={<AgencyDetails />} />
+                <Route path={AgencyRoutes.Edit} element={<AgencyEdit />} />
+                <Route path={AgencyRoutes.CreateUser} element={<AgencyUserCreate />} />
+              </Route>
+            </Route>
+            {/* PROPERTY ROUTES */}
+            <Route path={PropertyRoutes.Index} element={<PropertyLayout />}>
+              <Route index element={<PropertyOverview />} />
+              <Route path={PropertyRoutes.Create} element={<PropertyCreate />} />
+              <Route path={PropertyRoutes.Detail} element={<PropertyDetailsLayout />}>
+                <Route index element={<PropertyDetails />} />
+                <Route path={PropertyRoutes.Edit} element={<PropertyEdit />} />
+              </Route>
+            </Route>
+          </Route>
           {/* ADMIN ROUTES */}
           <Route
             element={

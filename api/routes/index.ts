@@ -54,12 +54,6 @@ const registerAdminRoutes = (router: Router) => {
   adminRouter.patch("/users/:id", useMethod(userController.update));
   adminRouter.delete("/users/:id", useMethod(userController.delete));
 
-  const cityController = new CityController();
-  adminRouter.get("/cities", useMethod(cityController.all));
-  adminRouter.get("/cities/:id", useMethod(cityController.find));
-  adminRouter.post("/cities", useMethod(cityController.create));
-  // adminRouter.get("/seed", useMethod(cityController.seed));
-
   const agencyController = new AgencyController();
   adminRouter.get("/agencies", useMethod(agencyController.all));
   adminRouter.get("/agencies/:id", useMethod(agencyController.find));
@@ -77,6 +71,9 @@ const registerAdminRoutes = (router: Router) => {
   adminRouter.post("/categories", useMethod(categoryController.create));
   adminRouter.patch("/categories/:id", useMethod(categoryController.update));
   adminRouter.delete("/categories/:id", useMethod(categoryController.delete));
+
+  const cityController = new CityController();
+  adminRouter.post("/cities", useMethod(cityController.create));
 
   router.use(withRole(UserRole.Admin), adminRouter);
 };
@@ -118,6 +115,14 @@ const registerAuthenticatedRoutes = (router: Router) => {
   authRouter.post("/messages", useMethod(messageController.create));
   authRouter.patch("/messages/:id", useMethod(messageController.update));
   authRouter.delete("/messages/:id", useMethod(messageController.delete));
+  
+  const cityController = new CityController();
+  authRouter.get("/cities", useMethod(cityController.all));
+  authRouter.get("/cities/:id", useMethod(cityController.find));
+
+  const categoryController = new CategoryController();
+  authRouter.get("/categories", useMethod(categoryController.all));
+  authRouter.get("/categories/:id", useMethod(categoryController.find));
 
   registerAdminRoutes(authRouter);
 

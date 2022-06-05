@@ -76,4 +76,8 @@ export default class User extends BaseEntity {
   isAdmin() {
     return this.role === UserRole.Admin;
   }
+
+  isAgent() {
+    return this.role === UserRole.Agent;
+  }
 }

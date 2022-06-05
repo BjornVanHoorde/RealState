@@ -1,28 +1,37 @@
 import { useTranslation } from "react-i18next";
 import { useOutletContext } from "react-router-dom";
 import { getImagePath } from "../../../../../core/helpers/api";
+import { isUser } from "../../../../../core/modules/users/utils";
 import { PropertyRoutes, route } from "../../../../../core/routing";
 import Button from "../../../../Design/Button/Button";
 import Container from "../../../../Design/Container/Container";
 import Col from "../../../../Design/Table/Col";
 import Row from "../../../../Design/Table/Row";
+import { useUser } from "../../../Auth/AuthProvider";
 import DeleteButton from "../../../Shared/Generic/Buttons/DeleteButton";
 import ContactForm from "../../../Shared/Message/Form/ContactForm";
 
 const PropertyDetails = () => {
   const { t } = useTranslation();
-  const { property, onDelete } = useOutletContext();
+  const { property, onDelete, authorization } = useOutletContext();
+  const user = useUser();
 
   return (
     <>
       <Container className="text-end">
-        <Button href={route(PropertyRoutes.Edit, { id: property.id })} >{t("properties.edit.title")}</Button>
-        <DeleteButton
-          scope="properties"
-          id={property.id}
-          onSuccess={onDelete}
-          color="link"
-        ></DeleteButton>
+        {authorization && (
+          <>
+            <Button href={route(PropertyRoutes.Edit, { id: property.id })}>
+              {t("properties.edit.title")}
+            </Button>
+            <DeleteButton
+              scope="properties"
+              id={property.id}
+              onSuccess={onDelete}
+              color="link"
+            ></DeleteButton>
+          </>
+        )}
       </Container>
       <Container className="mt-3">
         <Row>
@@ -75,12 +84,14 @@ const PropertyDetails = () => {
               <p>{property.description}</p>
             </Container>
           </Col>
-          <Col size="5">
-            <Container className="bg-white py-2">
-              <h2>{t("properties.details.contact")}</h2>
-              <ContactForm />
-            </Container>
-          </Col>
+          {isUser(user) && (
+            <Col size="5">
+              <Container className="bg-white py-2">
+                <h2>{t("properties.details.contact")}</h2>
+                <ContactForm />
+              </Container>
+            </Col>
+          )}
         </Row>
       </Container>
     </>

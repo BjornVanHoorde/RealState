@@ -4,6 +4,7 @@ import { AuthRequest } from "../../middleware/auth/auth.types";
 import AddressService from "../Address/Address.service";
 import AgencyService from "../Agency/Agency.service";
 import CategoryService from "../Category/Category.service";
+import UserService from "../User/User.service";
 import PropertyService from "./Property.service";
 import { PropertyBody } from "./Property.types";
 
@@ -12,19 +13,17 @@ export default class PropertyController {
   private agencyService: AgencyService;
   private categoryService: CategoryService;
   private addressService: AddressService;
+  private userService: UserService;
 
   constructor() {
     this.propertyService = new PropertyService();
     this.agencyService = new AgencyService();
     this.categoryService = new CategoryService();
     this.addressService = new AddressService();
+    this.userService = new UserService();
   }
 
-  all = async (
-    req: AuthRequest,
-    res: Response,
-    next: NextFunction
-  ) => {
+  all = async (req: AuthRequest, res: Response, next: NextFunction) => {
     const properties = await this.propertyService.all();
     return res.json(properties);
   };
@@ -59,6 +58,12 @@ export default class PropertyController {
     next: NextFunction
   ) => {
     const { body } = req;
+
+    if (req.user.isAgent()) {
+      const user = await this.userService.findOne(req.user.id);
+      body.agency = await this.agencyService.findOne(user.agency.id);
+      body.agencyId = user.agency.id;
+    }
 
     if (body.agencyId) {
       body.agency = await this.agencyService.findOne(body.agencyId);
@@ -101,7 +106,9 @@ export default class PropertyController {
     next: NextFunction
   ) => {
     try {
-      const property = await this.propertyService.delete(parseInt(req.params.id));
+      const property = await this.propertyService.delete(
+        parseInt(req.params.id)
+      );
       if (!property) {
         next(new NotFoundError());
       }

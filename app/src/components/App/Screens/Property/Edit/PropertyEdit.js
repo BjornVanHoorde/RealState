@@ -2,9 +2,11 @@ import { useTranslation } from "react-i18next";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import useMutation from "../../../../../core/hooks/useMutation";
 import useTitle from "../../../../../core/hooks/useTitle";
+import { isAdmin } from "../../../../../core/modules/users/utils";
 import { PropertyRoutes, route } from "../../../../../core/routing";
 import Alert from "../../../../Design/Alert/Alert";
 import Container from "../../../../Design/Container/Container";
+import { useUser } from "../../../Auth/AuthProvider";
 import PropertyForm from "../../../Shared/Property/Form/PropertyForm";
 
 const PropertyEdit = () => {
@@ -12,6 +14,7 @@ const PropertyEdit = () => {
   const { property, onUpdate } = useOutletContext();
   const { isLoading, error, mutate } = useMutation();
   const navigate = useNavigate();
+  const user = useUser();
 
   useTitle(t("properties.edit.title"));
 
@@ -46,6 +49,9 @@ const PropertyEdit = () => {
           initialData={property}
           disabled={isLoading}
           onSubmit={handleSubmit}
+          options = {{
+            showAgency: isAdmin(user)
+          }}
         />
       )}
     </Container>

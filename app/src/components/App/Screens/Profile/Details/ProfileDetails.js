@@ -34,7 +34,7 @@ const ProfileDetails = () => {
           {user.agency && <h4 className="mb-3">{user.agency.name}</h4>}
         </Col>
         <Col size="4" className="text-end">
-          <Button href={ProfileRoutes.Edit}>{t("users.edit.title")}</Button>
+          <Button href={ProfileRoutes.Edit}>{t("profile.edit.title")}</Button>
           <DeleteButton
             scope="users"
             id={user.id}

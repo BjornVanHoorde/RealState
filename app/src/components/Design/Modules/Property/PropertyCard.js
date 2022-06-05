@@ -4,8 +4,8 @@ import DeleteButton from "../../../App/Shared/Generic/Buttons/DeleteButton";
 import Container from "../../Container/Container";
 import ClickableCol from "../../Table/ClickableCol";
 
-const PropertyCard = ({ property, onDelete, onClick }) => {
-  const  { t } = useTranslation();
+const PropertyCard = ({ property, onDelete, onClick, options }) => {
+  const { t } = useTranslation();
 
   return (
     <ClickableCol
@@ -14,12 +14,14 @@ const PropertyCard = ({ property, onDelete, onClick }) => {
       className="bg-white mx-3 p-0 shadow position-relative"
     >
       <div className="position-absolute top-0 end-0">
-        <DeleteButton
-          scope="properties"
-          id={property.id}
-          onSuccess={onDelete}
-          color="link"
-        ></DeleteButton>
+        {options.showDelete && (
+          <DeleteButton
+            scope="properties"
+            id={property.id}
+            onSuccess={onDelete}
+            color="link"
+          ></DeleteButton>
+        )}
       </div>
 
       <img
@@ -28,7 +30,9 @@ const PropertyCard = ({ property, onDelete, onClick }) => {
         alt={property.photos[0].alt}
       />
       <Container>
-        <h5>{property.category.name} {t(`properties.status.${property.status}`)}</h5>
+        <h5>
+          {property.category.name} {t(`properties.status.${property.status}`)}
+        </h5>
         <h3>€ {property.price.toLocaleString("en-US")}</h3>
         <p className="m-0">
           {property.address.city.zip} {property.address.city.name}

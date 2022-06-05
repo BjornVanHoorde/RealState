@@ -12,6 +12,7 @@ import CategorySelect from "../../Category/Select/CategorySelect";
 import StatusSelect from "../Select/StatusSelect";
 import Textarea from "../../../../Design/Form/Textarea";
 import AgencySelect from "../../Agency/Select/AgencySelect";
+import { useUser } from "../../../Auth/AuthProvider";
 
 const schema = yup.object().shape({
   agencyId: yup.number().required(),
@@ -41,7 +42,7 @@ const defaultData = {
   description: "",
 };
 
-const transformData = (initialData) => {
+const transformData = (initialData, options, user) => {
   if (initialData.agency) {
     initialData = {
       ...initialData,
@@ -74,6 +75,13 @@ const transformData = (initialData) => {
       addressId: initialData.address.id,
     };
   }
+
+  if (!options.showAgency) {
+    initialData = {
+      ...initialData,
+      agencyId: user.agency.id,
+    };
+  }
   return initialData;
 };
 
@@ -101,11 +109,18 @@ const getAddressValues = (values) => {
   return addressValues;
 };
 
-const PropertyForm = ({ initialData = {}, disabled, onSubmit, label }) => {
+const PropertyForm = ({
+  initialData = {},
+  disabled,
+  onSubmit,
+  label,
+  options,
+}) => {
   const { t } = useTranslation();
+  const user = useUser();
   const { values, errors, handleChange, handleSubmit } = useForm(schema, {
     ...defaultData,
-    ...transformData(initialData),
+    ...transformData(initialData, options, user),
   });
 
   const handleData = (values) => {
@@ -116,15 +131,17 @@ const PropertyForm = ({ initialData = {}, disabled, onSubmit, label }) => {
     <FormContainer>
       <Title>{t(`properties.${label}.title`)}</Title>
       <form onSubmit={handleSubmit(handleData)} noValidate={true}>
-        <Field>
-          <Label htmlFor="agencyId">{t("fields.agency")}</Label>
-          <AgencySelect
-            name="agencyId"
-            value={values.agencyId}
-            error={errors.agencyId}
-            onChange={handleChange}
-          />
-        </Field>
+        {options.showAgency && (
+          <Field>
+            <Label htmlFor="agencyId">{t("fields.agency")}</Label>
+            <AgencySelect
+              name="agencyId"
+              value={values.agencyId}
+              error={errors.agencyId}
+              onChange={handleChange}
+            />
+          </Field>
+        )}
         <Field>
           <Label htmlFor="categoryId">{t("fields.category")}</Label>
           <CategorySelect

@@ -1,13 +1,16 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { isAdmin } from "../../../../../core/modules/users/utils";
 import { PropertyRoutes, route } from "../../../../../core/routing";
 import PropertyCard from "../../../../Design/Modules/Property/PropertyCard";
 import Col from "../../../../Design/Table/Col";
 import Row from "../../../../Design/Table/Row";
+import { useUser } from "../../../Auth/AuthProvider";
 import PropertySearch from "../Form/PropertySearch";
 
 const PropertyGrid = ({ properties, onRefresh, disabled }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
+  const user = useUser();
 
   if (!!String(searchParams)) {
     properties = properties.filter((agency) =>
@@ -38,6 +41,9 @@ const PropertyGrid = ({ properties, onRefresh, disabled }) => {
               onClick={() =>
                 navigate(route(PropertyRoutes.Detail, { id: property.id }))
               }
+              options={{
+                showDelete: isAdmin(user),
+              }}
             />
           ))}
         </Row>

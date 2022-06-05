@@ -58,7 +58,10 @@
   },
 
   "profile": {
-    "title": "Profile"
+    "title": "Profile",
+    "edit": {
+      "title": "Edit Profile"
+    }
   },
 
   "categories": {
