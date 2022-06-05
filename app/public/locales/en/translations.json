@@ -1,12 +1,12 @@
 {
   "onboarding": {
-    "login" : {
+    "login": {
       "title": "Login",
       "button": "Login",
       "new?": "No account yet?",
       "link": "Create an account"
     },
-    "register" : {
+    "register": {
       "title": "Register",
       "button": "Register",
       "new?": "Already an account?",
@@ -40,7 +40,13 @@
     "number": "Number",
     "box": "Box",
     "agency": "Agency",
-    "message": "Message"
+    "message": "Message",
+    "category": "Category",
+    "status": "Status",
+    "yearOfConstruction": "Year of construction",
+    "surface": "Surface",
+    "price": "Price",
+    "description": "Description"
   },
 
   "buttons": {
@@ -58,8 +64,7 @@
     },
     "edit": {
       "title": "Edit Category"
-    },
-    "Huis": "house"
+    }
   },
 
   "users": {

@@ -8,28 +8,54 @@ import Label from "../../../../Design/Form/Label";
 import Input from "../../../../Design/Form/Input";
 import CitySelect from "../../City/Select/CitySelect";
 import Button from "../../../../Design/Button/Button";
+import CategorySelect from "../../Category/Select/CategorySelect";
+import StatusSelect from "../Select/StatusSelect";
+import Textarea from "../../../../Design/Form/Textarea";
+import AgencySelect from "../../Agency/Select/AgencySelect";
 
 const schema = yup.object().shape({
-  name: yup.string().required(),
-  email: yup.string().email().required(),
-  tel: yup.string().required(),
+  agencyId: yup.number().required(),
+  categoryId: yup.number().required(),
+  status: yup.string().required(),
+  yearOfConstruction: yup.number().required(),
+  surface: yup.number().required(),
   cityId: yup.number().required(),
   street: yup.string().required(),
   number: yup.number().required(),
   box: yup.string(),
+  price: yup.number().required(),
+  description: yup.string().required(),
 });
 
 const defaultData = {
-  name: "",
-  email: "",
-  tel: "",
+  agencyId: "",
+  categoryId: "",
+  status: "",
+  yearOfConstruction: "",
+  surface: "",
   cityId: "",
   street: "",
   number: "",
   box: "",
+  price: "",
+  description: "",
 };
 
 const transformData = (initialData) => {
+  if (initialData.agency) {
+    initialData = {
+      ...initialData,
+      agencyId: initialData.agency.id,
+    };
+  }
+
+  if (initialData.category) {
+    initialData = {
+      ...initialData,
+      categoryId: initialData.category.id,
+    };
+  }
+
   if (initialData.address) {
     if (initialData.address.city) {
       initialData = {
@@ -38,6 +64,7 @@ const transformData = (initialData) => {
       };
     }
   }
+
   if (initialData.address) {
     initialData = {
       ...initialData,
@@ -50,14 +77,18 @@ const transformData = (initialData) => {
   return initialData;
 };
 
-const getAgencyValues = (values) => {
-  const agencyValues = {
-    name: values.name,
-    email: values.email,
-    tel: values.tel,
+const getPropertyValues = (values) => {
+  const propertyValues = {
+    agencyId: values.agencyId,
+    categoryId: values.categoryId,
+    status: values.status,
+    yearOfConstruction: values.yearOfConstruction,
+    surface: values.surface,
+    price: values.price,
+    description: values.description,
     addressId: values.addressId ? values.addressId : null,
   };
-  return agencyValues;
+  return propertyValues;
 };
 
 const getAddressValues = (values) => {
@@ -70,7 +101,7 @@ const getAddressValues = (values) => {
   return addressValues;
 };
 
-const AgencyForm = ({ initialData = {}, disabled, onSubmit, label }) => {
+const PropertyForm = ({ initialData = {}, disabled, onSubmit, label }) => {
   const { t } = useTranslation();
   const { values, errors, handleChange, handleSubmit } = useForm(schema, {
     ...defaultData,
@@ -78,40 +109,60 @@ const AgencyForm = ({ initialData = {}, disabled, onSubmit, label }) => {
   });
 
   const handleData = (values) => {
-    onSubmit(getAgencyValues(values), getAddressValues(values));
+    onSubmit(getPropertyValues(values), getAddressValues(values));
   };
 
   return (
     <FormContainer>
-      <Title>{t(`agencies.${label}.title`)}</Title>
+      <Title>{t(`properties.${label}.title`)}</Title>
       <form onSubmit={handleSubmit(handleData)} noValidate={true}>
         <Field>
-          <Label htmlFor="name">{t("fields.name")}</Label>
+          <Label htmlFor="agencyId">{t("fields.agency")}</Label>
+          <AgencySelect
+            name="agencyId"
+            value={values.agencyId}
+            error={errors.agencyId}
+            onChange={handleChange}
+          />
+        </Field>
+        <Field>
+          <Label htmlFor="categoryId">{t("fields.category")}</Label>
+          <CategorySelect
+            name="categoryId"
+            value={values.categoryId}
+            error={errors.categoryId}
+            onChange={handleChange}
+          />
+        </Field>
+        <Field>
+          <Label htmlFor="status">{t("fields.status")}</Label>
+          <StatusSelect
+            name="status"
+            value={values.status}
+            error={errors.status}
+            onChange={handleChange}
+          />
+        </Field>
+        <Field>
+          <Label htmlFor="yearOfConstruction">
+            {t("fields.yearOfConstruction")}
+          </Label>
           <Input
-            name="name"
-            value={values.name}
-            error={errors.name}
+            name="yearOfConstruction"
+            type="number"
+            value={values.yearOfConstruction}
+            error={errors.yearOfConstruction}
             onChange={handleChange}
             disabled={disabled}
           />
         </Field>
         <Field>
-          <Label htmlFor="email">{t("fields.email")}</Label>
+          <Label htmlFor="surface">{t("fields.surface")}</Label>
           <Input
-            name="email"
-            type="email"
-            value={values.email}
-            error={errors.email}
-            onChange={handleChange}
-            disabled={disabled}
-          />
-        </Field>
-        <Field>
-          <Label htmlFor="tel">{t("fields.tel")}</Label>
-          <Input
-            name="tel"
-            value={values.tel}
-            error={errors.tel}
+            name="surface"
+            type="number"
+            value={values.surface}
+            error={errors.surface}
             onChange={handleChange}
             disabled={disabled}
           />
@@ -156,6 +207,27 @@ const AgencyForm = ({ initialData = {}, disabled, onSubmit, label }) => {
             disabled={disabled}
           />
         </Field>
+        <Field>
+          <Label htmlFor="price">{t("fields.price")}</Label>
+          <Input
+            name="price"
+            type="number"
+            value={values.price}
+            error={errors.price}
+            onChange={handleChange}
+            disabled={disabled}
+          />
+        </Field>
+        <Field>
+          <Label htmlFor="description">{t("fields.description")}</Label>
+          <Textarea
+            name="description"
+            value={values.description}
+            error={errors.description}
+            onChange={handleChange}
+            disabled={disabled}
+          />
+        </Field>
         <Button type="submit" disabled={disabled}>
           {label}
         </Button>
@@ -164,4 +236,4 @@ const AgencyForm = ({ initialData = {}, disabled, onSubmit, label }) => {
   );
 };
 
-export default AgencyForm;
+export default PropertyForm;

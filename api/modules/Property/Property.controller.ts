@@ -1,14 +1,23 @@
 import { NextFunction, Response } from "express";
 import NotFoundError from "../../errors/NotFoundError";
 import { AuthRequest } from "../../middleware/auth/auth.types";
+import AddressService from "../Address/Address.service";
+import AgencyService from "../Agency/Agency.service";
+import CategoryService from "../Category/Category.service";
 import PropertyService from "./Property.service";
 import { PropertyBody } from "./Property.types";
 
 export default class PropertyController {
   private propertyService: PropertyService;
+  private agencyService: AgencyService;
+  private categoryService: CategoryService;
+  private addressService: AddressService;
 
   constructor() {
     this.propertyService = new PropertyService();
+    this.agencyService = new AgencyService();
+    this.categoryService = new CategoryService();
+    this.addressService = new AddressService();
   }
 
   all = async (
@@ -49,6 +58,20 @@ export default class PropertyController {
     res: Response,
     next: NextFunction
   ) => {
+    const { body } = req;
+
+    if (body.agencyId) {
+      body.agency = await this.agencyService.findOne(body.agencyId);
+    }
+
+    if (body.categoryId) {
+      body.category = await this.categoryService.findOne(body.categoryId);
+    }
+
+    if (body.addressId) {
+      body.address = await this.addressService.findOne(body.addressId);
+    }
+
     const property = await this.propertyService.create(req.body);
     return res.json(property);
   };

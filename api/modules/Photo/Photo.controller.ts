@@ -1,21 +1,20 @@
 import { NextFunction, Response } from "express";
 import NotFoundError from "../../errors/NotFoundError";
 import { AuthRequest } from "../../middleware/auth/auth.types";
+import PropertyService from "../Property/Property.service";
 import PhotoService from "./Photo.service";
-import { PhotoBody } from "./Photo.types";
+import { PhotoBody, PhotosBody } from "./Photo.types";
 
 export default class PhotoController {
   private photoService: PhotoService;
+  private propertyService: PropertyService;
 
   constructor() {
     this.photoService = new PhotoService();
+    this.propertyService = new PropertyService();
   }
 
-  all = async (
-    req: AuthRequest,
-    res: Response,
-    next: NextFunction
-  ) => {
+  all = async (req: AuthRequest, res: Response, next: NextFunction) => {
     const photos = await this.photoService.all();
     return res.json(photos);
   };
@@ -45,12 +44,29 @@ export default class PhotoController {
   };
 
   create = async (
-    req: AuthRequest<{}, {}, PhotoBody>,
+    req: AuthRequest<{}, {}, PhotosBody>,
     res: Response,
     next: NextFunction
   ) => {
-    const photo = await this.photoService.create(req.body);
-    return res.json(photo);
+    const { body } = req;
+
+    if (body.propertyId) {
+      body.property = await this.propertyService.findOne(body.propertyId);
+    }
+
+    if (body.photos) {
+      body.photos.forEach(async (photo: PhotoBody) => {
+        let photobody: PhotoBody;
+        photobody = {
+          ...photo,
+          propertyId: body.propertyId,
+          property: body.property,
+        };
+        await this.photoService.create(photobody);
+      });
+    }
+
+    return res.json(body);
   };
 
   update = async (

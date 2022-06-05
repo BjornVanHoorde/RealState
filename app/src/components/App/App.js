@@ -28,6 +28,8 @@ import PropertyLayout from "./Screens/Property/PropertyLayout";
 import PropertyOverview from "./Screens/Property/Overview/PropertyOverview";
 import PropertyDetailsLayout from "./Screens/Property/Details/PropertyDetailsLayout";
 import PropertyDetails from "./Screens/Property/Details/PropertyDetails";
+import PropertyCreate from "./Screens/Property/Create/PropertyCreate";
+import PropertyEdit from "./Screens/Property/Edit/PropertyEdit";
 
 const App = () => {
   return (
@@ -82,10 +84,10 @@ const App = () => {
             {/* PROPERTY ROUTES */}
             <Route path={PropertyRoutes.Index} element={<PropertyLayout />}>
               <Route index element={<PropertyOverview />} />
-              <Route path={PropertyRoutes.Create} element={<AgencyCreate />} />
+              <Route path={PropertyRoutes.Create} element={<PropertyCreate />} />
               <Route path={PropertyRoutes.Detail} element={<PropertyDetailsLayout />}>
                 <Route index element={<PropertyDetails />} />
-                <Route path={PropertyRoutes.Edit} element={<AgencyEdit />} />
+                <Route path={PropertyRoutes.Edit} element={<PropertyEdit />} />
               </Route>
             </Route>
           </Route>

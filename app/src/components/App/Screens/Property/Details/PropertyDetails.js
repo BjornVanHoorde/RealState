@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useOutletContext } from "react-router-dom";
 import { getImagePath } from "../../../../../core/helpers/api";
+import { PropertyRoutes, route } from "../../../../../core/routing";
 import Button from "../../../../Design/Button/Button";
 import Container from "../../../../Design/Container/Container";
 import Col from "../../../../Design/Table/Col";
@@ -15,7 +16,7 @@ const PropertyDetails = () => {
   return (
     <>
       <Container className="text-end">
-        <Button>{t("properties.edit.title")}</Button>
+        <Button href={route(PropertyRoutes.Edit, { id: property.id })} >{t("properties.edit.title")}</Button>
         <DeleteButton
           scope="properties"
           id={property.id}
@@ -44,7 +45,7 @@ const PropertyDetails = () => {
                 />
               </div>
               <h3>
-                {t(`categories.${property.category.name}`)}{" "}
+                {property.category.name}{" "}
                 {t(`properties.status.${property.status}`)}
               </h3>
               <h1>€ {property.price.toLocaleString("en-US")}</h1>

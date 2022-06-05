@@ -7,9 +7,12 @@ import { PropertyStatus } from "./Property.constants";
 export interface PropertyBody {
   surface: number;
   category: Category;
+  categoryId: number;
   agency: Agency;
+  agencyId: number;
   yearOfConstruction: number;
   description: string;
   price: number;
   address: Address;
+  addressId: number;
 }

@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import useFetch from "../../../../../core/hooks/useFetch";
 import useTitle from "../../../../../core/hooks/useTitle";
+import { PropertyRoutes } from "../../../../../core/routing";
 import Alert from "../../../../Design/Alert/Alert";
 import Button from "../../../../Design/Button/Button";
 import Container from "../../../../Design/Container/Container";
@@ -32,7 +33,7 @@ const PropertyOverview = () => {
     <Container>
       <TopBar>
         <Title>{t("properties.title")}</Title>
-        <Button>{t("properties.create.title")}</Button>
+        <Button href={PropertyRoutes.Create} >{t("properties.create.title")}</Button>
       </TopBar>
       <PropertyGrid
         properties={properties}
