@@ -26,6 +26,8 @@ import AgencyEdit from "./Screens/Agency/Edit/AgencyEdit";
 import AgencyUserCreate from "./Screens/Agency/Create/AgencyUserCreate";
 import PropertyLayout from "./Screens/Property/PropertyLayout";
 import PropertyOverview from "./Screens/Property/Overview/PropertyOverview";
+import PropertyDetailsLayout from "./Screens/Property/Details/PropertyDetailsLayout";
+import PropertyDetails from "./Screens/Property/Details/PropertyDetails";
 
 const App = () => {
   return (
@@ -81,10 +83,9 @@ const App = () => {
             <Route path={PropertyRoutes.Index} element={<PropertyLayout />}>
               <Route index element={<PropertyOverview />} />
               <Route path={PropertyRoutes.Create} element={<AgencyCreate />} />
-              <Route path={PropertyRoutes.Detail} element={<AgencyDetailsLayout />}>
-                <Route index element={<AgencyDetails />} />
+              <Route path={PropertyRoutes.Detail} element={<PropertyDetailsLayout />}>
+                <Route index element={<PropertyDetails />} />
                 <Route path={PropertyRoutes.Edit} element={<AgencyEdit />} />
-                <Route path={PropertyRoutes.CreateUser} element={<AgencyUserCreate />} />
               </Route>
             </Route>
           </Route>

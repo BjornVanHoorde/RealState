@@ -28,8 +28,6 @@ const PropertyOverview = () => {
     return <Alert color="danger">{error}</Alert>;
   }
 
-  console.log(properties);
-
   return (
     <Container>
       <TopBar>

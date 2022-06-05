@@ -39,14 +39,16 @@
     "street": "Street",
     "number": "Number",
     "box": "Box",
-    "agency": "Agency"
+    "agency": "Agency",
+    "message": "Message"
   },
 
   "buttons": {
     "create": "Create",
     "save": "Save",
     "search": "Search",
-    "reset": "Reset"
+    "reset": "Reset",
+    "send": "Send"
   },
 
   "categories": {
@@ -100,6 +102,12 @@
     },
     "delete": {
       "title": "Delete Property"
+    },
+    "details": {
+      "title": "Property",
+      "buildYear": "Build in",
+      "description": "Description",
+      "contact": "Contact us"
     },
     "status": {
       "FOR SALE": "for sale",

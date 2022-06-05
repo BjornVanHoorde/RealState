@@ -35,7 +35,7 @@ const PropertyCard = ({ property, onDelete, onClick }) => {
         </p>
         <p>
           {property.address.street} {property.address.number}
-          {property.address.box ? ` box:${property.address.box}` : ""}
+          {property.address.box ? ` box ${property.address.box}` : ""}
         </p>
       </Container>
     </ClickableCol>
