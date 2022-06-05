@@ -1,5 +1,5 @@
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
-import { AgencyRoutes, AuthRoutes, CategoryRoutes, PropertyRoutes, UserRoutes } from "../../core/routing";
+import { AgencyRoutes, AuthRoutes, CategoryRoutes, ProfileRoutes, PropertyRoutes, UserRoutes } from "../../core/routing";
 import AppLayout from "./AppLayout";
 import AuthContainer from "./Auth/AuthContainer";
 import AuthProvider from "./Auth/AuthProvider";
@@ -30,6 +30,8 @@ import PropertyDetailsLayout from "./Screens/Property/Details/PropertyDetailsLay
 import PropertyDetails from "./Screens/Property/Details/PropertyDetails";
 import PropertyCreate from "./Screens/Property/Create/PropertyCreate";
 import PropertyEdit from "./Screens/Property/Edit/PropertyEdit";
+import ProfileLayout from "./Screens/Profile/ProfileLayout";
+import ProfileDetails from "./Screens/Profile/Details/ProfileDetails";
 
 const App = () => {
   return (
@@ -50,6 +52,11 @@ const App = () => {
           }
         >
           <Route path="/test" element={<TestScreen />} />
+          {/* GENERAL ROUTES */}
+          {/* PROFILE ROUTES */}
+          <Route path={ProfileRoutes.Index} element={<ProfileLayout />}>
+            <Route index element={<ProfileDetails />} />
+          </Route>
           {/* ADMIN ROUTES */}
           <Route
             element={

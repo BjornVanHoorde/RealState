@@ -57,6 +57,10 @@
     "send": "Send"
   },
 
+  "profile": {
+    "title": "Profile"
+  },
+
   "categories": {
     "title": "Categories",
     "create": {

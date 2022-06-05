@@ -39,6 +39,11 @@ const FavoriteRoutes = {
   Index: "/favorites",
 };
 
+const ProfileRoutes = {
+  Index: "/profile",
+  Edit: "/profile/edit",
+};
+
 export const route = (path, options = {}) => {
   Object.keys(options).forEach((key) => {
     path = path.replace(`:${key}`, options[key]);
@@ -54,4 +59,5 @@ export {
   AgencyRoutes,
   MessageRoutes,
   FavoriteRoutes,
+  ProfileRoutes,
 };
