@@ -43,7 +43,7 @@ const AgencyDetails = () => {
           <Col size="4" className="text-end">
             <Button onClick={onEditClick}>{t("agencies.edit.title")}</Button>
             <DeleteButton
-              scope="users"
+              scope="agencies"
               id={agency.id}
               onSuccess={onDelete}
               color="link"
