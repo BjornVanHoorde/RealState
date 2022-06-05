@@ -14,11 +14,7 @@ export default class AddressController {
     this.cityService = new CityService();
   }
 
-  all = async (
-    req: AuthRequest,
-    res: Response,
-    next: NextFunction
-  ) => {
+  all = async (req: AuthRequest, res: Response, next: NextFunction) => {
     const addresses = await this.addressService.all();
     return res.json(addresses);
   };
@@ -68,9 +64,15 @@ export default class AddressController {
     next: NextFunction
   ) => {
     try {
+      const { body } = req;
+
+      if (body.cityId) {
+        body.city = await this.cityService.findOne(body.cityId);
+      }
+
       const address = await this.addressService.update(
         parseInt(req.params.id),
-        req.body
+        body
       );
       if (!address) {
         next(new NotFoundError());

@@ -33,7 +33,6 @@ Input.propTypes = {
   type: PropTypes.string,
   name: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
-  value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func,
 }

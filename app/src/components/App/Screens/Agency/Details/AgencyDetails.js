@@ -41,7 +41,7 @@ const AgencyDetails = () => {
             <h4 className="mb-3">{`${agency.address.city.name} ${agency.address.city.zip}`}</h4>
           </Col>
           <Col size="4" className="text-end">
-            <Button onClick={onEditClick}>{t("agencies.delete.title")}</Button>
+            <Button onClick={onEditClick}>{t("agencies.edit.title")}</Button>
             <DeleteButton
               scope="users"
               id={agency.id}
@@ -57,7 +57,7 @@ const AgencyDetails = () => {
         {isLoading && <LoadingIndicator />}
         {error && <Alert color="danger">{error}</Alert>}
         {users && users.map((user) => (
-          <UserCardAgency user={user} />
+          <UserCardAgency user={user} key={user.email}/>
         ))}
       </Row>
     </>

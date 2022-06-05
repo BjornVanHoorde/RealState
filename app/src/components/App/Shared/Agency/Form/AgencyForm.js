@@ -23,17 +23,26 @@ const defaultData = {
   name: "",
   email: "",
   tel: "",
-  cityId: "",
+  cityId: null,
   street: "",
-  number: "",
+  number: null,
   box: "",
 };
 
 const transformData = (initialData) => {
-  if (initialData.city) {
+  if (initialData.address.city) {
     initialData = {
       ...initialData,
-      cityId: initialData.city.id,
+      cityId: initialData.address.city.id,
+    };
+  }
+  if (initialData.address) {
+    initialData = {
+      ...initialData,
+      street: initialData.address.street,
+      number: initialData.address.number,
+      box: initialData.address.box,
+      addressId: initialData.address.id,
     };
   }
   return initialData;
@@ -42,9 +51,9 @@ const transformData = (initialData) => {
 const getAgencyValues = (values) => {
   const agencyValues = {
     name: values.name,
-    email: values.email, 
-    tel: values.tel, 
-    addressId: null, 
+    email: values.email,
+    tel: values.tel,
+    addressId: values.addressId ? values.addressId : null,
   };
   return agencyValues;
 };
@@ -52,10 +61,10 @@ const getAgencyValues = (values) => {
 const getAddressValues = (values) => {
   const agencyValues = {
     cityId: values.cityId,
-    street: values.street, 
-    number: values.number, 
+    street: values.street,
+    number: values.number,
     box: values.box,
-    email: values.email, 
+    email: values.email,
   };
   return agencyValues;
 };
