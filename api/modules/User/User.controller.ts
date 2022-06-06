@@ -30,6 +30,10 @@ export default class UserController {
     res: Response,
     next: NextFunction
   ) => {
+    if (!req.user.isAdmin()) {
+      req.params.id = req.user.id;
+    }
+
     const user = await this.userService.findOne(req.params.id);
     if (!user) {
       next(new NotFoundError());

@@ -128,6 +128,7 @@ const registerAuthenticatedRoutes = (router: Router) => {
 
   const userController = new UserController();
   authRouter.post("/users", useMethod(userController.create));
+  authRouter.get("/users/:id", useMethod(userController.find));
 
   registerAdminRoutes(authRouter);
 
