@@ -25,7 +25,8 @@
     "agencies": "Agencies",
     "agency": "Agency",
     "messages": "Messages",
-    "favorites": "Favorites"
+    "favorites": "Favorites",
+    "agencyProperties": "Our properties"
   },
 
   "fields": {
@@ -127,5 +128,9 @@
       "FOR RENT": "for rent",
       "RENTED": "rented"
     }
+  },
+
+  "messages": {
+    "title": "Messages"
   }
 }

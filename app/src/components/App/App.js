@@ -1,5 +1,5 @@
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
-import { AgencyRoutes, AuthRoutes, CategoryRoutes, ProfileRoutes, PropertyRoutes, UserRoutes } from "../../core/routing";
+import { AgencyRoutes, AuthRoutes, CategoryRoutes, MessageRoutes, ProfileRoutes, PropertyRoutes, UserRoutes } from "../../core/routing";
 import AppLayout from "./AppLayout";
 import AuthContainer from "./Auth/AuthContainer";
 import AuthProvider from "./Auth/AuthProvider";
@@ -32,6 +32,8 @@ import PropertyCreate from "./Screens/Property/Create/PropertyCreate";
 import PropertyEdit from "./Screens/Property/Edit/PropertyEdit";
 import ProfileLayout from "./Screens/Profile/ProfileLayout";
 import ProfileDetails from "./Screens/Profile/Details/ProfileDetails";
+import MessageLayout from "./Screens/Message/MessageLayout";
+import MessageOverview from "./Screens/Message/overview/MessageOverview";
 
 const App = () => {
   return (
@@ -80,6 +82,13 @@ const App = () => {
               <Route path={PropertyRoutes.Detail} element={<PropertyDetailsLayout />}>
                 <Route index element={<PropertyDetails />} />
                 <Route path={PropertyRoutes.Edit} element={<PropertyEdit />} />
+              </Route>
+            </Route>
+            {/* MESSAGE ROUTES */}
+            <Route path={MessageRoutes.Index} element={<MessageLayout />}>
+              <Route index element={<MessageOverview />} />
+              <Route path={MessageRoutes.Detail} element={<PropertyDetailsLayout />}>
+                <Route index element={<PropertyDetails />} />
               </Route>
             </Route>
           </Route>

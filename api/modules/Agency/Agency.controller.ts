@@ -2,6 +2,7 @@ import { NextFunction, Response } from "express";
 import NotFoundError from "../../errors/NotFoundError";
 import { AuthRequest } from "../../middleware/auth/auth.types";
 import AddressService from "../Address/Address.service";
+import PropertyService from "../Property/Property.service";
 import UserService from "../User/User.service";
 import AgencyService from "./Agency.service";
 import { AgencyBody } from "./Agency.types";
@@ -10,11 +11,13 @@ export default class AgencyController {
   private agencyService: AgencyService;
   private addressService: AddressService;
   private userService: UserService;
+  private propertyService: PropertyService;
 
   constructor() {
     this.agencyService = new AgencyService();
     this.addressService = new AddressService();
     this.userService = new UserService();
+    this.propertyService = new PropertyService();
   }
 
   all = async (

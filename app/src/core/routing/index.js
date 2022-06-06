@@ -33,6 +33,7 @@ const AgencyRoutes = {
 
 const MessageRoutes = {
   Index: "/messages",
+  Detail: "/messages/:id",
 };
 
 const FavoriteRoutes = {

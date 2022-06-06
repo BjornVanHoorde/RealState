@@ -1,14 +1,17 @@
 import { NextFunction, Response } from "express";
 import NotFoundError from "../../errors/NotFoundError";
 import { AuthRequest } from "../../middleware/auth/auth.types";
+import UserService from "../User/User.service";
 import MessageService from "./Message.service";
 import { MessageBody } from "./Message.types";
 
 export default class MessageController {
   private messageService: MessageService;
+  private userService: UserService;
 
   constructor() {
     this.messageService = new MessageService();
+    this.userService = new UserService();
   }
 
   all = async (
@@ -16,7 +19,10 @@ export default class MessageController {
     res: Response,
     next: NextFunction
   ) => {
-    const messages = await this.messageService.all();
+
+    const user = await this.userService.findOne(req.user.id);
+
+    const messages = await this.messageService.all(user.agency.id);
     return res.json(messages);
   };
 

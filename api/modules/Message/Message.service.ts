@@ -11,9 +11,10 @@ export default class MessageService {
     this.repository = repository;
   }
 
-  all = async () => {
+  all = async (id: number) => {
     const messages = await this.repository.find({
       relations: ["property", "sender", "receiver"],
+      where: { receiver: {id} },
     });
     return messages;
   };

@@ -60,10 +60,8 @@ const registerAdminRoutes = (router: Router) => {
   adminRouter.get("/agencies/:id/users", useMethod(agencyController.getUsers));
   adminRouter.post("/agencies", useMethod(agencyController.create));
   adminRouter.patch("/agencies/:id", useMethod(agencyController.update));
-  adminRouter.delete(
-    "/agencies/:id",
-    useMethod(agencyController.delete)
-  );
+
+  adminRouter.delete("/agencies/:id", useMethod(agencyController.delete));
 
   const categoryController = new CategoryController();
   adminRouter.get("/categories", useMethod(categoryController.all));
@@ -115,7 +113,7 @@ const registerAuthenticatedRoutes = (router: Router) => {
   authRouter.post("/messages", useMethod(messageController.create));
   authRouter.patch("/messages/:id", useMethod(messageController.update));
   authRouter.delete("/messages/:id", useMethod(messageController.delete));
-  
+
   const cityController = new CityController();
   authRouter.get("/cities", useMethod(cityController.all));
   authRouter.get("/cities/:id", useMethod(cityController.find));
