@@ -55,7 +55,8 @@
     "surface": "Surface",
     "price": "Price",
     "description": "Description",
-    "avatar": "Avatar"
+    "avatar": "Avatar",
+    "logo": "Logo"
   },
 
   "buttons": {

@@ -8,6 +8,7 @@ import Label from "../../../../Design/Form/Label";
 import Input from "../../../../Design/Form/Input";
 import CitySelect from "../../City/Select/CitySelect";
 import Button from "../../../../Design/Button/Button";
+import FileInput from "../../../../Design/Form/FileInput";
 
 const schema = yup.object().shape({
   name: yup.string().required(),
@@ -53,6 +54,7 @@ const transformData = (initialData) => {
 const getAgencyValues = (values) => {
   const agencyValues = {
     name: values.name,
+    logo: values.logo,
     email: values.email,
     tel: values.tel,
     addressId: values.addressId ? values.addressId : null,
@@ -91,6 +93,16 @@ const AgencyForm = ({ initialData = {}, disabled, onSubmit, label }) => {
             name="name"
             value={values.name}
             error={errors.name}
+            onChange={handleChange}
+            disabled={disabled}
+          />
+        </Field>
+        <Field>
+          <Label htmlFor="logo">{t("fields.logo")}</Label>
+          <FileInput
+            name="logo"
+            value={values.logo}
+            error={errors.logo}
             onChange={handleChange}
             disabled={disabled}
           />

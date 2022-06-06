@@ -29,7 +29,7 @@ const AgencyDetails = () => {
           <Col size="4">
             <img
               style={{ width: "100%" }}
-              src={getImagePath(`public/images/${agency.logo}`)}
+              src={getImagePath(agency.logo)}
               alt={agency.logo}
             ></img>
           </Col>

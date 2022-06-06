@@ -80,7 +80,7 @@ const PropertyDetails = () => {
               <div className="position-absolute top-0 end-0">
                 <img
                   style={{ width: "8rem" }}
-                  src={getImagePath(`public/images/${property.agency.logo}`)}
+                  src={getImagePath(property.agency.logo)}
                   alt={property.agency.logo}
                 />
               </div>

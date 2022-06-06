@@ -15,6 +15,7 @@ const AgencyCreate = () => {
   useTitle(t("agencies.create.title"));
 
   const handleSubmit = (agencyValues, addressValues) => {
+    console.log(agencyValues);
     mutate(`${process.env.REACT_APP_API_URL}/addresses`, {
       method: "POST",
       data: addressValues,
@@ -23,6 +24,7 @@ const AgencyCreate = () => {
         mutate(`${process.env.REACT_APP_API_URL}/agencies`, {
           method: "POST",
           data: agencyValues,
+          multipart: true,
           onSuccess: () => {
             navigate(route(AgencyRoutes.Index));
           },

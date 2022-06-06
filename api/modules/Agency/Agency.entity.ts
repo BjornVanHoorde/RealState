@@ -29,7 +29,7 @@ export default class Agency extends BaseEntity {
     tel: string
 
     @IsDefined({ always: true })
-    @Column()
+    @Column({ select: true, default: "public/uploads/logo.jpg" })
     logo: string;
 
     @OneToMany(() => User, (user) => user.agency)

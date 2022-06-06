@@ -1,4 +1,6 @@
 import { NextFunction, Response } from "express";
+import { UploadedFile } from "express-fileupload";
+import { UPLOAD_FOLDER } from "../../constants";
 import NotFoundError from "../../errors/NotFoundError";
 import { AuthRequest } from "../../middleware/auth/auth.types";
 import AddressService from "../Address/Address.service";
@@ -6,6 +8,18 @@ import PropertyService from "../Property/Property.service";
 import UserService from "../User/User.service";
 import AgencyService from "./Agency.service";
 import { AgencyBody } from "./Agency.types";
+
+const getLogo = (req) => {
+  if (req.files.logo) {
+    const logo: UploadedFile = Array.isArray(req.files.logo)
+      ? req.files.logo[0]
+      : req.files.logo;
+    const path = `${UPLOAD_FOLDER}/${new Date().getTime()}_${logo.name}`;
+    logo.mv(path);
+    return path;
+  }
+  return null;
+};
 
 export default class AgencyController {
   private agencyService: AgencyService;
@@ -20,11 +34,7 @@ export default class AgencyController {
     this.propertyService = new PropertyService();
   }
 
-  all = async (
-    req: AuthRequest,
-    res: Response,
-    next: NextFunction
-  ) => {
+  all = async (req: AuthRequest, res: Response, next: NextFunction) => {
     const agenciess = await this.agencyService.all();
     return res.json(agenciess);
   };
@@ -54,7 +64,7 @@ export default class AgencyController {
   };
 
   getUsers = async (
-    req: AuthRequest<{id: number}>,
+    req: AuthRequest<{ id: number }>,
     res: Response,
     next: NextFunction
   ) => {
@@ -71,6 +81,10 @@ export default class AgencyController {
     next: NextFunction
   ) => {
     const { body } = req;
+    const logo = getLogo(req);
+    if (logo) {
+      body.logo = logo;
+    }
 
     if (body.addressId) {
       body.address = await this.addressService.findOne(body.addressId);
@@ -91,6 +105,12 @@ export default class AgencyController {
     next: NextFunction
   ) => {
     try {
+      const { body } = req;
+      const logo = getLogo(req);
+      if (logo) {
+        body.logo = logo;
+      }
+
       const agency = await this.agencyService.update(
         parseInt(req.params.id),
         req.body

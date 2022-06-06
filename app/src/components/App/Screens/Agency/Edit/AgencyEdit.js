@@ -26,6 +26,7 @@ const AgencyEdit = () => {
           mutate(`${process.env.REACT_APP_API_URL}/agencies/${agency.id}`, {
             method: "PATCH",
             data: agencyValues,
+            multipart: true,
             onSuccess: () => {
               onUpdate();
               navigate(route(AgencyRoutes.Detail, { id: agency.id }));
