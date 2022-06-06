@@ -127,6 +127,9 @@
       "SOLD": "sold",
       "FOR RENT": "for rent",
       "RENTED": "rented"
+    },
+    "contactform": {
+      "send": "Message is send"
     }
   },
 

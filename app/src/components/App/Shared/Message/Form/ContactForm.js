@@ -22,6 +22,7 @@ const ContactForm = ({ disabled, onSubmit }) => {
   });
 
   const handleData = (values) => {
+    onSubmit(values);
   };
 
   return (

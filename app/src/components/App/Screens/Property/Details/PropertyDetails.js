@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useOutletContext } from "react-router-dom";
 import { getImagePath } from "../../../../../core/helpers/api";
+import useMutation from "../../../../../core/hooks/useMutation";
 import { isUser } from "../../../../../core/modules/users/utils";
 import { PropertyRoutes, route } from "../../../../../core/routing";
+import Alert from "../../../../Design/Alert/Alert";
 import Button from "../../../../Design/Button/Button";
 import Container from "../../../../Design/Container/Container";
 import Col from "../../../../Design/Table/Col";
@@ -14,7 +17,19 @@ import ContactForm from "../../../Shared/Message/Form/ContactForm";
 const PropertyDetails = () => {
   const { t } = useTranslation();
   const { property, onDelete, authorization } = useOutletContext();
+  const { isLoading, error, mutate } = useMutation();
+  const [isSend, setIsSend] = useState(false);
   const user = useUser();
+
+  const handleSubmit = (values) => {
+    mutate(`${process.env.REACT_APP_API_URL}/messages`, {
+      method: "POST",
+      data: { ...values, propertyId: property.id },
+      onSuccess: () => {
+        setIsSend(true);
+      },
+    });
+  };
 
   return (
     <>
@@ -88,7 +103,14 @@ const PropertyDetails = () => {
             <Col size="5">
               <Container className="bg-white py-2">
                 <h2>{t("properties.details.contact")}</h2>
-                <ContactForm />
+                {error && <Alert color="danger">{error}</Alert>}
+                {property && !isSend && (
+                  <ContactForm
+                    disabled={isLoading}
+                    onSubmit={handleSubmit}
+                  />
+                )}
+                {isSend && <h2>{t("properties.contactform.send")}</h2>}
               </Container>
             </Col>
           )}
