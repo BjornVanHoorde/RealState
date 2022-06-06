@@ -13,8 +13,8 @@ const PropertyGrid = ({ properties, onRefresh, disabled }) => {
   const user = useUser();
 
   if (!!String(searchParams)) {
-    properties = properties.filter((agency) =>
-      agency.name.includes(searchParams.get("name"))
+    properties = properties.filter((property) =>
+    property.address.city.id === parseInt(searchParams.get("cityId"))
     );
   }
 
