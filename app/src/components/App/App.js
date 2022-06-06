@@ -34,6 +34,8 @@ import ProfileLayout from "./Screens/Profile/ProfileLayout";
 import ProfileDetails from "./Screens/Profile/Details/ProfileDetails";
 import MessageLayout from "./Screens/Message/MessageLayout";
 import MessageOverview from "./Screens/Message/overview/MessageOverview";
+import MessageDetailsLayout from "./Screens/Message/Details/MessageDetailsLayout";
+import MessageDetails from "./Screens/Message/Details/MessageDetails";
 
 const App = () => {
   return (
@@ -87,8 +89,8 @@ const App = () => {
             {/* MESSAGE ROUTES */}
             <Route path={MessageRoutes.Index} element={<MessageLayout />}>
               <Route index element={<MessageOverview />} />
-              <Route path={MessageRoutes.Detail} element={<PropertyDetailsLayout />}>
-                <Route index element={<PropertyDetails />} />
+              <Route path={MessageRoutes.Detail} element={<MessageDetailsLayout />}>
+                <Route index element={<MessageDetails />} />
               </Route>
             </Route>
           </Route>

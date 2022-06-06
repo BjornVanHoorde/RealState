@@ -131,6 +131,10 @@
   },
 
   "messages": {
-    "title": "Messages"
+    "title": "Messages",
+    "details": {
+      "title": "Message",
+      "button": "Send mail"
+    }
   }
 }

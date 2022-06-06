@@ -13,8 +13,17 @@ export default class MessageService {
 
   all = async (id: number) => {
     const messages = await this.repository.find({
-      relations: ["property", "sender", "receiver"],
-      where: { receiver: {id} },
+      relations: [
+        "property",
+        "sender",
+        "receiver",
+        "property.photos",
+        "property.category",
+        "property.address",
+        "property.address.city",
+      ],
+      where: { receiver: { id } },
+      order: { createdAt: "DESC" }
     });
     return messages;
   };
@@ -22,7 +31,15 @@ export default class MessageService {
   findOne = async (id: number) => {
     const message = await this.repository.findOne({
       where: { id },
-      relations: ["property", "sender", "receiver"],
+      relations: [
+        "property",
+        "sender",
+        "receiver",
+        "property.photos",
+        "property.category",
+        "property.address",
+        "property.address.city",
+      ],
     });
     return message;
   };

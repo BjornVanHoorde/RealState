@@ -7,7 +7,7 @@ import Row from "../../Table/Row";
 const MessageListItem = ({ message, onDelete, onClick }) => {
   return (
     <Container
-      onClick={onClick}
+      onClick={() => onClick(message.id)}
       className={`bg-white mt-3 ${
         message.status === messageStatusses.unread
           ? "border border-dark shadow"

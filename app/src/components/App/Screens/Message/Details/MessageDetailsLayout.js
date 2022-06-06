@@ -2,7 +2,6 @@ import { useTranslation } from "react-i18next";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 import useFetch from "../../../../../core/hooks/useFetch";
 import useTitle from "../../../../../core/hooks/useTitle";
-import { getAuthorization } from "../../../../../core/modules/users/utils";
 import { MessageRoutes } from "../../../../../core/routing";
 import Alert from "../../../../Design/Alert/Alert";
 import { useUser } from "../../../Auth/AuthProvider";
@@ -14,8 +13,7 @@ const MessageDetailsLayout = () => {
     isLoading,
     error,
     data: message,
-    invalidate,
-  } = useFetch(`/properties/${id}`);
+  } = useFetch(`/messages/${id}`);
   const navigate = useNavigate();
   const { t } = useTranslation();
   const user = useUser();
