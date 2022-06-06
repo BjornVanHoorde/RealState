@@ -4,7 +4,7 @@ import { useOutletContext } from "react-router-dom";
 import { getImagePath } from "../../../../../core/helpers/api";
 import useMutation from "../../../../../core/hooks/useMutation";
 import { isUser } from "../../../../../core/modules/users/utils";
-import { PropertyRoutes, route } from "../../../../../core/routing";
+import { AuthRoutes, PropertyRoutes, route } from "../../../../../core/routing";
 import Alert from "../../../../Design/Alert/Alert";
 import Button from "../../../../Design/Button/Button";
 import Container from "../../../../Design/Container/Container";
@@ -79,10 +79,13 @@ const PropertyDetails = () => {
                 {property.yearOfConstruction}
               </h4>
               <div className="text-end">
-                <h3>
-                  {property.address.street} {property.address.number}{" "}
-                  {property.address.box ? ` box ${property.address.box}` : ""}
-                </h3>
+                {!!user && (
+                  <h3>
+                    {property.address.street} {property.address.number}{" "}
+                    {property.address.box ? ` box ${property.address.box}` : ""}
+                  </h3>
+                )}
+
                 <h3>
                   {property.address.city.zip} {property.address.city.name}
                 </h3>
@@ -102,15 +105,20 @@ const PropertyDetails = () => {
           {isUser(user) && (
             <Col size="5">
               <Container className="bg-white py-2">
-                <h2>{t("properties.details.contact")}</h2>
+                <h2>{t("properties.contactform.title")}</h2>
                 {error && <Alert color="danger">{error}</Alert>}
                 {property && !isSend && (
-                  <ContactForm
-                    disabled={isLoading}
-                    onSubmit={handleSubmit}
-                  />
+                  <ContactForm disabled={isLoading} onSubmit={handleSubmit} />
                 )}
                 {isSend && <h2>{t("properties.contactform.send")}</h2>}
+              </Container>
+            </Col>
+          )}
+          {!user && (
+            <Col size="5">
+              <Container className="bg-white py-2">
+                <h2>{t("properties.contactform.guest")}</h2>
+                <Button href={AuthRoutes.Login} >{t("buttons.login")}</Button>
               </Container>
             </Col>
           )}

@@ -1,3 +1,7 @@
+const HomeRoutes = {
+  Index: "/home",
+};
+
 const AuthRoutes = {
   Index: "/auth",
   Login: "/auth/login",
@@ -61,4 +65,5 @@ export {
   MessageRoutes,
   FavoriteRoutes,
   ProfileRoutes,
+  HomeRoutes,
 };

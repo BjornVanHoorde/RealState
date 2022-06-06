@@ -4,6 +4,7 @@ import {
   AuthRoutes,
   CategoryRoutes,
   FavoriteRoutes,
+  HomeRoutes,
   MessageRoutes,
   ProfileRoutes,
   PropertyRoutes,
@@ -13,7 +14,6 @@ import AppLayout from "./AppLayout";
 import AuthContainer from "./Auth/AuthContainer";
 import AuthProvider from "./Auth/AuthProvider";
 import LoginScreen from "./Auth/login/LoginScreen";
-import TestScreen from "./Screens/TestScreen";
 import RegisterScreen from "./Auth/register/RegisterScreen";
 import CategoryLayout from "./Screens/Category/CategoryLayout";
 import CategoryOverviewScreen from "./Screens/Category/Overview/CategoryOveriewScreen";
@@ -48,142 +48,152 @@ import MessageDetails from "./Screens/Message/Details/MessageDetails";
 import Favoritelayout from "./Screens/Favorite/FavoriteLayout";
 import FavoriteOverview from "./Screens/Favorite/overview/FavoriteOverview";
 import ProfileEdit from "./Screens/Profile/Edit/ProfileEdit";
+import Home from "./Screens/Home/Home";
+import GuestAppLayout from "./GuestAppLayout";
 
 const App = () => {
   return (
-    <AuthProvider>
-      <Routes>
-        {/* AUTHROUTES */}
-        <Route path={AuthRoutes.Index} element={<OnboardingLayout />}>
-          <Route path={AuthRoutes.Login} element={<LoginScreen />} />
-          <Route path={AuthRoutes.Register} element={<RegisterScreen />} />
-          <Route path="*" element={<Navigate to={AuthRoutes.Login} />} />
-        </Route>
-        {/* AUTHENTICATED ROUTES */}
-        <Route
-          element={
-            <AuthContainer>
-              <AppLayout />
-            </AuthContainer>
-          }
-        >
-          <Route path="/test" element={<TestScreen />} />
-          {/* GENERAL ROUTES */}
-          {/* PROFILE ROUTES */}
-          <Route path={ProfileRoutes.Index} element={<ProfileLayout />}>
-            <Route index element={<ProfileDetails />} />
-            <Route path={ProfileRoutes.Edit} element={<ProfileEdit />} />
-          </Route>
-          {/* PROPERTY ROUTES */}
-          <Route path={PropertyRoutes.Index} element={<PropertyLayout />}>
-            <Route index element={<PropertyOverview />} />
-            <Route
-              path={PropertyRoutes.Detail}
-              element={<PropertyDetailsLayout />}
-            >
-              <Route index element={<PropertyDetails />} />
-            </Route>
-          </Route>
-          {/* USER ROUTES */}
-          <Route
-            element={
-              <RoleContainer roles={[userRoles.User]}>
-                <Outlet />
-              </RoleContainer>
-            }
-          >
-            {/* FAVORITE ROUTES */}
-            <Route path={FavoriteRoutes.Index} element={<Favoritelayout />}>
-              <Route index element={<FavoriteOverview />} />
-            </Route>
-          </Route>
-          {/* AGENT AND ADMIN ROUTES */}
-          <Route
-            element={
-              <RoleContainer roles={[userRoles.Agent, userRoles.Admin]}>
-                <Outlet />
-              </RoleContainer>
-            }
-          >
-            {/* AGENCY ROUTES */}
-            <Route path={AgencyRoutes.Index} element={<AgencyLayout />}>
-              <Route
-                path={AgencyRoutes.Detail}
-                element={<AgencyDetailsLayout />}
-              >
-                <Route index element={<AgencyDetails />} />
-                <Route path={AgencyRoutes.Edit} element={<AgencyEdit />} />
-                <Route
-                  path={AgencyRoutes.CreateUser}
-                  element={<AgencyUserCreate />}
-                />
-              </Route>
-            </Route>
+    <>
+      <AuthProvider>
+        <Routes>
+          {/* GUEST ROUTES */}
+          <Route element={<GuestAppLayout />}>
+            <Route path={HomeRoutes.Index} element={<Home />} />
             {/* PROPERTY ROUTES */}
             <Route path={PropertyRoutes.Index} element={<PropertyLayout />}>
-              <Route
-                path={PropertyRoutes.Create}
-                element={<PropertyCreate />}
-              />
+              <Route index element={<PropertyOverview />} />
               <Route
                 path={PropertyRoutes.Detail}
                 element={<PropertyDetailsLayout />}
               >
-                <Route path={PropertyRoutes.Edit} element={<PropertyEdit />} />
+                <Route index element={<PropertyDetails />} />
               </Route>
             </Route>
           </Route>
-          {/* AGENT ROUTES */}
-          <Route
-            element={
-              <RoleContainer roles={[userRoles.Agent]}>
-                <Outlet />
-              </RoleContainer>
-            }
-          >
-            {/* MESSAGE ROUTES */}
-            <Route path={MessageRoutes.Index} element={<MessageLayout />}>
-              <Route index element={<MessageOverview />} />
-              <Route
-                path={MessageRoutes.Detail}
-                element={<MessageDetailsLayout />}
-              >
-                <Route index element={<MessageDetails />} />
-              </Route>
-            </Route>
+
+          {/* AUTHROUTES */}
+          <Route path={AuthRoutes.Index} element={<OnboardingLayout />}>
+            <Route path={AuthRoutes.Login} element={<LoginScreen />} />
+            <Route path={AuthRoutes.Register} element={<RegisterScreen />} />
           </Route>
-          {/* ADMIN ROUTES */}
+          {/* AUTHENTICATED ROUTES */}
           <Route
             element={
-              <RoleContainer roles={[userRoles.Admin]}>
-                <Outlet />
-              </RoleContainer>
+              <AuthContainer>
+                <AppLayout />
+              </AuthContainer>
             }
           >
-            {/* CATEGORY ROUTES */}
-            <Route path={CategoryRoutes.Index} element={<CategoryLayout />}>
-              <Route index element={<CategoryOverviewScreen />} />
+            {/* GENERAL ROUTES */}
+            {/* PROFILE ROUTES */}
+            <Route path={ProfileRoutes.Index} element={<ProfileLayout />}>
+              <Route index element={<ProfileDetails />} />
+              <Route path={ProfileRoutes.Edit} element={<ProfileEdit />} />
             </Route>
-            {/* USERS ROUTES */}
-            <Route path={UserRoutes.Index} element={<UserLayout />}>
-              <Route index element={<UserOverview />} />
-              <Route path={UserRoutes.Create} element={<UserCreate />} />
-              <Route path={UserRoutes.Detail} element={<UserDetailsLayout />}>
-                <Route index element={<UserDetails />} />
-                <Route path={UserRoutes.Edit} element={<UserEdit />} />
+            {/* USER ROUTES */}
+            <Route
+              element={
+                <RoleContainer roles={[userRoles.User]}>
+                  <Outlet />
+                </RoleContainer>
+              }
+            >
+              {/* FAVORITE ROUTES */}
+              <Route path={FavoriteRoutes.Index} element={<Favoritelayout />}>
+                <Route index element={<FavoriteOverview />} />
               </Route>
             </Route>
-            {/* AGENCY ROUTES */}
-            <Route path={AgencyRoutes.Index} element={<AgencyLayout />}>
-              <Route index element={<AgencyOverview />} />
-              <Route path={AgencyRoutes.Create} element={<AgencyCreate />} />
+            {/* AGENT AND ADMIN ROUTES */}
+            <Route
+              element={
+                <RoleContainer roles={[userRoles.Agent, userRoles.Admin]}>
+                  <Outlet />
+                </RoleContainer>
+              }
+            >
+              {/* AGENCY ROUTES */}
+              <Route path={AgencyRoutes.Index} element={<AgencyLayout />}>
+                <Route
+                  path={AgencyRoutes.Detail}
+                  element={<AgencyDetailsLayout />}
+                >
+                  <Route index element={<AgencyDetails />} />
+                  <Route path={AgencyRoutes.Edit} element={<AgencyEdit />} />
+                  <Route
+                    path={AgencyRoutes.CreateUser}
+                    element={<AgencyUserCreate />}
+                  />
+                </Route>
+              </Route>
+              {/* PROPERTY ROUTES */}
+              <Route path={PropertyRoutes.Index} element={<PropertyLayout />}>
+                <Route
+                  path={PropertyRoutes.Create}
+                  element={<PropertyCreate />}
+                />
+                <Route
+                  path={PropertyRoutes.Detail}
+                  element={<PropertyDetailsLayout />}
+                >
+                  <Route
+                    path={PropertyRoutes.Edit}
+                    element={<PropertyEdit />}
+                  />
+                </Route>
+              </Route>
+            </Route>
+            {/* AGENT ROUTES */}
+            <Route
+              element={
+                <RoleContainer roles={[userRoles.Agent]}>
+                  <Outlet />
+                </RoleContainer>
+              }
+            >
+              {/* MESSAGE ROUTES */}
+              <Route path={MessageRoutes.Index} element={<MessageLayout />}>
+                <Route index element={<MessageOverview />} />
+                <Route
+                  path={MessageRoutes.Detail}
+                  element={<MessageDetailsLayout />}
+                >
+                  <Route index element={<MessageDetails />} />
+                </Route>
+              </Route>
+            </Route>
+            {/* ADMIN ROUTES */}
+            <Route
+              element={
+                <RoleContainer roles={[userRoles.Admin]}>
+                  <Outlet />
+                </RoleContainer>
+              }
+            >
+              {/* CATEGORY ROUTES */}
+              <Route path={CategoryRoutes.Index} element={<CategoryLayout />}>
+                <Route index element={<CategoryOverviewScreen />} />
+              </Route>
+              {/* USERS ROUTES */}
+              <Route path={UserRoutes.Index} element={<UserLayout />}>
+                <Route index element={<UserOverview />} />
+                <Route path={UserRoutes.Create} element={<UserCreate />} />
+                <Route path={UserRoutes.Detail} element={<UserDetailsLayout />}>
+                  <Route index element={<UserDetails />} />
+                  <Route path={UserRoutes.Edit} element={<UserEdit />} />
+                </Route>
+              </Route>
+              {/* AGENCY ROUTES */}
+              <Route path={AgencyRoutes.Index} element={<AgencyLayout />}>
+                <Route index element={<AgencyOverview />} />
+                <Route path={AgencyRoutes.Create} element={<AgencyCreate />} />
+              </Route>
             </Route>
           </Route>
           {/* REST ROUTES */}
-          <Route path="*" element={<Navigate to="/test" />} />
-        </Route>
-      </Routes>
-    </AuthProvider>
+          <Route path="*" element={<Navigate to="/home" />} />
+        </Routes>
+      </AuthProvider>
+    </>
   );
 };
 

@@ -1,15 +1,24 @@
 import { userRoles } from "./constants";
 
 const isAdmin = (user) => {
-  return user.role === userRoles.Admin;
+  if(user) {
+    return user.role === userRoles.Admin;
+  }
+  return false
 };
 
 const isAgent = (user) => {
-  return user.role === userRoles.Agent;
+  if(user) {
+    return user.role === userRoles.Agent;
+  }
+  return false
 };
 
 const isUser = (user) => {
-  return user.role === userRoles.User;
+  if(user) {
+    return user.role === userRoles.User;
+  }
+  return false
 };
 
 const getAuthorization = (user, agencyId) => {

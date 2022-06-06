@@ -15,7 +15,8 @@
   },
 
   "header": {
-    "logout": "Log out"
+    "logout": "Log out",
+    "login": "Log in"
   },
 
   "navigation": {
@@ -55,7 +56,8 @@
     "save": "Save",
     "search": "Search",
     "reset": "Reset",
-    "send": "Send"
+    "send": "Send",
+    "login": "Log in"
   },
 
   "profile": {
@@ -119,8 +121,7 @@
     "details": {
       "title": "Property",
       "buildYear": "Build in",
-      "description": "Description",
-      "contact": "Contact us"
+      "description": "Description"
     },
     "status": {
       "FOR SALE": "for sale",
@@ -129,7 +130,9 @@
       "RENTED": "rented"
     },
     "contactform": {
-      "send": "Message is send"
+      "title": "Contact us",
+      "send": "Message is send",
+      "guest": "Log in to send a message"
     }
   },
 

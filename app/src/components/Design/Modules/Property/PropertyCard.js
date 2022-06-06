@@ -45,10 +45,12 @@ const PropertyCard = ({ property, onDelete, onClick, options, onLike }) => {
         <p className="m-0">
           {property.address.city.zip} {property.address.city.name}
         </p>
-        <p>
-          {property.address.street} {property.address.number}
-          {property.address.box ? ` box ${property.address.box}` : ""}
-        </p>
+        {options.showAddress && (
+          <p>
+            {property.address.street} {property.address.number}
+            {property.address.box ? ` box ${property.address.box}` : ""}
+          </p>
+        )}
       </Container>
     </ClickableCol>
   );

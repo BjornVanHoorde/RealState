@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { FaUserCircle } from "react-icons/fa";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { getImagePath } from "../../../../../core/helpers/api";
 import {
   isAdmin,
@@ -16,8 +16,11 @@ import {
   UserRoutes,
   ProfileRoutes,
   route,
+  HomeRoutes,
+  AuthRoutes,
 } from "../../../../../core/routing";
 import Button from "../../../../Design/Button/Button";
+import Container from "../../../../Design/Container/Container";
 import NavBar from "../../../../Design/NavBar/NavBar";
 import Col from "../../../../Design/Table/Col";
 import Row from "../../../../Design/Table/Row";
@@ -28,6 +31,7 @@ const Header = () => {
   const location = useLocation();
   const user = useUser();
   const { logout } = useAuthContext();
+  const navigate = useNavigate();
 
   let items = [
     {
@@ -88,26 +92,39 @@ const Header = () => {
   return (
     <header className="bg-secondary px-5 py-2 mb-4 d-flex justify-content-between align-items-center text-white">
       <div className="brand">
-        <img
-          style={{ width: "10rem" }}
-          src={getImagePath("public/images/RealState.png")}
-          alt="RealState.png"
-        />
+        <Container onClick={() => navigate(HomeRoutes.Index)}>
+          <img
+            style={{ width: "10rem" }}
+            src={getImagePath("public/images/RealState.png")}
+            alt="RealState.png"
+          />
+        </Container>
       </div>
       <NavBar navItems={items} />
       <Row size="2">
-        <Col>
-          <Button color="danger" onClick={logout}>
-            {t("header.logout")}
-          </Button>
-        </Col>
-        <Col>
-          <Button color="link" href={ProfileRoutes.Index}>
-            <h2 className="ml-5 text-white">
-              <FaUserCircle />
-            </h2>
-          </Button>
-        </Col>
+        {user && (
+          <>
+            <Col>
+              <Button color="danger" onClick={logout}>
+                {t("header.logout")}
+              </Button>
+            </Col>
+            <Col>
+              <Button color="link" href={ProfileRoutes.Index}>
+                <h2 className="ml-5 text-white">
+                  <FaUserCircle />
+                </h2>
+              </Button>
+            </Col>
+          </>
+        )}
+        {!user && (
+          <Col>
+            <Button href={AuthRoutes.Login}>
+              {t("header.login")}
+            </Button>
+          </Col>
+        )}
       </Row>
     </header>
   );

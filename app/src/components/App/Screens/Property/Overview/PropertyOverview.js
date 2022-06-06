@@ -36,7 +36,7 @@ const PropertyOverview = () => {
     <Container>
       <TopBar>
         <Title>{t("properties.title")}</Title>
-        {!isUser(user) && (
+        {(!isUser(user) && user) && (
           <Button href={PropertyRoutes.Create}>
             {t("properties.create.title")}
           </Button>

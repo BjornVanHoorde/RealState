@@ -13,8 +13,9 @@ const PropertyGrid = ({ properties, onRefresh, disabled }) => {
   const user = useUser();
 
   if (!!String(searchParams)) {
-    properties = properties.filter((property) =>
-    property.address.city.id === parseInt(searchParams.get("cityId"))
+    properties = properties.filter(
+      (property) =>
+        property.address.city.id === parseInt(searchParams.get("cityId"))
     );
   }
 
@@ -45,6 +46,7 @@ const PropertyGrid = ({ properties, onRefresh, disabled }) => {
               options={{
                 showDelete: isAdmin(user),
                 showLikeButton: isUser(user),
+                showAddress: !!user,
               }}
             />
           ))}

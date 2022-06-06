@@ -37,11 +37,13 @@ const registerOnboardingRoutes = (router: Router) => {
   const userController = new UserController();
   router.post("/register", useMethod(userController.create));
 
-  //   // test route REMOVE after
-  //   const userController = new UserController();
-  //   if (process.env.ENV === "development") {
-  //     router.post("/dev/users", useMethod(userController.create));
-  //   }
+  const propertyController = new PropertyController();
+  router.get("/properties", useMethod(propertyController.all));
+  router.get("/properties/:id", useMethod(propertyController.find));
+
+  const cityController = new CityController();
+  router.get("/cities", useMethod(cityController.all));
+  router.get("/cities/:id", useMethod(cityController.find));
 };
 
 const registerAdminRoutes = (router: Router) => {
