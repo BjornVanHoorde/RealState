@@ -1,10 +1,11 @@
 import { useTranslation } from "react-i18next";
 import { getImagePath } from "../../../../core/helpers/api";
 import DeleteButton from "../../../App/Shared/Generic/Buttons/DeleteButton";
+import LikeButton from "../../../App/Shared/Generic/Buttons/LikeButton";
 import Container from "../../Container/Container";
 import ClickableCol from "../../Table/ClickableCol";
 
-const PropertyCard = ({ property, onDelete, onClick, options }) => {
+const PropertyCard = ({ property, onDelete, onClick, options, onLike }) => {
   const { t } = useTranslation();
 
   return (
@@ -21,6 +22,13 @@ const PropertyCard = ({ property, onDelete, onClick, options }) => {
             onSuccess={onDelete}
             color="link"
           ></DeleteButton>
+        )}
+        {options.showLikeButton && (
+          <LikeButton
+            id={property.id}
+            onSuccess={onLike}
+            color="link"
+          ></LikeButton>
         )}
       </div>
 
