@@ -9,6 +9,7 @@ export interface UserBody {
     role: UserRole;
     avatar?: string;
     password?: string;
-    agencyId?: number;
+    agencyId?: number | null;
     agency?: Agency;
+    id?: number;
 }

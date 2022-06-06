@@ -23,7 +23,7 @@ const ProfileDetails = () => {
         <Col size="4">
           <img
             style={{ width: "100%" }}
-            src={getImagePath(`public/images/${user.avatar}`)}
+            src={getImagePath(user.avatar)}
             alt={user.avatar}
           ></img>
         </Col>

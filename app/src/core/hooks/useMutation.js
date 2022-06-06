@@ -24,10 +24,8 @@ const useMutation = () => {
             if (options.multipart) {
                 body = new FormData();
                 for (const name in data) {
-                    console.log(name);
                     body.append(name, data[name]);
                 }
-                console.log("multipart", body);
             } else {
                 body = JSON.stringify(data);
             }

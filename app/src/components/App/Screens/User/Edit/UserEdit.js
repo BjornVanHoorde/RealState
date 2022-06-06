@@ -22,6 +22,7 @@ const UserEdit = () => {
     mutate(`${process.env.REACT_APP_API_URL}/users/${user.id}`, {
       method: "PATCH",
       data: values,
+      multipart: true,
       onSuccess: () => {
         onUpdate();
         navigate(route(UserRoutes.Detail, { id: user.id }));

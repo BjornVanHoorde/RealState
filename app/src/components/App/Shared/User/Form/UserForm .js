@@ -11,6 +11,7 @@ import AgencySelect from "../../Agency/Select/AgencySelect";
 import * as yup from "yup";
 import { useUser } from "../../../Auth/AuthProvider";
 import { isAdmin } from "../../../../../core/modules/users/utils";
+import FileInput from "../../../../Design/Form/FileInput";
 
 const getSchema = (isUpdate) => {
   return yup.object().shape({
@@ -29,7 +30,7 @@ const defaultData = {
   tel: "",
   email: "",
   password: "",
-  agencyId: null,
+  agencyId: "",
 };
 
 const transformData = (initialData, options, user) => {
@@ -100,6 +101,16 @@ const UserForm = ({
             value={values.lastName}
             onChange={handleChange}
             error={errors.lastName}
+            disabled={disabled}
+          />
+        </Field>
+        <Field>
+          <Label htmlFor="avatar">{t("fields.avatar")}</Label>
+          <FileInput
+            name="avatar"
+            value={values.avatar}
+            onChange={handleChange}
+            error={errors.avatar}
             disabled={disabled}
           />
         </Field>

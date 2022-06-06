@@ -21,6 +21,7 @@ const UserCreate = () => {
     mutate(`${process.env.REACT_APP_API_URL}/users`, {
       method: "POST",
       data: values,
+      multipart: true,
       onSuccess: () => {
         navigate(UserRoutes.Index);
       },

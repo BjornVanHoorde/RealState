@@ -54,7 +54,8 @@
     "yearOfConstruction": "Year of construction",
     "surface": "Surface",
     "price": "Price",
-    "description": "Description"
+    "description": "Description",
+    "avatar": "Avatar"
   },
 
   "buttons": {
