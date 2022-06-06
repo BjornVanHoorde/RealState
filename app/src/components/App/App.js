@@ -1,5 +1,5 @@
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
-import { AgencyRoutes, AuthRoutes, CategoryRoutes, MessageRoutes, ProfileRoutes, PropertyRoutes, UserRoutes } from "../../core/routing";
+import { AgencyRoutes, AuthRoutes, CategoryRoutes, FavoriteRoutes, MessageRoutes, ProfileRoutes, PropertyRoutes, UserRoutes } from "../../core/routing";
 import AppLayout from "./AppLayout";
 import AuthContainer from "./Auth/AuthContainer";
 import AuthProvider from "./Auth/AuthProvider";
@@ -36,6 +36,8 @@ import MessageLayout from "./Screens/Message/MessageLayout";
 import MessageOverview from "./Screens/Message/overview/MessageOverview";
 import MessageDetailsLayout from "./Screens/Message/Details/MessageDetailsLayout";
 import MessageDetails from "./Screens/Message/Details/MessageDetails";
+import Favoritelayout from "./Screens/Favorite/FavoriteLayout";
+import FavoriteOverview from "./Screens/Favorite/overview/FavoriteOverview";
 
 const App = () => {
   return (
@@ -64,7 +66,7 @@ const App = () => {
           {/* USER ROUTES */}
           <Route
             element={
-              <RoleContainer roles={[userRoles.User, userRoles.Admin]}>
+              <RoleContainer roles={[userRoles.User]}>
                 <Outlet />
               </RoleContainer>
             }
@@ -82,11 +84,15 @@ const App = () => {
                 <Route index element={<PropertyDetails />} />
               </Route>
             </Route>
+            {/* FAVORITE ROUTES */}
+            <Route path={FavoriteRoutes.Index} element={<Favoritelayout />}>
+              <Route index element={<FavoriteOverview />} />
+            </Route>
           </Route>
           {/* AGENT ROUTES */}
           <Route
             element={
-              <RoleContainer roles={[userRoles.Agent, userRoles.Admin]}>
+              <RoleContainer roles={[userRoles.Agent]}>
                 <Outlet />
               </RoleContainer>
             }

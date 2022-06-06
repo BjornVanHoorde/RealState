@@ -136,5 +136,9 @@
       "title": "Message",
       "button": "Send mail"
     }
+  },
+
+  "favorites": {
+    "title": "Favorites"
   }
 }

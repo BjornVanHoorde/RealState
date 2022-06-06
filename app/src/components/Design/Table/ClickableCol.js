@@ -4,7 +4,7 @@ const ClickableCol = ({ size, className, onClick, children }) => {
   return (
     <div
       onClick={onClick}
-      className={`align-items-center col${size ? `-md-${size}` : ""} ${
+      className={`container align-items-center col${size ? `-md-${size}` : ""} ${
         className ? `${className}` : ""
       }`}
     >

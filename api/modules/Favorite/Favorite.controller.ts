@@ -22,7 +22,8 @@ export default class FavoriteController {
     res: Response,
     next: NextFunction
   ) => {
-    const favorites = await this.favoriteService.all();
+
+    const favorites = await this.favoriteService.all(req.user.id);
     return res.json(favorites);
   };
 

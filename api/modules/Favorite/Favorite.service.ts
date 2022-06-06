@@ -11,9 +11,17 @@ export default class FavoriteService {
     this.repository = repository;
   }
 
-  all = async () => {
+  all = async (id: number) => {
     const favorites = await this.repository.find({
-      relations: ["property", "user"],
+      relations: [
+        "property",
+        "user",
+        "property.photos",
+        "property.address",
+        "property.address.city",
+        "property.category",
+      ],
+      where: { user: {id} }
     });
     return favorites;
   };
@@ -21,7 +29,14 @@ export default class FavoriteService {
   findOne = async (id: number) => {
     const favorite = await this.repository.findOne({
       where: { id },
-      relations: ["property", "user"],
+      relations: [
+        "property",
+        "user",
+        "property.photos",
+        "property.address",
+        "property.address.city",
+        "property.category",
+      ],
     });
     return favorite;
   };
