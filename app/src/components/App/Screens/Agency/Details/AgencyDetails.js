@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useOutletContext } from "react-router-dom";
 import { getImagePath } from "../../../../../core/helpers/api";
 import useFetch from "../../../../../core/hooks/useFetch";
+import useTitle from "../../../../../core/hooks/useTitle";
 import Alert from "../../../../Design/Alert/Alert";
 import Button from "../../../../Design/Button/Button";
 import ProfileContainer from "../../../../Design/Container/ProfileContainer";
@@ -19,6 +20,7 @@ const AgencyDetails = () => {
     error,
     data: users,
   } = useFetch(`/agencies/${agency.id}/users`);
+  useTitle(agency ? agency.name : "");
 
   return (
     <>

@@ -1,6 +1,5 @@
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 import useFetch from "../../../../../core/hooks/useFetch";
-import useTitle from "../../../../../core/hooks/useTitle";
 import { AgencyRoutes, route } from "../../../../../core/routing";
 import Alert from "../../../../Design/Alert/Alert";
 import LoadingIndicator from "../../../Shared/Generic/LoadingIndicator/LoadingIndicator";
@@ -13,7 +12,6 @@ const AgencyDetailsLayout = () => {
     data: agency,
     invalidate,
   } = useFetch(`/agencies/${id}`);
-  useTitle(agency ? agency.name : "");
   const navigate = useNavigate();
 
   const handleEditClick = () => {

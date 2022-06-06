@@ -1,5 +1,14 @@
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
-import { AgencyRoutes, AuthRoutes, CategoryRoutes, FavoriteRoutes, MessageRoutes, ProfileRoutes, PropertyRoutes, UserRoutes } from "../../core/routing";
+import {
+  AgencyRoutes,
+  AuthRoutes,
+  CategoryRoutes,
+  FavoriteRoutes,
+  MessageRoutes,
+  ProfileRoutes,
+  PropertyRoutes,
+  UserRoutes,
+} from "../../core/routing";
 import AppLayout from "./AppLayout";
 import AuthContainer from "./Auth/AuthContainer";
 import AuthProvider from "./Auth/AuthProvider";
@@ -63,6 +72,16 @@ const App = () => {
           <Route path={ProfileRoutes.Index} element={<ProfileLayout />}>
             <Route index element={<ProfileDetails />} />
           </Route>
+          {/* PROPERTY ROUTES */}
+          <Route path={PropertyRoutes.Index} element={<PropertyLayout />}>
+            <Route index element={<PropertyOverview />} />
+            <Route
+              path={PropertyRoutes.Detail}
+              element={<PropertyDetailsLayout />}
+            >
+              <Route index element={<PropertyDetails />} />
+            </Route>
+          </Route>
           {/* USER ROUTES */}
           <Route
             element={
@@ -71,22 +90,45 @@ const App = () => {
               </RoleContainer>
             }
           >
+            {/* FAVORITE ROUTES */}
+            <Route path={FavoriteRoutes.Index} element={<Favoritelayout />}>
+              <Route index element={<FavoriteOverview />} />
+            </Route>
+          </Route>
+          {/* AGENT AND ADMIN ROUTES */}
+          <Route
+            element={
+              <RoleContainer roles={[userRoles.Agent, userRoles.Admin]}>
+                <Outlet />
+              </RoleContainer>
+            }
+          >
             {/* AGENCY ROUTES */}
             <Route path={AgencyRoutes.Index} element={<AgencyLayout />}>
-              <Route path={AgencyRoutes.Detail} element={<AgencyDetailsLayout />}>
+              <Route
+                path={AgencyRoutes.Detail}
+                element={<AgencyDetailsLayout />}
+              >
                 <Route index element={<AgencyDetails />} />
+                <Route path={AgencyRoutes.Edit} element={<AgencyEdit />} />
+                <Route
+                  path={AgencyRoutes.CreateUser}
+                  element={<AgencyUserCreate />}
+                />
               </Route>
             </Route>
             {/* PROPERTY ROUTES */}
             <Route path={PropertyRoutes.Index} element={<PropertyLayout />}>
-              <Route index element={<PropertyOverview />} />
-              <Route path={PropertyRoutes.Detail} element={<PropertyDetailsLayout />}>
-                <Route index element={<PropertyDetails />} />
+              <Route
+                path={PropertyRoutes.Create}
+                element={<PropertyCreate />}
+              />
+              <Route
+                path={PropertyRoutes.Detail}
+                element={<PropertyDetailsLayout />}
+              >
+                <Route path={PropertyRoutes.Edit} element={<PropertyEdit />} />
               </Route>
-            </Route>
-            {/* FAVORITE ROUTES */}
-            <Route path={FavoriteRoutes.Index} element={<Favoritelayout />}>
-              <Route index element={<FavoriteOverview />} />
             </Route>
           </Route>
           {/* AGENT ROUTES */}
@@ -97,27 +139,13 @@ const App = () => {
               </RoleContainer>
             }
           >
-            {/* AGENCY ROUTES */}
-            <Route path={AgencyRoutes.Index} element={<AgencyLayout />}>
-              <Route path={AgencyRoutes.Detail} element={<AgencyDetailsLayout />}>
-                <Route index element={<AgencyDetails />} />
-                <Route path={AgencyRoutes.Edit} element={<AgencyEdit />} />
-                <Route path={AgencyRoutes.CreateUser} element={<AgencyUserCreate />} />
-              </Route>
-            </Route>
-            {/* PROPERTY ROUTES */}
-            <Route path={PropertyRoutes.Index} element={<PropertyLayout />}>
-              <Route index element={<PropertyOverview />} />
-              <Route path={PropertyRoutes.Create} element={<PropertyCreate />} />
-              <Route path={PropertyRoutes.Detail} element={<PropertyDetailsLayout />}>
-                <Route index element={<PropertyDetails />} />
-                <Route path={PropertyRoutes.Edit} element={<PropertyEdit />} />
-              </Route>
-            </Route>
             {/* MESSAGE ROUTES */}
             <Route path={MessageRoutes.Index} element={<MessageLayout />}>
               <Route index element={<MessageOverview />} />
-              <Route path={MessageRoutes.Detail} element={<MessageDetailsLayout />}>
+              <Route
+                path={MessageRoutes.Detail}
+                element={<MessageDetailsLayout />}
+              >
                 <Route index element={<MessageDetails />} />
               </Route>
             </Route>
@@ -147,20 +175,6 @@ const App = () => {
             <Route path={AgencyRoutes.Index} element={<AgencyLayout />}>
               <Route index element={<AgencyOverview />} />
               <Route path={AgencyRoutes.Create} element={<AgencyCreate />} />
-              <Route path={AgencyRoutes.Detail} element={<AgencyDetailsLayout />}>
-                <Route index element={<AgencyDetails />} />
-                <Route path={AgencyRoutes.Edit} element={<AgencyEdit />} />
-                <Route path={AgencyRoutes.CreateUser} element={<AgencyUserCreate />} />
-              </Route>
-            </Route>
-            {/* PROPERTY ROUTES */}
-            <Route path={PropertyRoutes.Index} element={<PropertyLayout />}>
-              <Route index element={<PropertyOverview />} />
-              <Route path={PropertyRoutes.Create} element={<PropertyCreate />} />
-              <Route path={PropertyRoutes.Detail} element={<PropertyDetailsLayout />}>
-                <Route index element={<PropertyDetails />} />
-                <Route path={PropertyRoutes.Edit} element={<PropertyEdit />} />
-              </Route>
             </Route>
           </Route>
           {/* REST ROUTES */}
