@@ -28,7 +28,8 @@
     "typescript": "^4.7.2"
   },
   "scripts": {
-    "start": "nodemon index.ts"
+    "start": "nodemon index.ts",
+    "prod": "tsc && cp -v -r public build && node build/index.js"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
