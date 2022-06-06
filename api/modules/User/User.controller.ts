@@ -72,6 +72,10 @@ export default class UserController {
   ) => {
     const { body } = req;
 
+    if (!req.user.isAdmin) {
+      req.params.id = String(req.user.id)
+    }
+
     if (body.agencyId) {
       body.agency = await this.agencyService.findOne(body.agencyId);
       body.role = UserRole.Agent;

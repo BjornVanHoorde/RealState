@@ -10,6 +10,7 @@ import Title from "../../../../Design/Typography/Title";
 import AgencySelect from "../../Agency/Select/AgencySelect";
 import * as yup from "yup";
 import { useUser } from "../../../Auth/AuthProvider";
+import { isAdmin } from "../../../../../core/modules/users/utils";
 
 const getSchema = (isUpdate) => {
   return yup.object().shape({
@@ -39,7 +40,7 @@ const transformData = (initialData, options, user) => {
     };
   }
 
-  if (!options.showAgency) {
+  if (!options.showAgency && (user.agency || isAdmin(user))) {
     initialData = {
       ...initialData,
       agencyId: user.agency.id,

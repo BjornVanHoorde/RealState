@@ -47,6 +47,7 @@ import MessageDetailsLayout from "./Screens/Message/Details/MessageDetailsLayout
 import MessageDetails from "./Screens/Message/Details/MessageDetails";
 import Favoritelayout from "./Screens/Favorite/FavoriteLayout";
 import FavoriteOverview from "./Screens/Favorite/overview/FavoriteOverview";
+import ProfileEdit from "./Screens/Profile/Edit/ProfileEdit";
 
 const App = () => {
   return (
@@ -71,6 +72,7 @@ const App = () => {
           {/* PROFILE ROUTES */}
           <Route path={ProfileRoutes.Index} element={<ProfileLayout />}>
             <Route index element={<ProfileDetails />} />
+            <Route path={ProfileRoutes.Edit} element={<ProfileEdit />} />
           </Route>
           {/* PROPERTY ROUTES */}
           <Route path={PropertyRoutes.Index} element={<PropertyLayout />}>
