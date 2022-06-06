@@ -152,5 +152,9 @@
 
   "favorites": {
     "title": "Favorites"
+  },
+
+  "photos": {
+    "title": "Photos"
   }
 }

@@ -13,12 +13,15 @@ import Row from "../../../../Design/Table/Row";
 import { useUser } from "../../../Auth/AuthProvider";
 import DeleteButton from "../../../Shared/Generic/Buttons/DeleteButton";
 import ContactForm from "../../../Shared/Message/Form/ContactForm";
+import { MdPhotoSizeSelectActual } from "react-icons/md";
+import PhotoScreen from "../../../Shared/Photo/PhotoScreen";
 
 const PropertyDetails = () => {
   const { t } = useTranslation();
   const { property, onDelete, authorization } = useOutletContext();
   const { isLoading, error, mutate } = useMutation();
   const [isSend, setIsSend] = useState(false);
+  const [photosVisible, setPhotosVisible] = useState(false);
   const user = useUser();
 
   const handleSubmit = (values) => {
@@ -30,6 +33,14 @@ const PropertyDetails = () => {
       },
     });
   };
+
+  const handlePhotoClick = () => {
+    setPhotosVisible(true);
+  }
+
+  const handlePhotoClose = () => {
+    setPhotosVisible(false);
+  }
 
   return (
     <>
@@ -50,14 +61,19 @@ const PropertyDetails = () => {
       </Container>
       <Container className="mt-3">
         <Row>
-          <Col size="5">
-            <Container>
-              <img
-                style={{ width: "100%" }}
-                src={getImagePath(`public/images/${property.photos[0].path}`)}
-                alt={property.photos[0].alt}
-              />
-            </Container>
+          <Col size="5" className="position-relative">
+            <img
+              style={{ width: "100%" }}
+              src={getImagePath(`public/images/${property.photos[0].path}`)}
+              alt={property.photos[0].alt}
+            />
+            <div className="position-absolute top-0 end-0 pe-3">
+              <Button color="link" onClick={handlePhotoClick}>
+                <h2>
+                  <MdPhotoSizeSelectActual />
+                </h2>
+              </Button>
+            </div>
           </Col>
           <Col size="7">
             <Container className="bg-white py-4 position-relative">
@@ -118,12 +134,15 @@ const PropertyDetails = () => {
             <Col size="5">
               <Container className="bg-white py-2">
                 <h2>{t("properties.contactform.guest")}</h2>
-                <Button href={AuthRoutes.Login} >{t("buttons.login")}</Button>
+                <Button href={AuthRoutes.Login}>{t("buttons.login")}</Button>
               </Container>
             </Col>
           )}
         </Row>
       </Container>
+      {photosVisible && (
+        <PhotoScreen photos={property.photos} onDismiss={handlePhotoClose} />
+      )}
     </>
   );
 };
