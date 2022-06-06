@@ -1,4 +1,10 @@
 {
+  "home": {
+    "description": "Is an online real estate website with thousands of different agencies. Searching for the ideal property? We are certain that we have what you need.",
+    "action": "Come take a look at our real estates",
+    "button": "See our offers!"
+  },
+
   "onboarding": {
     "login": {
       "title": "Login",
