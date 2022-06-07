@@ -4,7 +4,7 @@ const Select = ({ options = [], error, name, disabled, value, onChange }) => {
   return (
     <>
       <select
-        className={`form-controle ${error ? "is-invalid" : ""}`}
+        className={`form-control border-dark ${error ? "is-invalid" : ""}`}
         name={name}
         disabled={disabled}
         value={String(value) || ""}

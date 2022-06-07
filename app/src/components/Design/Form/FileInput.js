@@ -40,7 +40,7 @@ const FileInput = ({
                 />
             )}
             <input
-                className={`form-control ${error ? "is-invalid" : ""}`}
+                className={`form-control border-dark ${error ? "is-invalid" : ""}`}
                 type="file"
                 accept="image/*"
                 name={name}
