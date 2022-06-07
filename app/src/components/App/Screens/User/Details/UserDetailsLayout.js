@@ -1,7 +1,7 @@
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 import useFetch from "../../../../../core/hooks/useFetch";
 import useTitle from "../../../../../core/hooks/useTitle";
-import { route, UserRoutes } from "../../../../../core/routing";
+import { UserRoutes } from "../../../../../core/routing";
 import Alert from "../../../../Design/Alert/Alert";
 import LoadingIndicator from "../../../Shared/Generic/LoadingIndicator/LoadingIndicator";
 
@@ -10,10 +10,6 @@ const UserDetailsLayout = () => {
   const { isLoading, error, data: user, invalidate } = useFetch(`/users/${id}`);
   useTitle(user ? `${user.firstName} ${user.lastName}` : "");
   const navigate = useNavigate();
-
-  const handleEditClick = () => {
-    navigate(route(UserRoutes.Edit, { id: user.id }));
-  };
 
   const handleUpdate = () => {
     invalidate();
@@ -35,7 +31,6 @@ const UserDetailsLayout = () => {
     <Outlet
       context={{
         user,
-        onEditClick: handleEditClick,
         onUpdate: handleUpdate,
         onDelete: handleDelete,
       }}

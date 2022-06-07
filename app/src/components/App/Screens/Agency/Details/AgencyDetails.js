@@ -4,6 +4,7 @@ import { getImagePath } from "../../../../../core/helpers/api";
 import useFetch from "../../../../../core/hooks/useFetch";
 import useTitle from "../../../../../core/hooks/useTitle";
 import { addressNotation, cityNotation } from "../../../../../core/modules/addresses/utils";
+import { AgencyRoutes, route } from "../../../../../core/routing";
 import Alert from "../../../../Design/Alert/Alert";
 import Button from "../../../../Design/Button/Button";
 import ProfileContainer from "../../../../Design/Container/ProfileContainer";
@@ -15,7 +16,7 @@ import LoadingIndicator from "../../../Shared/Generic/LoadingIndicator/LoadingIn
 
 const AgencyDetails = () => {
   const { t } = useTranslation();
-  const { agency, onEditClick, onCreateUserClick, onDelete } = useOutletContext();
+  const { agency, onDelete } = useOutletContext();
   const {
     isLoading,
     error,
@@ -42,8 +43,8 @@ const AgencyDetails = () => {
             <h4 className="mb-3">{cityNotation(agency.address.city)}</h4>
           </Col>
           <Col size="4" className="text-end">
-            <Button onClick={onEditClick}>{t("agencies.edit.title")}</Button>
-            <Button onClick={onCreateUserClick}>{t("agencies.users.create")}</Button>
+            <Button href={route(AgencyRoutes.Edit, { id: agency.id })}>{t("agencies.edit.title")}</Button>
+            <Button href={route(AgencyRoutes.CreateUser, { id: agency.id })}>{t("agencies.users.create")}</Button>
             <DeleteButton
               scope="agencies"
               id={agency.id}

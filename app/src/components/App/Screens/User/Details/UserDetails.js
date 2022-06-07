@@ -6,10 +6,11 @@ import Col from "../../../../Design/Table/Col";
 import Row from "../../../../Design/Table/Row";
 import DeleteButton from "../../../Shared/Generic/Buttons/DeleteButton";
 import Button from "../../../../Design/Button/Button";
+import { route, UserRoutes } from "../../../../../core/routing";
 
 const UserDetails = () => {
   const { t } = useTranslation();
-  const { user, onEditClick, onDelete } = useOutletContext();
+  const { user, onDelete } = useOutletContext();
 
   return (
     <ProfileContainer>
@@ -28,7 +29,7 @@ const UserDetails = () => {
           {user.agency && <h4 className="mb-3">{user.agency.name}</h4>}
         </Col>
         <Col size="4" className="text-end">
-          <Button onClick={onEditClick}>{t("users.edit.title")}</Button>
+          <Button href={route(UserRoutes.Edit, { id: user.id })}>{t("users.edit.title")}</Button>
           <DeleteButton
             scope="users"
             id={user.id}
