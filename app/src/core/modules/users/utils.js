@@ -33,6 +33,8 @@ const getAuthorization = (user, agencyId) => {
   if (isAgent(user)) {
     return user.agency.id === agencyId;
   }
+
+  return false
 };
 
 export { isAdmin, isAgent, isUser, getAuthorization }

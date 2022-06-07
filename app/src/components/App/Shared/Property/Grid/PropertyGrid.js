@@ -1,5 +1,5 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { isAdmin, isUser } from "../../../../../core/modules/users/utils";
+import { getAuthorization, isUser } from "../../../../../core/modules/users/utils";
 import { PropertyRoutes, route } from "../../../../../core/routing";
 import PropertyCard from "../../../../Design/Modules/Property/PropertyCard";
 import Col from "../../../../Design/Table/Col";
@@ -44,7 +44,7 @@ const PropertyGrid = ({ properties, onRefresh, disabled }) => {
               }
               onLike={onRefresh}
               options={{
-                showDelete: isAdmin(user),
+                showDelete: getAuthorization(user, property.agency.id),
                 showLikeButton: isUser(user),
                 showAddress: !!user,
               }}

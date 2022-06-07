@@ -36,7 +36,7 @@ const PropertyOverview = () => {
     <Container>
       <TopBar>
         <Title>{t("properties.title")}</Title>
-        {(!isUser(user) && user) && (
+        {!isUser(user) && user && (
           <Button href={PropertyRoutes.Create}>
             {t("properties.create.title")}
           </Button>
@@ -47,6 +47,7 @@ const PropertyOverview = () => {
         onRefresh={invalidate}
         disabled={isLoading}
       />
+      {properties.length <= 0 && <h2>{t("properties.none")}</h2>}
     </Container>
   );
 };

@@ -40,6 +40,7 @@ const AgencyOverview = () => {
         onRefresh={invalidate}
         disabled={isLoading}
       />
+      {agencies.length <= 0 && <h2>{t("agencies.none")}</h2>}
     </Container>
   );
 };
