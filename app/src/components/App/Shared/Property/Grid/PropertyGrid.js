@@ -33,7 +33,7 @@ const PropertyGrid = ({ properties, onRefresh, disabled }) => {
         />
       </Col>
       <Col size="8">
-        <Row gutter="3">
+        <Row>
           {properties.map((property) => (
             <PropertyCard
               property={property}

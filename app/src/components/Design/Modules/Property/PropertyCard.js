@@ -15,39 +15,39 @@ const PropertyCard = ({ property, onDelete, onClick, options, onLike }) => {
   return (
     <ClickableCol
       onClick={onClick}
-      size="3"
-      className="bg-white mx-3 p-0 shadow position-relative"
+      size="4"
     >
-      <div className="position-absolute top-0 end-0">
-        {options.showDelete && (
-          <DeleteButton
-            scope="properties"
-            id={property.id}
-            onSuccess={onDelete}
-            color="link"
-          ></DeleteButton>
-        )}
-        {options.showLikeButton && (
-          <LikeButton
-            id={property.id}
-            onSuccess={onLike}
-            color="link"
-          ></LikeButton>
-        )}
-      </div>
-
-      <img
-        style={{ width: "100%" }}
-        src={getImagePath(`public/images/${property.photos[0].path}`)}
-        alt={property.photos[0].alt}
-      />
-      <Container>
-        <h5>
-          {property.category.name} {t(`properties.status.${property.status}`)}
-        </h5>
-        <h3>€ {property.price.toLocaleString("en-US")}</h3>
-        <p className="m-0">{cityNotation(property.address.city)}</p>
-        {options.showAddress && <p>{addressNotation(property.address)}</p>}
+      <Container className="bg-white p-0 shadow position-relative">
+        <div className="position-absolute top-0 end-0">
+          {options.showDelete && (
+            <DeleteButton
+              scope="properties"
+              id={property.id}
+              onSuccess={onDelete}
+              color="link"
+            ></DeleteButton>
+          )}
+          {options.showLikeButton && (
+            <LikeButton
+              id={property.id}
+              onSuccess={onLike}
+              color="link"
+            ></LikeButton>
+          )}
+        </div>
+        <img
+          style={{ width: "100%" }}
+          src={getImagePath(`public/images/${property.photos[0].path}`)}
+          alt={property.photos[0].alt}
+        />
+        <Container>
+          <h5>
+            {property.category.name} {t(`properties.status.${property.status}`)}
+          </h5>
+          <h3>€ {property.price.toLocaleString("en-US")}</h3>
+          <p className="m-0">{cityNotation(property.address.city)}</p>
+          {options.showAddress && <p>{addressNotation(property.address)}</p>}
+        </Container>
       </Container>
     </ClickableCol>
   );
