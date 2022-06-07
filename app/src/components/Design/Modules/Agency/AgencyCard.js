@@ -1,4 +1,8 @@
 import { getImagePath } from "../../../../core/helpers/api";
+import {
+  addressNotation,
+  cityNotation,
+} from "../../../../core/modules/addresses/utils";
 import DeleteButton from "../../../App/Shared/Generic/Buttons/DeleteButton";
 import Container from "../../Container/Container";
 import ClickableCol from "../../Table/ClickableCol";
@@ -28,13 +32,8 @@ const AgencyCard = ({ agency, onDelete, onClick }) => {
         <h4>{agency.name}</h4>
         <p>{agency.email}</p>
         <p>{agency.tel}</p>
-        <p className="m-0">
-          {agency.address.city.zip} {agency.address.city.name}
-        </p>
-        <p>
-          {agency.address.street} {agency.address.number}
-          {agency.address.box ? ` box:${agency.address.box}` : ""}
-        </p>
+        <p className="m-0">{cityNotation(agency.address.city)}</p>
+        <p>{addressNotation(agency.address)}</p>
       </Container>
     </ClickableCol>
   );

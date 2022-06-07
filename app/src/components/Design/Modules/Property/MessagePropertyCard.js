@@ -1,5 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { getImagePath } from "../../../../core/helpers/api";
+import {
+  addressNotation,
+  cityNotation,
+} from "../../../../core/modules/addresses/utils";
 import Container from "../../Container/Container";
 
 const MessagePropertyCard = ({ property, onClick }) => {
@@ -21,13 +25,8 @@ const MessagePropertyCard = ({ property, onClick }) => {
           {property.category.name} {t(`properties.status.${property.status}`)}
         </h5>
         <h3>€ {property.price.toLocaleString("en-US")}</h3>
-        <p className="m-0">
-          {property.address.city.zip} {property.address.city.name}
-        </p>
-        <p>
-          {property.address.street} {property.address.number}
-          {property.address.box ? ` box ${property.address.box}` : ""}
-        </p>
+        <p className="m-0">{cityNotation(property.address.city)}</p>
+        <p>{addressNotation(property.address)}</p>
       </Container>
     </Container>
   );

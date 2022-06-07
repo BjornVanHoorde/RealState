@@ -1,5 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { getImagePath } from "../../../../core/helpers/api";
+import {
+  addressNotation,
+  cityNotation,
+} from "../../../../core/modules/addresses/utils";
 import DeleteButton from "../../../App/Shared/Generic/Buttons/DeleteButton";
 import LikeButton from "../../../App/Shared/Generic/Buttons/LikeButton";
 import Container from "../../Container/Container";
@@ -42,15 +46,8 @@ const PropertyCard = ({ property, onDelete, onClick, options, onLike }) => {
           {property.category.name} {t(`properties.status.${property.status}`)}
         </h5>
         <h3>€ {property.price.toLocaleString("en-US")}</h3>
-        <p className="m-0">
-          {property.address.city.zip} {property.address.city.name}
-        </p>
-        {options.showAddress && (
-          <p>
-            {property.address.street} {property.address.number}
-            {property.address.box ? ` box ${property.address.box}` : ""}
-          </p>
-        )}
+        <p className="m-0">{cityNotation(property.address.city)}</p>
+        {options.showAddress && <p>{addressNotation(property.address)}</p>}
       </Container>
     </ClickableCol>
   );

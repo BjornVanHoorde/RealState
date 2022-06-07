@@ -1,5 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { getImagePath } from "../../../../core/helpers/api";
+import {
+  addressNotation,
+  cityNotation,
+} from "../../../../core/modules/addresses/utils";
 import DeleteButton from "../../../App/Shared/Generic/Buttons/DeleteButton";
 import Container from "../../Container/Container";
 import ClickableCol from "../../Table/ClickableCol";
@@ -14,12 +18,12 @@ const FavoriteCard = ({ favorite, onDelete, onClick }) => {
       className="bg-white p-0 pb-1 shadow position-relative"
     >
       <div className="position-absolute top-0 end-0">
-          <DeleteButton
-            scope="favorites"
-            id={favorite.id}
-            onSuccess={onDelete}
-            color="link"
-          ></DeleteButton>
+        <DeleteButton
+          scope="favorites"
+          id={favorite.id}
+          onSuccess={onDelete}
+          color="link"
+        ></DeleteButton>
       </div>
 
       <img
@@ -29,16 +33,12 @@ const FavoriteCard = ({ favorite, onDelete, onClick }) => {
       />
       <Container>
         <h5>
-          {favorite.property.category.name} {t(`properties.status.${favorite.property.status}`)}
+          {favorite.property.category.name}{" "}
+          {t(`properties.status.${favorite.property.status}`)}
         </h5>
         <h3>€ {favorite.property.price.toLocaleString("en-US")}</h3>
-        <p className="m-0">
-          {favorite.property.address.city.zip} {favorite.property.address.city.name}
-        </p>
-        <p>
-          {favorite.property.address.street} {favorite.property.address.number}
-          {favorite.property.address.box ? ` box ${favorite.property.address.box}` : ""}
-        </p>
+        <p className="m-0">{cityNotation(favorite.property.address.city)}</p>
+        <p>{addressNotation(favorite.property.address)}</p>
       </Container>
     </ClickableCol>
   );

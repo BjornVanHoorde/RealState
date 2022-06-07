@@ -15,6 +15,10 @@ import DeleteButton from "../../../Shared/Generic/Buttons/DeleteButton";
 import ContactForm from "../../../Shared/Message/Form/ContactForm";
 import { MdPhotoSizeSelectActual } from "react-icons/md";
 import PhotoScreen from "../../../Shared/Photo/PhotoScreen";
+import {
+  addressNotation,
+  cityNotation,
+} from "../../../../../core/modules/addresses/utils";
 
 const PropertyDetails = () => {
   const { t } = useTranslation();
@@ -36,11 +40,11 @@ const PropertyDetails = () => {
 
   const handlePhotoClick = () => {
     setPhotosVisible(true);
-  }
+  };
 
   const handlePhotoClose = () => {
     setPhotosVisible(false);
-  }
+  };
 
   return (
     <>
@@ -95,16 +99,8 @@ const PropertyDetails = () => {
                 {property.yearOfConstruction}
               </h4>
               <div className="text-end">
-                {!!user && (
-                  <h3>
-                    {property.address.street} {property.address.number}{" "}
-                    {property.address.box ? ` box ${property.address.box}` : ""}
-                  </h3>
-                )}
-
-                <h3>
-                  {property.address.city.zip} {property.address.city.name}
-                </h3>
+                <h3>{cityNotation(property.address.city)}</h3>
+                {!!user && <h3>{addressNotation(property.address)}</h3>}
               </div>
             </Container>
           </Col>

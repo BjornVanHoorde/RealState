@@ -3,6 +3,7 @@ import { useOutletContext } from "react-router-dom";
 import { getImagePath } from "../../../../../core/helpers/api";
 import useFetch from "../../../../../core/hooks/useFetch";
 import useTitle from "../../../../../core/hooks/useTitle";
+import { addressNotation, cityNotation } from "../../../../../core/modules/addresses/utils";
 import Alert from "../../../../Design/Alert/Alert";
 import Button from "../../../../Design/Button/Button";
 import ProfileContainer from "../../../../Design/Container/ProfileContainer";
@@ -37,10 +38,8 @@ const AgencyDetails = () => {
             <h2 className="mb-3">{agency.name}</h2>
             <h4 className="mb-3">{agency.email}</h4>
             <h4 className="mb-3">{agency.tel}</h4>
-            <h4 className="mb-3">{`${agency.address.street} ${
-              agency.address.number
-            } ${agency.address.box ? agency.address.box : ""}`}</h4>
-            <h4 className="mb-3">{`${agency.address.city.name} ${agency.address.city.zip}`}</h4>
+            <h4 className="mb-3">{addressNotation(agency.address)}</h4>
+            <h4 className="mb-3">{cityNotation(agency.address.city)}</h4>
           </Col>
           <Col size="4" className="text-end">
             <Button onClick={onEditClick}>{t("agencies.edit.title")}</Button>
