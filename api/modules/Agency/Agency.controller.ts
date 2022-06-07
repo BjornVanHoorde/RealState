@@ -90,11 +90,6 @@ export default class AgencyController {
       body.address = await this.addressService.findOne(body.addressId);
     }
 
-    // DELETE THIS LATER
-    if (!body.logo) {
-      body.logo = "logo.jpg";
-    }
-
     const agency = await this.agencyService.create(req.body);
     return res.json(agency);
   };
