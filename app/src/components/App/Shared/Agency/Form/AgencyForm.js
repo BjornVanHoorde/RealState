@@ -28,6 +28,7 @@ const defaultData = {
   street: "",
   number: "",
   box: "",
+  logo: null,
 };
 
 const transformData = (initialData) => {

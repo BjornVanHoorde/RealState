@@ -10,15 +10,17 @@ import AgencyService from "./Agency.service";
 import { AgencyBody } from "./Agency.types";
 
 const getLogo = (req) => {
-  if (req.files.logo) {
-    const logo: UploadedFile = Array.isArray(req.files.logo)
-      ? req.files.logo[0]
-      : req.files.logo;
-    const path = `${UPLOAD_FOLDER}/${new Date().getTime()}_${logo.name}`;
-    logo.mv(path);
-    return path;
+  if (req.files) {
+    if (req.files.logo) {
+      const logo: UploadedFile = Array.isArray(req.files.logo)
+        ? req.files.logo[0]
+        : req.files.logo;
+      const path = `${UPLOAD_FOLDER}/${new Date().getTime()}_${logo.name}`;
+      logo.mv(path);
+      return path;
+    }
   }
-  return null;
+  return "public/uploads/logo.jpg";
 };
 
 export default class AgencyController {
@@ -90,7 +92,7 @@ export default class AgencyController {
       body.address = await this.addressService.findOne(body.addressId);
     }
 
-    const agency = await this.agencyService.create(req.body);
+    const agency = await this.agencyService.create(body);
     return res.json(agency);
   };
 

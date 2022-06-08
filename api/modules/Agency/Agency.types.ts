@@ -4,7 +4,7 @@ export interface AgencyBody {
   name: string;
   tel: string;
   email: string;
-  logo: string;
+  logo?: string;
   address: Address;
   addressId: number;
 }
