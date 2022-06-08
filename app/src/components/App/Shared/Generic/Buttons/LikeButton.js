@@ -25,7 +25,6 @@ const LikeButton = ({ onSuccess, id, disabled, ...rest }) => {
 
   return (
     <Button
-      color="danger"
       onClick={handleClick}
       disabled={disabled || isLoading}
       {...rest}
