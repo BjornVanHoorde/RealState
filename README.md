@@ -6,18 +6,18 @@ https://eindopdracht-mobdev2-app.herokuapp.com
 
 ### User
 
-**email:** user@testing.com
+**email:** user@testing.com\
 **password:** secret
 
 
 ### Agent
 
-**email:** agent@testing.com
+**email:** agent@testing.com\
 **password:** secret
 
 
 ### Admin
 
-**email:** admin@testing.com
+**email:** admin@testing.com\
 **password:** secret
 
