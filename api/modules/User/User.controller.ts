@@ -20,7 +20,7 @@ const getAvatar = (req) => {
       return path;
     }
   }
-  return "public/uploads/avatar.jpg";
+  return "public/images/avatar.jpg";
 };
 
 export default class UserController {

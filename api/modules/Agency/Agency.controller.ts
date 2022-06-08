@@ -20,7 +20,7 @@ const getLogo = (req) => {
       return path;
     }
   }
-  return "public/uploads/logo.jpg";
+  return "public/images/logo.jpg";
 };
 
 export default class AgencyController {

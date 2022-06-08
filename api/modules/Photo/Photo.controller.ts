@@ -19,7 +19,7 @@ const getPhotoPath = (req) => {
     }
   }
 
-  return "public/uploads/photo.png";
+  return "public/images/photo.png";
 };
 
 export default class PhotoController {
