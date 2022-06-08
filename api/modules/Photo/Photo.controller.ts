@@ -8,15 +8,18 @@ import PhotoService from "./Photo.service";
 import { PhotoBody } from "./Photo.types";
 
 const getPhotoPath = (req) => {
-  if (req.files.photo) {
-    const photo: UploadedFile = Array.isArray(req.files.photo)
-      ? req.files.photo[0]
-      : req.files.photo;
-    const path = `${UPLOAD_FOLDER}/${new Date().getTime()}_${photo.name}`;
-    photo.mv(path);
-    return path;
+  if (req.files) {
+    if (req.files.photo) {
+      const photo: UploadedFile = Array.isArray(req.files.photo)
+        ? req.files.photo[0]
+        : req.files.photo;
+      const path = `${UPLOAD_FOLDER}/${new Date().getTime()}_${photo.name}`;
+      photo.mv(path);
+      return path;
+    }
   }
-  return null;
+
+  return "public/uploads/photo.png";
 };
 
 export default class PhotoController {
