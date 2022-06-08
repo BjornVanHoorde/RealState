@@ -5,6 +5,8 @@ const GeneratePasswordButton = ({ onClick }) => {
   const { t } = useTranslation();
 
   const generatePassword = () => {
+    const password = Math.random().toString(36).substr(2);
+    onClick(password);
   };
 
   return (
