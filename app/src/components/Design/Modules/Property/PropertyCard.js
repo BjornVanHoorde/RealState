@@ -38,7 +38,7 @@ const PropertyCard = ({ property, onDelete, onClick, onLike, options }) => {
         </div>
         <img
           style={{ width: "100%" }}
-          src={getImagePath(`public/images/${property.photos[0].path}`)}
+          src={getImagePath(property.photos[0].path)}
           alt={property.photos[0].alt}
         />
         <Container>

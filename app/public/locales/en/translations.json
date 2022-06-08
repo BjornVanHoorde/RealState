@@ -56,7 +56,8 @@
     "price": "Price",
     "description": "Description",
     "avatar": "Avatar",
-    "logo": "Logo"
+    "logo": "Logo",
+    "photo": "Photo"
   },
 
   "buttons": {

@@ -18,7 +18,7 @@ const PropertyEdit = () => {
 
   useTitle(t("properties.edit.title"));
 
-  const handleSubmit = (propertyValues, addressValues) => {
+  const handleSubmit = (propertyValues, addressValues, photo) => {
     mutate(
       `${process.env.REACT_APP_API_URL}/addresses/${propertyValues.addressId}`,
       {
@@ -29,10 +29,16 @@ const PropertyEdit = () => {
           mutate(`${process.env.REACT_APP_API_URL}/properties/${property.id}`, {
             method: "PATCH",
             data: propertyValues,
-            onSuccess: () => {
-              onUpdate();
-              navigate(route(PropertyRoutes.Detail, { id: property.id }));
-              //TODO edit/delete photos
+            onSuccess: (result) => {
+              mutate(`${process.env.REACT_APP_API_URL}/photos`, {
+                method: "POST",
+                data: { ...photo, propertyId: result.id },
+                multipart: true,
+                onSuccess: () => {
+                  onUpdate();
+                  navigate(route(PropertyRoutes.Detail, { id: property.id }));
+                },
+              });
             },
           });
         },
@@ -49,8 +55,8 @@ const PropertyEdit = () => {
           initialData={property}
           disabled={isLoading}
           onSubmit={handleSubmit}
-          options = {{
-            showAgency: isAdmin(user)
+          options={{
+            showAgency: isAdmin(user),
           }}
         />
       )}

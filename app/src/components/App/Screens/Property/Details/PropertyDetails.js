@@ -68,7 +68,7 @@ const PropertyDetails = () => {
           <Col size="5" className="position-relative">
             <img
               style={{ width: "100%" }}
-              src={getImagePath(`public/images/${property.photos[0].path}`)}
+              src={getImagePath(property.photos[0].path)}
               alt={property.photos[0].alt}
             />
             <div className="position-absolute top-0 end-0 pe-3">

@@ -13,6 +13,7 @@ import StatusSelect from "../Select/StatusSelect";
 import Textarea from "../../../../Design/Form/Textarea";
 import AgencySelect from "../../Agency/Select/AgencySelect";
 import { useUser } from "../../../Auth/AuthProvider";
+import FileInput from "../../../../Design/Form/FileInput";
 
 const schema = yup.object().shape({
   agencyId: yup.number().required(),
@@ -124,7 +125,7 @@ const PropertyForm = ({
   });
 
   const handleData = (values) => {
-    onSubmit(getPropertyValues(values), getAddressValues(values));
+    onSubmit(getPropertyValues(values), getAddressValues(values), { photo: values.photo });
   };
 
   return (
@@ -241,6 +242,16 @@ const PropertyForm = ({
             name="description"
             value={values.description}
             error={errors.description}
+            onChange={handleChange}
+            disabled={disabled}
+          />
+        </Field>
+        <Field>
+          <Label htmlFor="photo">{t("fields.photo")}</Label>
+          <FileInput
+            name="photo"
+            value={values.photo}
+            error={errors.photo}
             onChange={handleChange}
             disabled={disabled}
           />

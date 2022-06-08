@@ -38,7 +38,7 @@ const PhotoScreen = ({ photos, onDismiss }) => {
         </div>
         <img
           style={{ width: "100%" }}
-          src={getImagePath(`public/images/${photos[currentPhoto].path}`)}
+          src={getImagePath(photos[currentPhoto].path)}
           alt={currentPhoto.alt}
         />
         <div className="position-absolute top-50 start-100 translate-middle">

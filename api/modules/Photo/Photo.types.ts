@@ -6,9 +6,3 @@ export interface PhotoBody {
   property: Property;
   propertyId: number;
 }
-
-export interface PhotosBody {
-  propertyId: number;
-  property: Property;
-  photos: []
-}

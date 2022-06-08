@@ -17,7 +17,7 @@ const PropertyCreate = () => {
 
   useTitle(t("properties.create.title"));
 
-  const handleSubmit = (propertyValues, addressValues) => {
+  const handleSubmit = (propertyValues, addressValues, photo) => {
     mutate(`${process.env.REACT_APP_API_URL}/addresses`, {
       method: "POST",
       data: addressValues,
@@ -27,17 +27,10 @@ const PropertyCreate = () => {
           method: "POST",
           data: propertyValues,
           onSuccess: (result) => {
-            // FIX LATER
-            const photoValues = {
-              propertyId: result.id,
-              photos: [
-                { path: "photo.png", alt: "photo.png" },
-                { path: "photo.png", alt: "photo.png" },
-              ],
-            };
             mutate(`${process.env.REACT_APP_API_URL}/photos`, {
               method: "POST",
-              data: photoValues,
+              data: { ...photo, propertyId: result.id },
+              multipart: true,
               onSuccess: () => {
                 navigate(route(PropertyRoutes.Index));
               },
@@ -56,7 +49,7 @@ const PropertyCreate = () => {
         onSubmit={handleSubmit}
         disabled={isLoading}
         options={{
-          showAgency: isAdmin(user)
+          showAgency: isAdmin(user),
         }}
       />
     </Container>
