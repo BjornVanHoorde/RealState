@@ -65,7 +65,8 @@
     "search": "Search",
     "reset": "Reset",
     "send": "Send",
-    "login": "Log in"
+    "login": "Log in",
+    "generatePassword": "Generate password"
   },
 
   "profile": {

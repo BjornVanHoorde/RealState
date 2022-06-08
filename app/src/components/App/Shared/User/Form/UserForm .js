@@ -12,6 +12,7 @@ import * as yup from "yup";
 import { useUser } from "../../../Auth/AuthProvider";
 import { isAdmin } from "../../../../../core/modules/users/utils";
 import FileInput from "../../../../Design/Form/FileInput";
+import GeneratePasswordButton from "../../Generic/Buttons/GeneratePasswordButton";
 
 const getSchema = (isUpdate) => {
   return yup.object().shape({
@@ -68,7 +69,7 @@ const UserForm = ({
   const { t } = useTranslation();
   const isUpdate = !!initialData.id;
   const user = useUser();
-  const { values, errors, handleChange, handleSubmit } = useForm(
+  const { values, errors, handleChange, handleSubmit, setPasswordValue } = useForm(
     getSchema(isUpdate),
     {
       ...defaultData,
@@ -144,6 +145,7 @@ const UserForm = ({
               onChange={handleChange}
               error={errors.password}
             />
+            <GeneratePasswordButton onClick={(value) => setPasswordValue(value)} />
           </>
         )}
         {options.showAgency && (
