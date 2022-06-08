@@ -7,21 +7,29 @@ import LoadingIndicator from "../../../Shared/Generic/LoadingIndicator/LoadingIn
 
 const FavoriteOverview = () => {
   const { t } = useTranslation();
-  const { isLoading, error, data: favorites, invalidate } = useFetch("/favorites");
+  const {
+    isLoading,
+    error,
+    data: favorites,
+    invalidate,
+  } = useFetch("/favorites");
 
   useTitle(t("favorites.title"));
 
   if (isLoading) {
-    return <LoadingIndicator />
+    return <LoadingIndicator />;
   }
 
   if (error) {
-    return <Alert color="danger" >{error}</Alert>
+    return <Alert color="danger">{error}</Alert>;
   }
 
   return (
-    <FavoriteGrid favorites={favorites} onRefresh={invalidate}/>
-  )
+    <>
+      <FavoriteGrid favorites={favorites} onRefresh={invalidate} />
+      {favorites.length <= 0 && <h2>{t("favorites.none")}</h2>}
+    </>
+  );
 };
 
 export default FavoriteOverview;

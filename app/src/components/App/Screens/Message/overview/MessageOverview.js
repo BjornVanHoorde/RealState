@@ -28,6 +28,7 @@ const MessageOverview = () => {
   return (
     <Container>
       <MessageList messages={messages} onDelete={invalidate}/>
+      {messages.length <= 0 && <h2>{t("messages.none")}</h2>}
     </Container>
   )
 };
