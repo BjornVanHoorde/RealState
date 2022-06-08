@@ -6,6 +6,7 @@ import {
 import DeleteButton from "../../../App/Shared/Generic/Buttons/DeleteButton";
 import Container from "../../Container/Container";
 import ClickableCol from "../../Table/ClickableCol";
+import PropTypes from "prop-types";
 
 const AgencyCard = ({ agency, onDelete, onClick }) => {
   return (
@@ -30,10 +31,16 @@ const AgencyCard = ({ agency, onDelete, onClick }) => {
           <p>{agency.tel}</p>
           <p className="m-0">{cityNotation(agency.address.city)}</p>
           <p>{addressNotation(agency.address)}</p>
-        </Container>{" "}
+        </Container>
       </Container>
     </ClickableCol>
   );
 };
+
+AgencyCard.propTypes = {
+  agency: PropTypes.object.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
+}
 
 export default AgencyCard;

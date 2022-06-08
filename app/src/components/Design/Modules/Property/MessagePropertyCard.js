@@ -5,6 +5,7 @@ import {
   cityNotation,
 } from "../../../../core/modules/addresses/utils";
 import Container from "../../Container/Container";
+import PropTypes from "prop-types";
 
 const MessagePropertyCard = ({ property, onClick }) => {
   const { t } = useTranslation();
@@ -31,5 +32,10 @@ const MessagePropertyCard = ({ property, onClick }) => {
     </Container>
   );
 };
+
+MessagePropertyCard.propTypes = {
+  property: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
+}
 
 export default MessagePropertyCard;

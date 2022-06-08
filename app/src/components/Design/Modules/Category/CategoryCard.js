@@ -5,6 +5,7 @@ import Col from "../../Table/Col";
 import Row from "../../Table/Row";
 import DeleteButton from "../../../App/Shared/Generic/Buttons/DeleteButton";
 import Container from "../../Container/Container";
+import PropTypes from "prop-types";
 
 const CategoryCard = ({ category, onEdit, onDelete }) => {
   return (
@@ -34,5 +35,11 @@ const CategoryCard = ({ category, onEdit, onDelete }) => {
     </Col>
   );
 };
+
+CategoryCard.propTypes = {
+  category: PropTypes.object.isRequired,
+  onEdit: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+}
 
 export default CategoryCard;

@@ -8,8 +8,9 @@ import DeleteButton from "../../../App/Shared/Generic/Buttons/DeleteButton";
 import LikeButton from "../../../App/Shared/Generic/Buttons/LikeButton";
 import Container from "../../Container/Container";
 import ClickableCol from "../../Table/ClickableCol";
+import PropTypes from "prop-types";
 
-const PropertyCard = ({ property, onDelete, onClick, options, onLike }) => {
+const PropertyCard = ({ property, onDelete, onClick, onLike, options }) => {
   const { t } = useTranslation();
 
   return (
@@ -52,5 +53,13 @@ const PropertyCard = ({ property, onDelete, onClick, options, onLike }) => {
     </ClickableCol>
   );
 };
+
+PropertyCard.propTypes = {
+  property: PropTypes.object.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
+  onLike: PropTypes.func.isRequired,
+  options: PropTypes.object,
+}
 
 export default PropertyCard;

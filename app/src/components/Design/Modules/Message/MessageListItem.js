@@ -3,6 +3,7 @@ import DeleteButton from "../../../App/Shared/Generic/Buttons/DeleteButton";
 import Container from "../../Container/Container";
 import Col from "../../Table/Col";
 import Row from "../../Table/Row";
+import PropTypes from "prop-types";
 
 const MessageListItem = ({ message, onDelete, onClick }) => {
   return (
@@ -35,5 +36,11 @@ const MessageListItem = ({ message, onDelete, onClick }) => {
     </Container>
   );
 };
+
+MessageListItem.propTypes = {
+  message: PropTypes.object.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
+}
 
 export default MessageListItem;

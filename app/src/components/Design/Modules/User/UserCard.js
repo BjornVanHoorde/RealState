@@ -4,6 +4,7 @@ import DeleteButton from "../../../App/Shared/Generic/Buttons/DeleteButton";
 import Container from "../../Container/Container";
 import FlexContainer from "../../Container/FlexContainer";
 import Col from "../../Table/Col";
+import PropTypes from "prop-types";
 
 const UserCard = ({ user, onDelete }) => {
   return (
@@ -27,5 +28,10 @@ const UserCard = ({ user, onDelete }) => {
     </Col>
   );
 };
+
+UserCard.propTypes = {
+  user: PropTypes.object.isRequired,
+  onDelete: PropTypes.func.isRequired,
+}
 
 export default UserCard;

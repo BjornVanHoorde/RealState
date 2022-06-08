@@ -7,6 +7,7 @@ import {
 import DeleteButton from "../../../App/Shared/Generic/Buttons/DeleteButton";
 import Container from "../../Container/Container";
 import ClickableCol from "../../Table/ClickableCol";
+import PropTypes from "prop-types";
 
 const FavoriteCard = ({ favorite, onDelete, onClick }) => {
   const { t } = useTranslation();
@@ -43,5 +44,11 @@ const FavoriteCard = ({ favorite, onDelete, onClick }) => {
     </ClickableCol>
   );
 };
+
+FavoriteCard.propTypes = {
+  favorite: PropTypes.object.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
+}
 
 export default FavoriteCard;
