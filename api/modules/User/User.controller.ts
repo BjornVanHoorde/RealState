@@ -10,15 +10,17 @@ import UserService from "./User.service";
 import { UserBody } from "./User.types";
 
 const getAvatar = (req) => {
-  if (req.files.avatar) {
-    const avatar: UploadedFile = Array.isArray(req.files.avatar)
-      ? req.files.avatar[0]
-      : req.files.avatar;
-    const path = `${UPLOAD_FOLDER}/${new Date().getTime()}_${avatar.name}`;
-    avatar.mv(path);
-    return path;
+  if (req.files) {
+    if (req.files.avatar) {
+      const avatar: UploadedFile = Array.isArray(req.files.avatar)
+        ? req.files.avatar[0]
+        : req.files.avatar;
+      const path = `${UPLOAD_FOLDER}/${new Date().getTime()}_${avatar.name}`;
+      avatar.mv(path);
+      return path;
+    }
   }
-  return null;
+  return "public/uploads/avatar.jpg";
 };
 
 export default class UserController {
