@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import useFetch from "../../../../../core/hooks/useFetch";
 import useTitle from "../../../../../core/hooks/useTitle";
 import { isUser } from "../../../../../core/modules/users/utils";
@@ -21,8 +22,14 @@ const PropertyOverview = () => {
     invalidate,
   } = useFetch("/properties");
   const user = useUser();
+  const navigate = useNavigate();
 
   useTitle(t("properties.title"));
+
+  const handleRefresh = () => {
+    navigate(PropertyRoutes.Index);
+    invalidate();
+  };
 
   if (isLoading) {
     return <LoadingIndicator />;
@@ -44,7 +51,7 @@ const PropertyOverview = () => {
       </TopBar>
       <PropertyGrid
         properties={properties}
-        onRefresh={invalidate}
+        onRefresh={handleRefresh}
         disabled={isLoading}
       />
       {properties.length <= 0 && <h2>{t("properties.none")}</h2>}
