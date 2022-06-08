@@ -27,13 +27,11 @@ export default class AgencyController {
   private agencyService: AgencyService;
   private addressService: AddressService;
   private userService: UserService;
-  private propertyService: PropertyService;
 
   constructor() {
     this.agencyService = new AgencyService();
     this.addressService = new AddressService();
     this.userService = new UserService();
-    this.propertyService = new PropertyService();
   }
 
   all = async (req: AuthRequest, res: Response, next: NextFunction) => {
