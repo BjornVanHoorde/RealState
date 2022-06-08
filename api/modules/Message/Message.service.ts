@@ -23,7 +23,7 @@ export default class MessageService {
         "property.address.city",
       ],
       where: { receiver: { id } },
-      order: { createdAt: "DESC" }
+      order: { createdAt: "DESC" },
     });
     return messages;
   };

@@ -40,6 +40,6 @@ CategoryCard.propTypes = {
   category: PropTypes.object.isRequired,
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
-}
+};
 
 export default CategoryCard;

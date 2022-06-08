@@ -28,10 +28,10 @@ Select.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   options: PropTypes.arrayOf(
-      PropTypes.shape({
-          value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-          label: PropTypes.string,
-      })
+    PropTypes.shape({
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      label: PropTypes.string,
+    })
   ),
   disabled: PropTypes.bool,
   onChange: PropTypes.func.isRequired,

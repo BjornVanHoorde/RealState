@@ -25,7 +25,7 @@ const Home = () => {
         <hr></hr>
         <h5>{t("home.description")}</h5>
         <h3>{t("home.action")}</h3>
-        <Button href={PropertyRoutes.Index} >{t("home.button")}</Button>
+        <Button href={PropertyRoutes.Index}>{t("home.button")}</Button>
       </Col>
     </Row>
   );

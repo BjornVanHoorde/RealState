@@ -19,7 +19,7 @@ const PropertyDetailsLayout = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const user = useUser();
-  
+
   useTitle(t("properties.details.title"));
 
   const handleUpdate = () => {
@@ -45,7 +45,7 @@ const PropertyDetailsLayout = () => {
           property,
           onUpdate: handleUpdate,
           onDelete: handleDelete,
-          authorization: getAuthorization(user, property.agency.id)
+          authorization: getAuthorization(user, property.agency.id),
         }}
       />
     </>

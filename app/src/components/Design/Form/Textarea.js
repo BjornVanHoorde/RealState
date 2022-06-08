@@ -1,4 +1,4 @@
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 
 const Textarea = ({
   name,
@@ -32,6 +32,6 @@ Textarea.propTypes = {
   disabled: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func,
-}
+};
 
 export default Textarea;

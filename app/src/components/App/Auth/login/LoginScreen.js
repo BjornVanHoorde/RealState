@@ -59,7 +59,7 @@ const LoginScreen = () => {
             </Button>
           </p>
           <form onSubmit={handleSubmit(handleData)} noValidate={true}>
-          {error && <Alert color="danger">{error}</Alert>}
+            {error && <Alert color="danger">{error}</Alert>}
             <Field>
               <Label htmlFor="email">{t("fields.email")}</Label>
               <Input
@@ -71,14 +71,14 @@ const LoginScreen = () => {
                 disabled={isLoading}
               />
             </Field>
-              <Label htmlFor="password">{t("fields.password")}</Label>
-              <PasswordInput
-                name="password"
-                onChange={handleChange}
-                value={values.password}
-                error={errors.password}
-                disabled={isLoading}
-              />
+            <Label htmlFor="password">{t("fields.password")}</Label>
+            <PasswordInput
+              name="password"
+              onChange={handleChange}
+              value={values.password}
+              error={errors.password}
+              disabled={isLoading}
+            />
             <Button type="submit" disabled={isLoading}>
               {t("onboarding.login.button")}
             </Button>

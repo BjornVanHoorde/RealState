@@ -14,7 +14,7 @@ const UserOverview = () => {
   const { t } = useTranslation();
   const { isLoading, error, data: users, invalidate } = useFetch("/users");
   useTitle(t("users.title"));
-  
+
   if (isLoading) {
     return <LoadingIndicator />;
   }
@@ -29,11 +29,7 @@ const UserOverview = () => {
         <Title>{t("users.title")}</Title>
         <Button href={UserRoutes.Create}>{t("users.create.title")}</Button>
       </TopBar>
-      <UserGrid
-        users={users}
-        onRefresh={invalidate}
-        disabled={isLoading}
-      />
+      <UserGrid users={users} onRefresh={invalidate} disabled={isLoading} />
     </Container>
   );
 };

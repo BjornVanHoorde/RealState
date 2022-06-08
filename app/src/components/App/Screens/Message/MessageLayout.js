@@ -5,7 +5,7 @@ const MessageLayout = () => {
     <>
       <Outlet />
     </>
-  )
+  );
 };
 
 export default MessageLayout;

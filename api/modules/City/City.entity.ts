@@ -5,17 +5,17 @@ import { BaseEntity } from "../BaseEntity";
 
 @Entity()
 export default class City extends BaseEntity {
-    @PrimaryGeneratedColumn()
-    id: number;
-    
-    @IsDefined({ always: true })
-    @Column()
-    zip: number;
-    
-    @IsDefined({ always: true })
-    @Column()
-    name: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @OneToMany(() => Address, (address) => address.city)
-    addresses: Address[];
+  @IsDefined({ always: true })
+  @Column()
+  zip: number;
+
+  @IsDefined({ always: true })
+  @Column()
+  name: string;
+
+  @OneToMany(() => Address, (address) => address.city)
+  addresses: Address[];
 }

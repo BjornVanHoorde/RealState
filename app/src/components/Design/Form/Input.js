@@ -1,4 +1,4 @@
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 
 const Input = ({
   type,
@@ -35,6 +35,6 @@ Input.propTypes = {
   disabled: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func,
-}
+};
 
 export default Input;

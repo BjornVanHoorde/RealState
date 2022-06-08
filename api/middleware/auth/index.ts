@@ -12,42 +12,42 @@ passport.use("local", LocalStrategy);
 passport.use("jwt", JwtStrategy);
 
 const passportWithErrorHandling = (strategy) => {
-    return function (req, res: Response, next: NextFunction) {
-        passport.authenticate(
-            strategy,
-            { session: false },
-            function (err: any, user: User) {
-                if (err) {
-                    return next(err);
-                }
-                if (!user) {
-                    return next(new AuthError());
-                } else {
-                    req.user = user;
-                    return next();
-                }
-            }
-        )(req, res, next);
-    };
+  return function (req, res: Response, next: NextFunction) {
+    passport.authenticate(
+      strategy,
+      { session: false },
+      function (err: any, user: User) {
+        if (err) {
+          return next(err);
+        }
+        if (!user) {
+          return next(new AuthError());
+        } else {
+          req.user = user;
+          return next();
+        }
+      }
+    )(req, res, next);
+  };
 };
 
 const authLocal = passportWithErrorHandling("local");
 const authJwt = passportWithErrorHandling("jwt");
 
 const createToken = (user: User) => {
-    return jwt.sign({ id: user.id, user: user.email }, process.env.JWT_SECRET, {
-        expiresIn: parseInt(process.env.JWT_EXPIRES_IN_HOURS) * 60 * 60,
-    });
+  return jwt.sign({ id: user.id, user: user.email }, process.env.JWT_SECRET, {
+    expiresIn: parseInt(process.env.JWT_EXPIRES_IN_HOURS) * 60 * 60,
+  });
 };
 
 const withRole = (role: UserRole) => (req, res, next) => {
-    const { user } = req;
+  const { user } = req;
 
-    if (user.role === role) {
-        next();
-    } else {
-        next(new ForbiddenError());
-    }
+  if (user.role === role) {
+    next();
+  } else {
+    next(new ForbiddenError());
+  }
 };
 
 export { authLocal, authJwt, withRole, createToken };

@@ -46,7 +46,12 @@ const CategoryGrid = ({ categories, onRefresh }) => {
       </TopBar>
       <Row gutter="3" className="justify-content-center mt-3">
         {categories.map((category) => (
-          <CategoryCard category={category} onEdit={handleEditClick} onDelete={handleDeleteClick} key={category.name} />
+          <CategoryCard
+            category={category}
+            onEdit={handleEditClick}
+            onDelete={handleDeleteClick}
+            key={category.name}
+          />
         ))}
       </Row>
       {(dialog || currentCategory) && (

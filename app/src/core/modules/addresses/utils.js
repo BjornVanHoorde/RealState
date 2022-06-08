@@ -12,7 +12,7 @@ const cityNotation = (city) => {
     <>
       {city.zip} {city.name}
     </>
-  )
-}
+  );
+};
 
 export { addressNotation, cityNotation };

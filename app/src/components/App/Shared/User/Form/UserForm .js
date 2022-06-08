@@ -69,13 +69,11 @@ const UserForm = ({
   const { t } = useTranslation();
   const isUpdate = !!initialData.id;
   const user = useUser();
-  const { values, errors, handleChange, handleSubmit, setPasswordValue } = useForm(
-    getSchema(isUpdate),
-    {
+  const { values, errors, handleChange, handleSubmit, setPasswordValue } =
+    useForm(getSchema(isUpdate), {
       ...defaultData,
       ...transformData(initialData, options, user),
-    }
-  );
+    });
 
   const handleData = (values) => {
     onSubmit(transformValues(values));
@@ -145,7 +143,9 @@ const UserForm = ({
               onChange={handleChange}
               error={errors.password}
             />
-            <GeneratePasswordButton onClick={(value) => setPasswordValue(value)} />
+            <GeneratePasswordButton
+              onClick={(value) => setPasswordValue(value)}
+            />
           </>
         )}
         {options.showAgency && (

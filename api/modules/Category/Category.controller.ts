@@ -11,11 +11,7 @@ export default class CategoryController {
     this.categoryService = new CategoryService();
   }
 
-  all = async (
-    req: AuthRequest,
-    res: Response,
-    next: NextFunction
-  ) => {
+  all = async (req: AuthRequest, res: Response, next: NextFunction) => {
     const categories = await this.categoryService.all();
     return res.json(categories);
   };
@@ -78,7 +74,9 @@ export default class CategoryController {
     next: NextFunction
   ) => {
     try {
-      const category = await this.categoryService.delete(parseInt(req.params.id));
+      const category = await this.categoryService.delete(
+        parseInt(req.params.id)
+      );
       if (!category) {
         next(new NotFoundError());
       }

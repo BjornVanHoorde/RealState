@@ -24,7 +24,7 @@ const transformData = (values) => {
       firstName: values.get("firstName"),
       lastName: values.get("lastName"),
       email: values.get("email"),
-    }
+    };
   }
   return defaultData;
 };
@@ -33,7 +33,7 @@ const UserSearch = ({ disabled, params, onReset }) => {
   const { t } = useTranslation();
   const { values, errors, handleChange } = useForm(schema, {
     ...defaultData,
-    ...transformData(params)
+    ...transformData(params),
   });
 
   return (
@@ -75,7 +75,6 @@ const UserSearch = ({ disabled, params, onReset }) => {
       <Button type="reset" onClick={onReset} color="danger" disabled={disabled}>
         {t("buttons.reset")}
       </Button>
-
     </form>
   );
 };

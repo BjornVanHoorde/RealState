@@ -9,11 +9,7 @@ import LoadingIndicator from "../../../Shared/Generic/LoadingIndicator/LoadingIn
 
 const MessageDetailsLayout = () => {
   const { id } = useParams();
-  const {
-    isLoading,
-    error,
-    data: message,
-  } = useFetch(`/messages/${id}`);
+  const { isLoading, error, data: message } = useFetch(`/messages/${id}`);
   const navigate = useNavigate();
   const { t } = useTranslation();
   const user = useUser();

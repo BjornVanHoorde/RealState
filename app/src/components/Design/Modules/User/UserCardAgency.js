@@ -17,6 +17,6 @@ const UserCardAgency = ({ user }) => {
 
 UserCardAgency.propTypes = {
   user: PropTypes.object.isRequired,
-}
+};
 
 export default UserCardAgency;

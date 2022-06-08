@@ -19,7 +19,7 @@ const AgencyDetailsLayout = () => {
   };
 
   const handleDelete = () => {
-    navigate(AgencyRoutes.Index)
+    navigate(AgencyRoutes.Index);
   };
 
   if (isLoading) {

@@ -32,6 +32,6 @@ const UserCard = ({ user, onDelete }) => {
 UserCard.propTypes = {
   user: PropTypes.object.isRequired,
   onDelete: PropTypes.func.isRequired,
-}
+};
 
 export default UserCard;

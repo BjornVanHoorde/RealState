@@ -14,10 +14,7 @@ const PropertyCard = ({ property, onDelete, onClick, onLike, options }) => {
   const { t } = useTranslation();
 
   return (
-    <ClickableCol
-      onClick={onClick}
-      size="4"
-    >
+    <ClickableCol onClick={onClick} size="4">
       <Container className="bg-white p-0 shadow position-relative">
         <div className="position-absolute top-0 end-0">
           {options.showDelete && (
@@ -60,6 +57,6 @@ PropertyCard.propTypes = {
   onClick: PropTypes.func.isRequired,
   onLike: PropTypes.func.isRequired,
   options: PropTypes.object,
-}
+};
 
 export default PropertyCard;

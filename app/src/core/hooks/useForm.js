@@ -16,10 +16,10 @@ const useForm = (initialSchema, initialData) => {
   };
 
   const setPasswordValue = (passwordValue) => {
-      setValues({
-        ...values,
-        password: passwordValue,
-      });
+    setValues({
+      ...values,
+      password: passwordValue,
+    });
   };
 
   const validate = useCallback(async (values, onSuccess) => {

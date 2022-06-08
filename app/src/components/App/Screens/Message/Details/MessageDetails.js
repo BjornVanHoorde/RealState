@@ -14,8 +14,8 @@ const MessageDetails = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(route(PropertyRoutes.Detail, { id: message.property.id }))
-  }
+    navigate(route(PropertyRoutes.Detail, { id: message.property.id }));
+  };
 
   return (
     <>
@@ -44,7 +44,10 @@ const MessageDetails = () => {
             <p>{message.message}</p>
           </Col>
           <Col size="3">
-            <MessagePropertyCard property={message.property} onClick={handleClick} />
+            <MessagePropertyCard
+              property={message.property}
+              onClick={handleClick}
+            />
           </Col>
         </Row>
       </Container>

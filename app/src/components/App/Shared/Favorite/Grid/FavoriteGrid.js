@@ -7,7 +7,7 @@ const FavoriteGrid = ({ favorites, onRefresh }) => {
   const navigate = useNavigate();
 
   const handleClick = (id) => {
-    navigate(route(PropertyRoutes.Detail, { id }))
+    navigate(route(PropertyRoutes.Detail, { id }));
   };
 
   return (

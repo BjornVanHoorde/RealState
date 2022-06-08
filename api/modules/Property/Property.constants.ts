@@ -1,8 +1,8 @@
 enum PropertyStatus {
-    forRent = "FOR RENT",
-    rented = "RENTED",
-    forSale = "FOR SALE",
-    sold = "SOLD",
+  forRent = "FOR RENT",
+  rented = "RENTED",
+  forSale = "FOR SALE",
+  sold = "SOLD",
 }
 
-export { PropertyStatus }
+export { PropertyStatus };

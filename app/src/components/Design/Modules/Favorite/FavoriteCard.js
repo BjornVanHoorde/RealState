@@ -23,7 +23,6 @@ const FavoriteCard = ({ favorite, onDelete, onClick }) => {
             color="link"
           ></DeleteButton>
         </div>
-
         <img
           style={{ width: "100%" }}
           src={getImagePath(favorite.property.photos[0].path)}

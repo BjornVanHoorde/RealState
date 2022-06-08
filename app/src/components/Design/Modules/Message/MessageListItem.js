@@ -41,6 +41,6 @@ MessageListItem.propTypes = {
   message: PropTypes.object.isRequired,
   onDelete: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
-}
+};
 
 export default MessageListItem;

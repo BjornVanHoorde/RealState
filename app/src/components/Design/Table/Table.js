@@ -1,8 +1,8 @@
 const Table = ({ children }) => {
   return (
-      <table className="table table-borderless">
-          <tbody>{children}</tbody>
-      </table>
+    <table className="table table-borderless">
+      <tbody>{children}</tbody>
+    </table>
   );
 };
 

@@ -11,16 +11,11 @@ export default class CityController {
     this.cityService = new CityService();
   }
 
-  all = async (
-    req: AuthRequest,
-    res: Response,
-    next: NextFunction,
-  ) => {
+  all = async (req: AuthRequest, res: Response, next: NextFunction) => {
     const cities = await this.cityService.all();
     return res.json(cities);
   };
 
-  
   find = async (
     req: AuthRequest<{ id: number }>,
     res: Response,
@@ -42,11 +37,7 @@ export default class CityController {
     return res.json(city);
   };
 
-  seed = async (
-    req: AuthRequest,
-    res: Response,
-    next: NextFunction
-  ) => {
+  seed = async (req: AuthRequest, res: Response, next: NextFunction) => {
     const data = require("./cities.json");
 
     data.forEach(async (city: CityBody) => {

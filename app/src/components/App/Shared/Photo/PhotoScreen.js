@@ -14,7 +14,7 @@ const PhotoScreen = ({ photos, onDismiss }) => {
     if (photos[currentPhoto - 1]) {
       setCurrentPhoto(currentPhoto - 1);
     } else {
-      setCurrentPhoto(photos.length-1);
+      setCurrentPhoto(photos.length - 1);
     }
   };
 

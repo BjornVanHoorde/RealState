@@ -6,7 +6,12 @@ import LoadingIndicator from "../../Shared/Generic/LoadingIndicator/LoadingIndic
 
 const ProfileLayout = () => {
   const user = useUser();
-  const { isLoading, error, data: userData, invalidate } = useFetch(`/users/${user.id}`);
+  const {
+    isLoading,
+    error,
+    data: userData,
+    invalidate,
+  } = useFetch(`/users/${user.id}`);
 
   if (isLoading) {
     return <LoadingIndicator />;
@@ -16,7 +21,13 @@ const ProfileLayout = () => {
     return <Alert color="danger">{error}</Alert>;
   }
 
-  return <>{userData && <Outlet context={{ user: userData, onUpdate: invalidate }} />}</>;
+  return (
+    <>
+      {userData && (
+        <Outlet context={{ user: userData, onUpdate: invalidate }} />
+      )}
+    </>
+  );
 };
 
 export default ProfileLayout;

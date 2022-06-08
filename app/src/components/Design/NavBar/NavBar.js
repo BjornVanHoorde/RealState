@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 
 const NavBar = ({ navItems }) => {
   return (
@@ -8,9 +8,7 @@ const NavBar = ({ navItems }) => {
         {navItems.map((navItem) => (
           <li className="nav-item mx-2" key={navItem.href}>
             <Link
-              className={`nav-link ${
-                navItem.isActive ? "active" : ""
-              }`}
+              className={`nav-link ${navItem.isActive ? "active" : ""}`}
               to={navItem.href}
             >
               {navItem.label}
@@ -25,11 +23,11 @@ const NavBar = ({ navItems }) => {
 NavBar.propTypes = {
   navItems: PropTypes.arrayOf(
     PropTypes.shape({
-        to: PropTypes.string,
-        isActive: PropTypes.bool,
-        label: PropTypes.string,
+      to: PropTypes.string,
+      isActive: PropTypes.bool,
+      label: PropTypes.string,
     })
-).isRequired,
-}
+  ).isRequired,
+};
 
 export default NavBar;

@@ -14,7 +14,7 @@ const UserEdit = () => {
   const { user, onUpdate } = useOutletContext();
   const { isLoading, error, mutate } = useMutation();
   const navigate = useNavigate();
-  const currentUser = useUser()
+  const currentUser = useUser();
 
   useTitle(t("users.edit.title"));
 

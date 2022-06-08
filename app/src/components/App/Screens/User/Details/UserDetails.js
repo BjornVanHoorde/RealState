@@ -29,14 +29,15 @@ const UserDetails = () => {
           {user.agency && <h4 className="mb-3">{user.agency.name}</h4>}
         </Col>
         <Col size="4" className="text-end">
-          <Button href={route(UserRoutes.Edit, { id: user.id })}>{t("users.edit.title")}</Button>
+          <Button href={route(UserRoutes.Edit, { id: user.id })}>
+            {t("users.edit.title")}
+          </Button>
           <DeleteButton
             scope="users"
             id={user.id}
             onSuccess={onDelete}
             color="link"
-          >
-          </DeleteButton>
+          ></DeleteButton>
         </Col>
       </Row>
     </ProfileContainer>

@@ -120,9 +120,7 @@ const Header = () => {
         )}
         {!user && (
           <Col>
-            <Button href={AuthRoutes.Login}>
-              {t("header.login")}
-            </Button>
+            <Button href={AuthRoutes.Login}>{t("header.login")}</Button>
           </Col>
         )}
       </Row>

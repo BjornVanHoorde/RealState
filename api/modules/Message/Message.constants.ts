@@ -1,6 +1,6 @@
 enum MessageStatus {
-    unread = "UNREAD",
-    read = "READ",
+  unread = "UNREAD",
+  read = "READ",
 }
 
-export { MessageStatus }
+export { MessageStatus };

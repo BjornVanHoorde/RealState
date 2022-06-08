@@ -3,7 +3,10 @@ import { useOutletContext } from "react-router-dom";
 import { getImagePath } from "../../../../../core/helpers/api";
 import useFetch from "../../../../../core/hooks/useFetch";
 import useTitle from "../../../../../core/hooks/useTitle";
-import { addressNotation, cityNotation } from "../../../../../core/modules/addresses/utils";
+import {
+  addressNotation,
+  cityNotation,
+} from "../../../../../core/modules/addresses/utils";
 import { AgencyRoutes, route } from "../../../../../core/routing";
 import Alert from "../../../../Design/Alert/Alert";
 import Button from "../../../../Design/Button/Button";
@@ -43,8 +46,12 @@ const AgencyDetails = () => {
             <h4 className="mb-3">{cityNotation(agency.address.city)}</h4>
           </Col>
           <Col size="4" className="text-end">
-            <Button href={route(AgencyRoutes.Edit, { id: agency.id })}>{t("agencies.edit.title")}</Button>
-            <Button href={route(AgencyRoutes.CreateUser, { id: agency.id })}>{t("agencies.users.create")}</Button>
+            <Button href={route(AgencyRoutes.Edit, { id: agency.id })}>
+              {t("agencies.edit.title")}
+            </Button>
+            <Button href={route(AgencyRoutes.CreateUser, { id: agency.id })}>
+              {t("agencies.users.create")}
+            </Button>
             <DeleteButton
               scope="agencies"
               id={agency.id}
@@ -59,9 +66,8 @@ const AgencyDetails = () => {
       <Row className="justify-content-center">
         {isLoading && <LoadingIndicator />}
         {error && <Alert color="danger">{error}</Alert>}
-        {users && users.map((user) => (
-          <UserCardAgency user={user} key={user.email}/>
-        ))}
+        {users &&
+          users.map((user) => <UserCardAgency user={user} key={user.email} />)}
       </Row>
     </>
   );

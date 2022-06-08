@@ -1,6 +1,6 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import Container from "../../Design/Container/Container";
-import { useAuthContext } from "./AuthProvider"
+import { useAuthContext } from "./AuthProvider";
 
 const OnboardingLayout = () => {
   const { auth } = useAuthContext();
@@ -9,7 +9,7 @@ const OnboardingLayout = () => {
   if (!auth) {
     return (
       <Container>
-        <Outlet/>
+        <Outlet />
       </Container>
     );
   }

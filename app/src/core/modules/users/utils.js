@@ -1,24 +1,24 @@
 import { userRoles } from "./constants";
 
 const isAdmin = (user) => {
-  if(user) {
+  if (user) {
     return user.role === userRoles.Admin;
   }
-  return false
+  return false;
 };
 
 const isAgent = (user) => {
-  if(user) {
+  if (user) {
     return user.role === userRoles.Agent;
   }
-  return false
+  return false;
 };
 
 const isUser = (user) => {
-  if(user) {
+  if (user) {
     return user.role === userRoles.User;
   }
-  return false
+  return false;
 };
 
 const getAuthorization = (user, agencyId) => {
@@ -34,7 +34,7 @@ const getAuthorization = (user, agencyId) => {
     return user.agency.id === agencyId;
   }
 
-  return false
+  return false;
 };
 
-export { isAdmin, isAgent, isUser, getAuthorization }
+export { isAdmin, isAgent, isUser, getAuthorization };

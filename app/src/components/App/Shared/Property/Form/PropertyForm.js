@@ -125,7 +125,9 @@ const PropertyForm = ({
   });
 
   const handleData = (values) => {
-    onSubmit(getPropertyValues(values), getAddressValues(values), { photo: values.photo });
+    onSubmit(getPropertyValues(values), getAddressValues(values), {
+      photo: values.photo,
+    });
   };
 
   return (

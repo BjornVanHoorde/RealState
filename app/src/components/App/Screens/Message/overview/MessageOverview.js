@@ -16,7 +16,7 @@ const MessageOverview = () => {
   } = useFetch("/messages");
 
   useTitle(t("messages.title"));
-  
+
   if (isLoading) {
     return <LoadingIndicator />;
   }
@@ -27,10 +27,10 @@ const MessageOverview = () => {
 
   return (
     <Container>
-      <MessageList messages={messages} onDelete={invalidate}/>
+      <MessageList messages={messages} onDelete={invalidate} />
       {messages.length <= 0 && <h2>{t("messages.none")}</h2>}
     </Container>
-  )
+  );
 };
 
 export default MessageOverview;

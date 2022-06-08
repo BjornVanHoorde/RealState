@@ -20,9 +20,9 @@ export default class PropertyService {
 
   findOne = async (id: number) => {
     const property = await this.repository.findOne({
-    where: { id },
-    relations: ["address", "address.city", "photos", "agency", "category"],
-  });
+      where: { id },
+      relations: ["address", "address.city", "photos", "agency", "category"],
+    });
     return property;
   };
 

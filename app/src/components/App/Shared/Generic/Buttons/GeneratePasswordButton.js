@@ -11,7 +11,9 @@ const GeneratePasswordButton = ({ onClick }) => {
   };
 
   return (
-    <Button color="secondary" onClick={generatePassword}>{t("buttons.generatePassword")}</Button>
+    <Button color="secondary" onClick={generatePassword}>
+      {t("buttons.generatePassword")}
+    </Button>
   );
 };
 

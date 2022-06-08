@@ -17,12 +17,7 @@ export default class FavoriteController {
     this.propertyService = new PropertyService();
   }
 
-  all = async (
-    req: AuthRequest,
-    res: Response,
-    next: NextFunction
-  ) => {
-
+  all = async (req: AuthRequest, res: Response, next: NextFunction) => {
     const favorites = await this.favoriteService.all(req.user.id);
     return res.json(favorites);
   };
@@ -56,7 +51,6 @@ export default class FavoriteController {
     res: Response,
     next: NextFunction
   ) => {
-
     const { body } = req;
 
     body.userId = req.user.id;
@@ -95,7 +89,9 @@ export default class FavoriteController {
     next: NextFunction
   ) => {
     try {
-      const favorite = await this.favoriteService.delete(parseInt(req.params.id));
+      const favorite = await this.favoriteService.delete(
+        parseInt(req.params.id)
+      );
       if (!favorite) {
         next(new NotFoundError());
       }

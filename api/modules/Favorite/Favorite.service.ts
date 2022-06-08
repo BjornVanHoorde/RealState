@@ -21,7 +21,7 @@ export default class FavoriteService {
         "property.address.city",
         "property.category",
       ],
-      where: { user: {id} }
+      where: { user: { id } },
     });
     return favorites;
   };

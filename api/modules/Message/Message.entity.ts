@@ -13,7 +13,7 @@ export default class Message extends BaseEntity {
 
   @IsDefined({ always: true })
   @Column()
-  message: string
+  message: string;
 
   @ManyToOne(() => Property, (property) => property.messages)
   property: Property;
