@@ -19,6 +19,7 @@ import {
   addressNotation,
   cityNotation,
 } from "../../../../../core/modules/addresses/utils";
+import { propertyStatusses } from "../../../../../core/modules/properties/Constants";
 
 const PropertyDetails = () => {
   const { t } = useTranslation();
@@ -114,23 +115,33 @@ const PropertyDetails = () => {
               <p>{property.description}</p>
             </Container>
           </Col>
-          {isUser(user) && (
-            <Col size="5">
-              <Container className="bg-white py-2">
-                <h2>{t("properties.contactform.title")}</h2>
-                {error && <Alert color="danger">{error}</Alert>}
-                {property && !isSend && (
-                  <ContactForm disabled={isLoading} onSubmit={handleSubmit} />
-                )}
-                {isSend && <h2>{t("properties.contactform.send")}</h2>}
-              </Container>
-            </Col>
-          )}
+          {isUser(user) &&
+            property.status !== propertyStatusses.rented &&
+            property.status !== propertyStatusses.sold && (
+              <Col size="5">
+                <Container className="bg-white py-2">
+                  <h2>{t("properties.contactform.title")}</h2>
+                  {error && <Alert color="danger">{error}</Alert>}
+                  {property && !isSend && (
+                    <ContactForm disabled={isLoading} onSubmit={handleSubmit} />
+                  )}
+                  {isSend && <h2>{t("properties.contactform.send")}</h2>}
+                </Container>
+              </Col>
+            )}
           {!user && (
             <Col size="5">
               <Container className="bg-white py-2">
                 <h2>{t("properties.contactform.guest")}</h2>
                 <Button href={AuthRoutes.Login}>{t("buttons.login")}</Button>
+              </Container>
+            </Col>
+          )}
+          {(property.status === propertyStatusses.rented ||
+            property.status === propertyStatusses.sold) && (
+            <Col size="5">
+              <Container className="bg-white py-2">
+                <h2>{t("properties.details.notAvailable")}</h2>
               </Container>
             </Col>
           )}

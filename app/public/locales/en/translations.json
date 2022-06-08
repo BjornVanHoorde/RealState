@@ -133,7 +133,8 @@
     "details": {
       "title": "Property",
       "buildYear": "Build in",
-      "description": "Description"
+      "description": "Description",
+      "notAvailable": "This property is not available anymore"
     },
     "status": {
       "FOR SALE": "for sale",
