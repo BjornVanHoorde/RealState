@@ -26,7 +26,7 @@ const CategoryOverviewScreen = () => {
       <Container>
         <CategoryGrid onRefresh={invalidate} categories={categories} />
       </Container>
-      {categories.length <= 0 && <h2>{t("agencies.none")}</h2>}
+      {categories.length <= 0 && <h2>{t("categories.none")}</h2>}
     </>
   );
 };
