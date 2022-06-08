@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import useFetch from "../../../../../core/hooks/useFetch";
 import useTitle from "../../../../../core/hooks/useTitle";
 import { AgencyRoutes } from "../../../../../core/routing";
@@ -18,8 +19,14 @@ const AgencyOverview = () => {
     invalidate,
     data: agencies,
   } = useFetch("/agencies");
+  const navigate = useNavigate();
 
   useTitle(t("agencies.title"));
+
+  const handleRefresh = () => {
+    navigate(AgencyRoutes.Index);
+    invalidate();
+  };
 
   if (isLoading) {
     return <LoadingIndicator />;
@@ -37,7 +44,7 @@ const AgencyOverview = () => {
       </TopBar>
       <AgencyGrid
         agencies={agencies}
-        onRefresh={invalidate}
+        onRefresh={handleRefresh}
         disabled={isLoading}
       />
       {agencies.length <= 0 && <h2>{t("agencies.none")}</h2>}
