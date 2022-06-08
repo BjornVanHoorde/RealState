@@ -26,9 +26,7 @@ const FavoriteCard = ({ favorite, onDelete, onClick }) => {
 
         <img
           style={{ width: "100%" }}
-          src={getImagePath(
-            `public/images/${favorite.property.photos[0].path}`
-          )}
+          src={getImagePath(favorite.property.photos[0].path)}
           alt={favorite.property.photos[0].alt}
         />
         <Container>
@@ -49,6 +47,6 @@ FavoriteCard.propTypes = {
   favorite: PropTypes.object.isRequired,
   onDelete: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
-}
+};
 
 export default FavoriteCard;

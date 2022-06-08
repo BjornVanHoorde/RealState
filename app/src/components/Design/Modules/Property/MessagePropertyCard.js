@@ -18,7 +18,7 @@ const MessagePropertyCard = ({ property, onClick }) => {
     >
       <img
         style={{ width: "100%" }}
-        src={getImagePath(`public/images/${property.photos[0].path}`)}
+        src={getImagePath(property.photos[0].path)}
         alt={property.photos[0].alt}
       />
       <Container>
@@ -36,6 +36,6 @@ const MessagePropertyCard = ({ property, onClick }) => {
 MessagePropertyCard.propTypes = {
   property: PropTypes.object.isRequired,
   onClick: PropTypes.func.isRequired,
-}
+};
 
 export default MessagePropertyCard;
