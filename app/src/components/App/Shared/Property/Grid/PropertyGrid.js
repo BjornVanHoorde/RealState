@@ -1,6 +1,9 @@
+import { useTranslation } from "react-i18next";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import useFilter from "../../../../../core/hooks/useFilter";
 import {
   getAuthorization,
+  isAdmin,
   isUser,
 } from "../../../../../core/modules/users/utils";
 import { PropertyRoutes, route } from "../../../../../core/routing";
@@ -11,19 +14,19 @@ import { useUser } from "../../../Auth/AuthProvider";
 import PropertySearch from "../Form/PropertySearch";
 
 const PropertyGrid = ({ properties, onRefresh, disabled }) => {
+  const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
+  const { filteredData, handleReset } = useFilter(
+    properties,
+    "properties",
+    searchParams
+  );
   const navigate = useNavigate();
   const user = useUser();
 
-  if (!!String(searchParams)) {
-    properties = properties.filter(
-      (property) =>
-        property.address.city.id === parseInt(searchParams.get("cityId"))
-    );
-  }
-
-  const handleReset = () => {
+  const handleClickReset = () => {
     setSearchParams({});
+    handleReset();
   };
 
   return (
@@ -32,12 +35,15 @@ const PropertyGrid = ({ properties, onRefresh, disabled }) => {
         <PropertySearch
           disabled={disabled}
           params={searchParams}
-          onReset={handleReset}
+          onReset={handleClickReset}
+          options={{
+            showAgency: isAdmin(user),
+          }}
         />
       </Col>
       <Col size="8">
         <Row>
-          {properties.map((property) => (
+          {filteredData.map((property) => (
             <PropertyCard
               property={property}
               onDelete={onRefresh}
@@ -53,6 +59,9 @@ const PropertyGrid = ({ properties, onRefresh, disabled }) => {
               }}
             />
           ))}
+          {filteredData.length <= 0 && (
+            <h2 className="text-center">{t("properties.none")}</h2>
+          )}
         </Row>
       </Col>
     </Row>

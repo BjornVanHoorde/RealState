@@ -1,6 +1,4 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { AuthRoutes } from "../../../core/routing";
 
 const KEY = "REALSTATE_AUTH";
 
@@ -22,7 +20,6 @@ const saveAuthToStorage = (auth) => {
 
 const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState(getAuthFromStorage());
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (auth) {
@@ -34,7 +31,6 @@ const AuthProvider = ({ children }) => {
 
   const handleLogout = () => {
     setAuth(null);
-    navigate(AuthRoutes.Login);
   };
 
   const handleLogin = (auth) => {

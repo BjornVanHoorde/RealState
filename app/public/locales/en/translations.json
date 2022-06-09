@@ -57,7 +57,9 @@
     "description": "Description",
     "avatar": "Avatar",
     "logo": "Logo",
-    "photo": "Photo"
+    "photo": "Photo",
+    "minPrice": "Min. price",
+    "maxPrice": "Max. price"
   },
 
   "buttons": {
@@ -85,7 +87,7 @@
     "edit": {
       "title": "Edit Category"
     },
-    "none": "No categories available yet"
+    "none": "No categories found"
   },
 
   "users": {
@@ -116,7 +118,7 @@
       "title": "Users",
       "create": "Create User"
     },
-    "none": "No agencies available yet"
+    "none": "No agencies found"
   },
 
   "properties": {
@@ -147,7 +149,7 @@
       "send": "Message is send",
       "guest": "Log in to send a message"
     },
-    "none": "No properties available yet"
+    "none": "No properties found"
   },
 
   "messages": {
@@ -156,12 +158,12 @@
       "title": "Message",
       "button": "Send mail"
     },
-    "none": "No messages available yet"
+    "none": "No messages found"
   },
 
   "favorites": {
     "title": "Favorites",
-    "none": "No favorites available yet"
+    "none": "No favorites yet"
   },
 
   "photos": {

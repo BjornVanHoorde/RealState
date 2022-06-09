@@ -1,4 +1,6 @@
+import { useTranslation } from "react-i18next";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import useFilter from "../../../../../core/hooks/useFilter";
 import { AgencyRoutes, route } from "../../../../../core/routing";
 import AgencyCard from "../../../../Design/Modules/Agency/AgencyCard";
 import Col from "../../../../Design/Table/Col";
@@ -6,17 +8,18 @@ import Row from "../../../../Design/Table/Row";
 import AgencySearch from "../Form/AgencySearch";
 
 const AgencyGrid = ({ agencies, onRefresh, disabled }) => {
+  const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
+  const { filteredData, handleReset } = useFilter(
+    agencies,
+    "agencies",
+    searchParams
+  );
   const navigate = useNavigate();
 
-  if (!!String(searchParams)) {
-    agencies = agencies.filter((agency) =>
-      agency.name.includes(searchParams.get("name"))
-    );
-  }
-
-  const handleReset = () => {
+  const handleResetClick = () => {
     setSearchParams({});
+    handleReset();
   };
 
   return (
@@ -25,12 +28,12 @@ const AgencyGrid = ({ agencies, onRefresh, disabled }) => {
         <AgencySearch
           disabled={disabled}
           params={searchParams}
-          onReset={handleReset}
+          onReset={handleResetClick}
         />
       </Col>
       <Col size="8">
         <Row gutter="3">
-          {agencies.map((agency) => (
+          {filteredData.map((agency) => (
             <AgencyCard
               agency={agency}
               onDelete={onRefresh}
@@ -40,6 +43,9 @@ const AgencyGrid = ({ agencies, onRefresh, disabled }) => {
               }
             />
           ))}
+          {filteredData.length <= 0 && (
+            <h2 className="text-center">{t("agencies.none")}</h2>
+          )}
         </Row>
       </Col>
     </Row>
