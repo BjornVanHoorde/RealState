@@ -5,25 +5,26 @@ import Label from "../../../../Design/Form/Label";
 import Input from "../../../../Design/Form/Input";
 import Button from "../../../../Design/Button/Button";
 import { useTranslation } from "react-i18next";
+import AgencySelect from "../../Agency/Select/AgencySelect";
 
 const schema = yup.object().shape({
-  firstName: yup.string(),
-  lastName: yup.string(),
-  email: yup.string().email(),
+  name: yup.string(),
+  email: yup.string(),
+  agencyId: yup.number(),
 });
 
 const defaultData = {
-  firstName: "",
-  lastName: "",
+  name: "",
   email: "",
+  agencyId: "",
 };
 
 const transformData = (values) => {
   if (!!String(values)) {
     return {
-      firstName: values.get("firstName"),
-      lastName: values.get("lastName"),
+      name: values.get("name"),
       email: values.get("email"),
+      agencyId: values.get("agencyId"),
     };
   }
   return defaultData;
@@ -39,22 +40,12 @@ const UserSearch = ({ disabled, params, onReset }) => {
   return (
     <form noValidate={true}>
       <Field>
-        <Label htmlFor="firstName">{t("fields.firstName")}</Label>
+        <Label htmlFor="name">{t("fields.name")}</Label>
         <Input
-          name="firstName"
+          name="name"
           onChange={handleChange}
-          value={values.firstName}
-          error={errors.firstName}
-          disabled={disabled}
-        />
-      </Field>
-      <Field>
-        <Label htmlFor="lastName">{t("fields.lastName")}</Label>
-        <Input
-          name="lastName"
-          onChange={handleChange}
-          value={values.lastName}
-          error={errors.lastName}
+          value={values.name}
+          error={errors.name}
           disabled={disabled}
         />
       </Field>
@@ -66,6 +57,17 @@ const UserSearch = ({ disabled, params, onReset }) => {
           onChange={handleChange}
           value={values.email}
           error={errors.email}
+          disabled={disabled}
+        />
+      </Field>
+      <Field>
+        <Label htmlFor="agencyId">{t("fields.agency")}</Label>
+        <AgencySelect
+          name="agencyId"
+          type="agencyId"
+          onChange={handleChange}
+          value={values.agencyId}
+          error={errors.agencyId}
           disabled={disabled}
         />
       </Field>

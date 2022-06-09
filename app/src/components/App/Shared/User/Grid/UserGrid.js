@@ -1,11 +1,15 @@
+import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
+import useFilter from "../../../../../core/hooks/useFilter";
 import UserCard from "../../../../Design/Modules/User/UserCard";
 import Col from "../../../../Design/Table/Col";
 import Row from "../../../../Design/Table/Row";
 import UserSearch from "../Form/UserSearch";
 
 const UserGrid = ({ users, onRefresh, disabled }) => {
+  const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
+  const { filteredData, handleReset } = useFilter(users, "users", searchParams);
 
   if (!!String(searchParams)) {
     users = users.filter((user) =>
@@ -19,8 +23,9 @@ const UserGrid = ({ users, onRefresh, disabled }) => {
     );
   }
 
-  const handleReset = () => {
+  const handleResetClick = () => {
     setSearchParams({});
+    handleReset();
   };
 
   return (
@@ -29,14 +34,17 @@ const UserGrid = ({ users, onRefresh, disabled }) => {
         <UserSearch
           disabled={disabled}
           params={searchParams}
-          onReset={handleReset}
+          onReset={handleResetClick}
         />
       </Col>
       <Col size="8">
         <Row gutter="3">
-          {users.map((user) => (
+          {filteredData.map((user) => (
             <UserCard user={user} onDelete={onRefresh} key={user.email} />
           ))}
+          {filteredData.length <= 0 && (
+            <h2 className="text-center" >{t("users.none")}</h2>
+          )}
         </Row>
       </Col>
     </Row>

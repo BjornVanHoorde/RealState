@@ -12,6 +12,9 @@ const useFilter = (initialData, scope, searchParams) => {
         case "agencies":
           filterAgencies(initialData);
           break;
+        case "users":
+          filterUsers(initialData);
+          break;
         default:
           break;
       }
@@ -79,6 +82,32 @@ const useFilter = (initialData, scope, searchParams) => {
     }
 
     setFilteredData(agencies);
+  };
+
+  const filterUsers = (users) => {
+    if (searchParams.get("name")) {
+      users = users.filter((user) =>
+        `${user.firstName.toLowerCase()} ${user.lastName.toLowerCase()}`.includes(
+          searchParams.get("name").toLowerCase()
+        )
+      );
+    }
+    if (searchParams.get("email")) {
+      users = users.filter((user) =>
+        user.email
+          .toLowerCase()
+          .includes(searchParams.get("email").toLowerCase())
+      );
+    }
+    if (searchParams.get("agencyId")) {
+      users = users.filter((user) =>
+        user.agency
+          ? user.agency.id === parseInt(searchParams.get("agencyId"))
+          : null
+      );
+    }
+
+    setFilteredData(users);
   };
 
   const handleReset = () => {
