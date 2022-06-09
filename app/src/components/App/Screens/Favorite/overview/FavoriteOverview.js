@@ -35,7 +35,7 @@ const FavoriteOverview = () => {
   return (
     <>
       <FavoriteGrid favorites={favorites} onRefresh={handleRefresh} />
-      {favorites.length <= 0 && <h2>{t("favorites.none")}</h2>}
+      {favorites.length <= 0 && <h2 className="text-center">{t("favorites.none")}</h2>}
     </>
   );
 };
